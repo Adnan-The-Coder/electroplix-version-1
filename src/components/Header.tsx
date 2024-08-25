@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import ModernFuturisticButton from "./ui/Button-Modern-Animations";
 import Link from "next/link";
 
-export function Navbar() {
+export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
