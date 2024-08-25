@@ -18,12 +18,15 @@ export function Header() {
         {/* Header Section */}
         <div className="flex w-full items-center justify-between absolute top-4 px-4">
           {/* Left side menu */}
-          <div>
+          <div className="flex items-center space-x-2">
             <Link href="/">
               <span className="font-orbitron text-2xl md:text-3xl">
                 Electroplix
               </span>
             </Link>
+            <span className="bg-gray-700 text-white text-xs font-semibold py-1 px-2 rounded-full">
+              Beta
+            </span>
           </div>
 
           {/* Mobile menu button */}
