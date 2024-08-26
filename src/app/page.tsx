@@ -1,12 +1,8 @@
-import Service from "@/components/Service";
-import Background from "@/components/ui/Background";
 
 export default function Home() {
   return (
     <>
-    <h1>This is a Template branch and all the templates which are not used in development phase are here which can be used in future</h1>
-    <Background/>
-    <Service/>
+    <h1>This is a Features branch and all the templates which will be developed to be used would be here</h1>
     </>
   );
 }
