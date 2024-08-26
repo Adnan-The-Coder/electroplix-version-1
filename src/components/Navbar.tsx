@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 
-export function Navber() {
+export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
   
     const toggleMenu = () => {

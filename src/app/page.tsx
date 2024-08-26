@@ -1,4 +1,4 @@
-import { Navber } from "@/components/Navbar";
+import { Navbar } from "@/components/Navbar";
 import Service from "@/components/Service";
 import { HeroSection } from "@/components/Header";
 
@@ -7,7 +7,7 @@ import { HeroSection } from "@/components/Header";
 export default function Home() {
   return (
       <>
-      <Navber/>
+      <Navbar/>
       <HeroSection/>
       <Service/>
       </>
