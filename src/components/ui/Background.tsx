@@ -11,7 +11,7 @@ export const BackgroundGradientAnimation = ({
   fourthColor = "200, 0, 255", // Deep electric purple
   fifthColor = "150, 0, 255", // Dark electric purple
   pointerColor = "0, 255, 255", // Electric cyan for pointer
-  size = "80%",
+  size = "190%",
   blendingValue = "overlay",
   children,
   className,

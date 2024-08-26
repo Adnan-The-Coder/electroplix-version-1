@@ -1,12 +1,14 @@
-import { Header } from "@/components/Header";
+import { Navber } from "@/components/Navbar";
 import Service from "@/components/Service";
+import { HeroSection } from "@/components/Header";
 
 
 
 export default function Home() {
   return (
       <>
-      <Header/>
+      <Navber/>
+      <HeroSection/>
       <Service/>
       </>
   );
