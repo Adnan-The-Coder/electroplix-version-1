@@ -1,3 +1,8 @@
+/* TailwindCSS base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Ensure that all elements use the border-box model */
 *,
 *::before,
@@ -11,11 +16,7 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: #000; /* Set a default background color to avoid gray background */
+    transition: background-color 0.3s ease; /* Smooth transition for background color changes */
+
 }
-
-/* TailwindCSS base, components, and utilities */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Optional: You can add custom global styles here */
