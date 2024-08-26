@@ -1,3 +1,5 @@
+// development branch Background 
+
 "use client";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -11,7 +13,7 @@ export const BackgroundGradientAnimation = ({
   fourthColor = "200, 0, 255", // Deep electric purple
   fifthColor = "150, 0, 255", // Dark electric purple
   pointerColor = "0, 255, 255", // Electric cyan for pointer
-  size = "190%",
+  size = "80%",
   blendingValue = "overlay",
   children,
   className,
