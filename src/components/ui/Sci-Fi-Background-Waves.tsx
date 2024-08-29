@@ -1,3 +1,4 @@
+// This code is slowing the website rendering and animation effects
 "use client";
 import { motion } from 'framer-motion';
 import React from 'react';
