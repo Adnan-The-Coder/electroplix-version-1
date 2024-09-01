@@ -2,7 +2,7 @@
 
 import { Switch } from "@/components/ui/switch";
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { MdChevronRight } from "react-icons/md"; // Import the icon from react-icons
 import React, { useState } from "react";
 import SimpleCatchyButton from "./ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
@@ -96,14 +96,11 @@ function PricingSection() {
                 <ul className="space-y-4 mb-8 text-white">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-center space-x-3">
-                      <ChevronRight className="w-5 h-5 text-lime-400" />
+                      <MdChevronRight className="w-5 h-5 text-lime-400" /> {/* Updated icon */}
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-                {/* <Button className="w-full bg-gradient-to-r from-cyan-500 via-pink-400 to-purple-600 hover:from-gray-700 hover:to-cyan-700 transition-all duration-200 text-white font-semibold py-3">
-                  Choose Plan
-                </Button> */}
                 <SimpleCatchyButton text="Choose Plan"/>
               </CardContent>
             </Card>
