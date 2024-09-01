@@ -17,7 +17,7 @@ export default function Home() {
       <Service/>
       <br />
       <WhyUsSection/>
-      {/* <PricingSection/> */}
+      <PricingSection/>
       </>
   );
 }
