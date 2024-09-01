@@ -16,7 +16,7 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    background-color: #000; /* Set a default background color to avoid gray background */
+    background-color: #14121f; /* Set a default background color to avoid gray background */
     transition: background-color 0.3s ease; /* Smooth transition for background color changes */
 
 }
