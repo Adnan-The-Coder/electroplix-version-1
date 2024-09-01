@@ -1,5 +1,5 @@
-import { BarChart2, DollarSign, Users, Clock } from "lucide-react";
-import React from "react";
+import { FaChartBar, FaDollarSign, FaUsers, FaClock } from 'react-icons/fa';
+import React from 'react';
 
 function WhyUsSection() {
   return (
@@ -14,20 +14,20 @@ function WhyUsSection() {
         {[
           {
             title: "Increased Productivity",
-            icon: BarChart2,
+            icon: FaChartBar,
             color: "bg-blue-500",
           },
           {
             title: "Cost-Effective",
-            icon: DollarSign,
+            icon: FaDollarSign,
             color: "bg-green-500",
           },
           {
             title: "Scalable Solution",
-            icon: Users,
+            icon: FaUsers,
             color: "bg-purple-500",
           },
-          { title: "24/7 Support", icon: Clock, color: "bg-pink-500" },
+          { title: "24/7 Support", icon: FaClock, color: "bg-pink-500" },
         ].map((reason) => (
           <div key={reason.title} className="flex items-start space-x-6">
             <div
