@@ -1,5 +1,3 @@
-// Dark theme Service Card
-
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -52,7 +50,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ Icon, title, description }) =
       initial="initial"
       whileHover="hover"
       variants={cardVariants}
-      style={{ perspective: "1200px" }} // Ensure the 3D effect is pronounced
+      style={{ 
+        perspective: "1200px",  // Ensure the 3D effect is pronounced
+        width: "300px" // Set a fixed width for the card
+      }}
     >
       <motion.div 
         className="absolute inset-0 border-4 border-transparent rounded-lg pointer-events-none"

@@ -1,5 +1,3 @@
-// Dark theme Service 
-
 "use client";
 import { motion } from 'framer-motion';
 import { FaGlobe, FaCog, FaSearch, FaMobileAlt, FaUsers, FaBullhorn, FaServer, FaLaptopCode } from 'react-icons/fa';
@@ -19,7 +17,7 @@ const Service: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12 bg-gray-900 text-white">
+    <div className="container rounded-3xl mx-auto max-w-7xl px-4 py-12 bg-gray-900 text-white">
       {/* Header Section */}
       <motion.div
         initial="hidden"
@@ -36,7 +34,7 @@ const Service: React.FC = () => {
 
       {/* Services Section */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-6 lg:px-8"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
