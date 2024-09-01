@@ -5,6 +5,7 @@ import WhyUsSection from "@/components/why-us-section";
 import { ProductivitySection } from "@/components/productivity-section";
 import PricingSection from "@/components/pricing-section";
 import CTASection from "@/components/cta-section";
+import Footer from "@/components/Footer";
 
 
 
@@ -20,6 +21,7 @@ export default function Home() {
       <WhyUsSection/>
       <PricingSection/>
       <CTASection/>
+      <Footer/>
       </>
   );
 }
