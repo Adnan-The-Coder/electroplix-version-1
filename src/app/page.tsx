@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/Header";
 import WhyUsSection from "@/components/why-us-section";
 import { ProductivitySection } from "@/components/productivity-section";
 import PricingSection from "@/components/pricing-section";
+import CTASection from "@/components/cta-section";
 
 
 
@@ -18,6 +19,7 @@ export default function Home() {
       <br />
       <WhyUsSection/>
       <PricingSection/>
+      <CTASection/>
       </>
   );
 }

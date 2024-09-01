@@ -24,20 +24,24 @@ function PricingSection() {
     },
     {
       name: "Pro",
-      price: { monthly: 19, yearly: 190 },
+      price: { monthly: 79, yearly: 479 },
       features: [
-        "50+ Templates",
-        "Priority Support",
+        "Website Management",
         "Advanced Analytics",
+        "Email Marketing",
+        "Reputation Management",
+        "Priority Support",
       ],
     },
     {
       name: "Enterprise",
-      price: { monthly: 29, yearly: 290 },
+      price: { monthly: 199, yearly: "2,249" },
       features: [
-        "500+ Templates",
-        "Dedicated Account Manager",
-        "Custom Integrations",
+        "Google Reviews and Chatbots",
+        "Database Reactivation Campaign",
+        "Lead Followup",
+        "Reputation Management",
+        "Automated Social Media Posting",
       ],
     },
   ];
