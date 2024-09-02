@@ -5,6 +5,9 @@ import SimpleCatchyButton from "./ui/button";
 import ShootingStarsBackground from "./ui/ShootingStarsBackground"; // Import the shooting stars background component
 
 function CTASection() {
+  const handleCustomPlanClick = () => {
+    window.open('/Custom-Plan');
+  }
   return (
     <section className="relative mb-20 text-center bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl py-16 px-8 max-w-6xl mx-auto overflow-hidden">
       {/* Background Animation */}
@@ -23,7 +26,7 @@ function CTASection() {
           No credit card required.
         </p>
         <div className="max-w-xs mx-auto">
-          <SimpleCatchyButton text="Get Started Now" variant="neon"/>
+          <SimpleCatchyButton text="Get Started Now" variant="neon" action={handleCustomPlanClick}/>
         </div>
       </div>
     </section>

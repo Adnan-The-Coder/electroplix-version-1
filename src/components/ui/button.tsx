@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 interface SimpleCatchyButtonProps {
   text: string;
   variant?: 'default' | 'start' | 'neon'; // Added variant prop
+  action?: () => void; // Added action prop
 }
 
-const SimpleCatchyButton: React.FC<SimpleCatchyButtonProps> = ({ text, variant = 'default' }) => {
+const SimpleCatchyButton: React.FC<SimpleCatchyButtonProps> = ({ text, variant = 'default', action }) => {
   // Define the default and variant styles
   const variants = {
     default: {
@@ -56,12 +57,22 @@ const SimpleCatchyButton: React.FC<SimpleCatchyButtonProps> = ({ text, variant =
   // Get the styles based on the variant prop
   const variantStyles = variants[variant];
 
+  // Define the default click handler
+  const handleClick = () => {
+    if (action) {
+      action();
+    } else {
+      alert('Button clicked');
+    }
+  };
+
   return (
     <motion.button
       className={`${variantStyles.button} text-white font-semibold py-3 rounded-lg shadow-md overflow-hidden relative`}
       whileHover={variantStyles.hover}
       whileTap={variantStyles.tap}
       transition={{ type: "spring", stiffness: 300, damping: 10 }}
+      onClick={handleClick}
     >
       <span className="relative z-10">{text}</span>
       <motion.span
