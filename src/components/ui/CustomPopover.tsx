@@ -1,0 +1,43 @@
+// components/ui/CustomPopover.tsx
+import React from 'react';
+import { motion } from 'framer-motion';
+
+interface PopoverProps {
+  title: string;
+  content: string;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const CustomPopover: React.FC<PopoverProps> = ({ title, content, isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <motion.div
+        className="absolute inset-0 bg-black opacity-50"
+        onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 0.3 }}
+      />
+      <motion.div
+        className="relative bg-white text-black p-6 rounded-lg shadow-lg z-10"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <h2 className="text-xl font-semibold mb-4">{title}</h2>
+        <p>{content}</p>
+        <button
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={onClose}
+        >
+          Close
+        </button>
+      </motion.div>
+    </div>
+  );
+};
+
+export default CustomPopover;
