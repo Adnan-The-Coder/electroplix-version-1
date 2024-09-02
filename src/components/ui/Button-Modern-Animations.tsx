@@ -1,12 +1,26 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface ModernFuturisticButtonProps {
   text: string;
+  action?: () => void; // Added action prop
 }
 
-const ModernFuturisticButton: React.FC<ModernFuturisticButtonProps> = ({ text }) => {
+const ModernFuturisticButton: React.FC<ModernFuturisticButtonProps> = ({ text, action }) => {
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  // Define the default click handler
+  const handleClick = () => {
+    if (animationComplete) {
+      if (action) {
+        action();
+      } else {
+        console.log("Button Clicked");
+      }
+    }
+  };
+
   return (
     <motion.button
       className="relative px-8 py-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg overflow-hidden"
@@ -18,6 +32,8 @@ const ModernFuturisticButton: React.FC<ModernFuturisticButtonProps> = ({ text })
       }}
       whileTap={{ scale: 0.95, rotate: 0, boxShadow: "none" }}
       transition={{ type: "spring", stiffness: 200, damping: 10 }}
+      onClick={handleClick}
+      onAnimationComplete={() => setAnimationComplete(true)} // Set animationComplete to true when animation finishes
     >
       <span className="absolute inset-0 border-2 border-transparent rounded-lg transition-all duration-200 ease-out"></span>
       <span className="relative z-10">{text}</span>
