@@ -105,7 +105,7 @@ const Page: React.FC = () => {
   return (
 <>
     <Navbar/>
-    <SuccessAnimate/>
+    {/* <SuccessAnimate/> */}
     <br />
     <br />
     <br />
