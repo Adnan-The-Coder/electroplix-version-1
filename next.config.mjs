@@ -1,9 +1,10 @@
+import { createMDX } from 'fumadocs-mdx/next';
+
+const withMDX = createMDX();
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    images:{
-        domains:['hobbymaster.xyz']
-    }
+const config = {
+  reactStrictMode: true,
 };
 
-
-export default nextConfig;
+export default withMDX(config);

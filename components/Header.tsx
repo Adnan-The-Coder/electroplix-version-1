@@ -12,7 +12,7 @@ export function HeroSection() {
   };
 
   const handleCustomWebsiteClick = () =>{
-    window.open('/Components');
+    window.open('docs/components');
   };
 
   return (
