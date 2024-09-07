@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
               <li><Link href="/advertising"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Advertising Services</motion.span></Link></li>
               <li><Link href="/custom-websites"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Websites</motion.span></Link></li>
               <li><Link href="/templates"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Website Templates</motion.span></Link></li>
-              <li><Link href="/components"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Website Components</motion.span></Link></li>
+              <li><Link href="docs/components" target="_blanck"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Website Components</motion.span></Link></li>
               <li><Link href="/saas"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">SaaS Service Models</motion.span></Link></li>
               <li><Link href="/custom-components"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Components</motion.span></Link></li>
               <li><Link href="/premium-plans"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Premium Plans</motion.span></Link></li>

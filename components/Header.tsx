@@ -8,7 +8,7 @@ import { AnimatedText } from "./ui/AnimatedText";
 
 export function HeroSection() {
   const handleComponentClick = () =>{
-    window.open('/Components');
+    window.open('docs/components');
   };
 
   const handleCustomWebsiteClick = () =>{

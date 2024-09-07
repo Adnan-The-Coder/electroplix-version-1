@@ -83,7 +83,7 @@ export function Navbar() {
 
           {/* Right side menu on desktop */}
           <div className="hidden md:flex flex-grow justify-end space-x-8 pr-8">
-            <Link href="/Components">
+            <Link href="/docs" target="_blanck">
               <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
                 Components
               </span>
@@ -104,7 +104,7 @@ export function Navbar() {
         {/* Mobile menu items */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-black bg-opacity-70 p-4 flex flex-col items-center rounded-lg">
-            <Link href="/Components">
+            <Link href="/docs" target="_blanck">
               <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl py-2">
                 Components
               </span>
