@@ -1,0 +1,310 @@
+---
+title: Gradient Background Animation
+description: As the Page is scrolled this Navbar Floats and Borders Shine with Neon Colors.
+---
+![Image](/assets/docs_assets/Background-Gradient-Animation.gif)
+
+[Electroplix](https://Electroplix.com) Home Page Uses this Background
+
+## General Use
+- Attention-Grabbing
+- Interactive Experience
+- Highlighting Key Areas
+- Personal Blogs or Portfolios
+
+## Dependencies Installation
+```
+npm i framer-motion clsx tailwind-merge
+```
+
+## Add Utilities file
+copy the source code in ```lib/utils.ts```
+```
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function ul(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+## Tailwind Configuration
+In your tailwind.config.ts file add extend which is inside theme
+```
+module.exports = {
+  content: ["./src/**/*.{ts,tsx}"],
+  darkMode: "class",
+  theme: {
+extend: {
+      animation: {
+        first: "moveVertical 30s ease infinite",
+        second: "moveInCircle 20s reverse infinite",
+        third: "moveInCircle 40s linear infinite",
+        fourth: "moveHorizontal 40s ease infinite",
+        fifth: "moveInCircle 20s ease infinite",
+      },
+      keyframes: {
+        moveHorizontal: {
+          "0%": {
+            transform: "translateX(-50%) translateY(-10%)",
+          },
+          "50%": {
+            transform: "translateX(50%) translateY(10%)",
+          },
+          "100%": {
+            transform: "translateX(-50%) translateY(-10%)",
+          },
+        },
+        moveInCircle: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        moveVertical: {
+          "0%": {
+            transform: "translateY(-50%)",
+          },
+          "50%": {
+            transform: "translateY(50%)",
+          },
+          "100%": {
+            transform: "translateY(-50%)",
+          },
+        },
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+    },
+          },
+    },
+  },
+  plugins: [],
+};
+```
+
+
+
+# Code 
+copy the source code in ```components/ui/Background-Gradient-Animation.tsx```
+```
+"use client";
+import { ul } from "@/lib/utils";
+import { useEffect, useState } from "react";
+
+export const BackgroundGradientAnimation = ({
+  gradientBackgroundStart = "rgb(0, 0, 0)", // Dark background
+  gradientBackgroundEnd = "rgb(10, 10, 10)", // Slightly lighter dark background
+  firstColor = "0, 255, 255", // Electric cyan
+  secondColor = "0, 200, 255", // Electric blue
+  thirdColor = "255, 0, 255", // Electric magenta
+  fourthColor = "200, 0, 255", // Deep electric purple
+  fifthColor = "150, 0, 255", // Dark electric purple
+  pointerColor = "0, 255, 255", // Electric cyan for pointer
+  size = "80%",
+  blendingValue = "overlay",
+  children,
+  className,
+  interactive = true,
+  containerClassName,
+}: {
+  gradientBackgroundStart?: string;
+  gradientBackgroundEnd?: string;
+  firstColor?: string;
+  secondColor?: string;
+  thirdColor?: string;
+  fourthColor?: string;
+  fifthColor?: string;
+  pointerColor?: string;
+  size?: string;
+  blendingValue?: string;
+  children?: React.ReactNode;
+  className?: string;
+  interactive?: boolean;
+  containerClassName?: string;
+}) => {
+  const [curX, setCurX] = useState(0);
+  const [curY, setCurY] = useState(0);
+  const [tgX, setTgX] = useState(0);
+  const [tgY, setTgY] = useState(0);
+
+  useEffect(() => {
+    document.body.style.setProperty(
+      "--gradient-background-start",
+      gradientBackgroundStart
+    );
+    document.body.style.setProperty(
+      "--gradient-background-end",
+      gradientBackgroundEnd
+    );
+    document.body.style.setProperty("--first-color", firstColor);
+    document.body.style.setProperty("--second-color", secondColor);
+    document.body.style.setProperty("--third-color", thirdColor);
+    document.body.style.setProperty("--fourth-color", fourthColor);
+    document.body.style.setProperty("--fifth-color", fifthColor);
+    document.body.style.setProperty("--pointer-color", pointerColor);
+    document.body.style.setProperty("--size", size);
+    document.body.style.setProperty("--blending-value", blendingValue);
+  }, [gradientBackgroundStart, gradientBackgroundEnd, firstColor, secondColor, thirdColor, fourthColor, fifthColor, pointerColor, size, blendingValue]);
+
+  useEffect(() => {
+    function move() {
+      setCurX((prevX) => prevX + (tgX - prevX) / 20);
+      setCurY((prevY) => prevY + (tgY - prevY) / 20);
+    }
+
+    move();
+  }, [tgX, tgY]);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setTgX(event.clientX - rect.left);
+    setTgY(event.clientY - rect.top);
+  };
+
+  const [isSafari, setIsSafari] = useState(false);
+  useEffect(() => {
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+  }, []);
+
+  return (
+    <div
+      className={ul(
+        "h-screen w-screen relative overflow-hidden top-0 left-0 bg-[linear-gradient(135deg,var(--gradient-background-start),var(--gradient-background-end))]",
+        containerClassName
+      )}
+      onMouseMove={handleMouseMove}
+    >
+      <svg className="hidden">
+        <defs>
+          <filter id="blurMe">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div className={ul("", className)}>{children}</div>
+      <div
+        className={ul(
+          "gradients-container h-full w-full blur-lg",
+          isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
+        )}
+      >
+        <div
+          className={ul(
+            `absolute [background:radial-gradient(circle_at_top_left,_rgba(var(--first-color),_0.4)_0,_rgba(var(--first-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-0 left-0`,
+            `[transform-origin:top_left]`,
+            `animate-first`,
+            `opacity-100`
+          )}
+        ></div>
+        <div
+          className={ul(
+            `absolute [background:radial-gradient(circle_at_top_left,_rgba(var(--second-color),_0.4)_0,_rgba(var(--second-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-0 left-0`,
+            `[transform-origin:top_left]`,
+            `animate-second`,
+            `opacity-100`
+          )}
+        ></div>
+        <div
+          className={ul(
+            `absolute [background:radial-gradient(circle_at_top_left,_rgba(var(--third-color),_0.4)_0,_rgba(var(--third-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-0 left-0`,
+            `[transform-origin:top_left]`,
+            `animate-third`,
+            `opacity-100`
+          )}
+        ></div>
+        <div
+          className={ul(
+            `absolute [background:radial-gradient(circle_at_top_left,_rgba(var(--fourth-color),_0.4)_0,_rgba(var(--fourth-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-0 left-0`,
+            `[transform-origin:top_left]`,
+            `animate-fourth`,
+            `opacity-70`
+          )}
+        ></div>
+        <div
+          className={ul(
+            `absolute [background:radial-gradient(circle_at_top_left,_rgba(var(--fifth-color),_0.4)_0,_rgba(var(--fifth-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-0 left-0`,
+            `[transform-origin:top_left]`,
+            `animate-fifth`,
+            `opacity-100`
+          )}
+        ></div>
+
+        {interactive && (
+          <div
+            className={ul(
+              `absolute [background:radial-gradient(circle_at_top_left,_rgba(var(--pointer-color),_0.4)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
+              `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
+              `opacity-70`
+            )}
+          ></div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+```
+
+
+You can call the above Function in your files as 
+
+```
+import {AnimatedText,letterVariants } from './ui/AnimatedText';  // Import the AnimatedText component
+
+const TextDemo = () => {
+  return (
+    <div>
+      <h1 className="text-3xl font-bold mb-4">
+        <AnimatedText text="Electroplix" />
+      </h1>
+    </div>
+  )
+}
+
+export default TextDemo;
+```
+
+## Props Input Table
+
+The `AnimatedText` component accepts the following props:
+
+| Prop  | Type   | Default |
+|-------|--------|---------|
+| `text` | string | `""`    |
+
+### Prop Descriptions
+
+- **Prop**: The name of the property.
+- **Type**: The type of the property (e.g., `string`).
+- **Default**: The default value of the property if none is provided.
+
+This table helps users understand what props are available for customization and their default values.
+
+---
+
+By referring to this table, you can easily see what properties are configurable for the `AnimatedText` component and their default settings. Adjust the `text` prop to customize the animated text display in your application.
