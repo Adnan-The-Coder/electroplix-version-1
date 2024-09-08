@@ -2,6 +2,8 @@
 title: Animated Bouncing Text
 description: Each letter bounces on hovering.
 ---
+![Image](/assets/docs_assets/animated_text_.gif)
+
 
 ## General Use
 - Interactive Headers
@@ -11,7 +13,14 @@ description: Each letter bounces on hovering.
 - Event Promotion
 - Highlighting Key Information
 
+## Dependencies Installation
+```
+npm i framer-motion
+```
+
+
 # Code 
+copy the source code in ```components/ui/AnimatedText.tsx```
 ```
 // AnimatedText.tsx
 "use client";
@@ -52,4 +61,42 @@ const AnimatedText: React.FC<{ text: string }> = ({ text }) => {
 
 export { AnimatedText, letterVariants };
 ```
-![Image](/assets/docs_assets/animated_text_.gif)
+
+
+You can call the above Function in your files as 
+
+```
+import {AnimatedText,letterVariants } from './ui/AnimatedText';  // Import the AnimatedText component
+
+const TextDemo = () => {
+  return (
+    <div>
+      <h1 className="text-3xl font-bold mb-4">
+        <AnimatedText text="Electroplix" />
+      </h1>
+    </div>
+  )
+}
+
+export default TextDemo;
+```
+
+## Props Input Table
+
+The `AnimatedText` component accepts the following props:
+
+| Prop  | Type   | Default |
+|-------|--------|---------|
+| `text` | string | `""`    |
+
+### Prop Descriptions
+
+- **Prop**: The name of the property.
+- **Type**: The type of the property (e.g., `string`).
+- **Default**: The default value of the property if none is provided.
+
+This table helps users understand what props are available for customization and their default values.
+
+---
+
+By referring to this table, you can easily see what properties are configurable for the `AnimatedText` component and their default settings. Adjust the `text` prop to customize the animated text display in your application.

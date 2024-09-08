@@ -1,0 +1,118 @@
+---
+title: 3D Neon Gradient Animated Button
+description: Special 3D On Hovering and Click Effects.
+---
+![Image](/assets/docs_assets/Neon-3D-Animated-button.gif)
+
+
+## General Use
+- Call-to-Action (CTA)
+- Navigation
+- Interactive Features
+- Promotional Areas
+- Forms and Submissions
+- Onboarding and Tutorials
+
+## Dependencies Installation
+```
+npm i framer-motion
+```
+
+
+# Code 
+copy the source code in ```components/ui/Neon-3D-Animated-button.tsx```
+```
+"use client";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
+interface Neon_3D_Animated_button {
+  text: string;
+  action?: () => void; // Added action prop
+}
+
+const ModernFuturisticButton: React.FC<ModernFuturisticButtonProps> = ({ text, action }) => {
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  // Define the default click handler
+  const handleClick = () => {
+    if (animationComplete) {
+      if (action) {
+        action();
+      } else {
+        console.log("Button Clicked");
+      }
+    }
+  };
+
+  return (
+    <motion.button
+      className="relative px-8 py-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg overflow-hidden"
+      whileHover={{
+        scale: 1.1,
+        rotate: 5,
+        background: "linear-gradient(to right, #00bfff, #ff00ff)",
+        boxShadow: "0px 20px 50px rgba(0, 255, 255, 0.6), 0px 20px 30px rgba(255, 0, 255, 0.6)",
+      }}
+      whileTap={{ scale: 0.95, rotate: 0, boxShadow: "none" }}
+      transition={{ type: "spring", stiffness: 200, damping: 10 }}
+      onClick={handleClick}
+      onAnimationComplete={() => setAnimationComplete(true)} // Set animationComplete to true when animation finishes
+    >
+      <span className="absolute inset-0 border-2 border-transparent rounded-lg transition-all duration-200 ease-out"></span>
+      <span className="relative z-10">{text}</span>
+      <motion.span
+        className="absolute inset-0 rounded-lg bg-gradient-to-r from-teal-500 to-blue-500 opacity-0"
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      ></motion.span>
+    </motion.button>
+  );
+};
+
+export default Neon_3D_Animated_button;
+```
+
+
+You can use the above Button in your code files as 
+
+```
+"use client";
+import ModernFuturisticButton from "@/components/ui/Button-Modern-Animations"
+
+const Neon_3D_Animated_button_Demo = () => {
+    const  handleClick = () => {
+        alert("Hey, Neon Button is Clicked !")
+        }
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-900">
+      <div className="px-2 py-3">
+        <ModernFuturisticButton text="Click Me" action={handleClick}/>
+      </div>
+    </div>
+  )
+}
+
+export default Neon_3D_Animated_button_Demo;
+```
+
+## Props Input Table
+
+The `Neon_3D_Animated_button` component accepts the following props:
+
+| Prop  | Type   | Default |
+|-------|--------|---------|
+| `text` | string | `""`    |
+| `Action` | void | `console.log("Button Clicked);`    |
+
+text prop is must for this Component
+### Prop Descriptions
+
+- **Prop**: The name of the property.
+- **Type**: The type of the property (e.g., `string`).
+- **Default**: The default value of the property if none is provided.
+
+
+---
+
+By referring to this table, you can easily see what properties are configurable for the `Neon_3D_Animated_button` component and their default settings. Adjust the `text` prop to customize the Button in your application.
