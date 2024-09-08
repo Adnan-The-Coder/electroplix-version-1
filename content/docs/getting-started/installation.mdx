@@ -1,17 +1,47 @@
 ---
 title: Installation Guide
-description: Components
+description: Get started using free components in your NextJS 14 project with a few simple steps.
 ---
 
-## Code Block
+## Pre-Requisite
 
-```js
-console.log('Hello World');
+Before you begin, ensure that you have the following installed on your machine:
+
+- **Node.js**: Make sure Node.js is installed. You can download it from [nodejs.org](https://nodejs.org/). This is required to manage your project's dependencies and run the development server.
+
+## Project Initialization
+
+To start a new NextJS project, use the following command:
+
+```bash
+npx create-next-app@latest
 ```
 
-## Cards
+- npx: This is a package runner tool that comes with Node.js. It allows you to run commands from packages without globally installing them.
+- create-next-app@latest: This command creates a new NextJS project with the latest version. It sets up a new NextJS application with a default configuration and project structure.
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+Follow the prompts to name your project and choose additional options if any. Once the process is complete, navigate into your project directory:
+
+```bash
+cd your-project-name
+```
+
+## Configuration
+Configure your project to use custom components effectively. The following configurations are necessary:
+
+- **Tailwind Config**: Install Tailwind CSS and its peer dependencies:
+    ```
+    npm install tailwindcss postcss autoprefixer
+    ```
+   Initialize Tailwind CSS by running:
+    ```
+    npx tailwindcss init -p
+    ```
+   This will generate tailwind.config.js and postcss.config.js files. Customize tailwind.config.js to include any custom themes or configurations.
+
+- **Globals.css Config:** Additional css styles would be written here, for some components.
+
+- **.env Setup:** This setup is for components which use Backend Code.
+
+--------------------------------------------
+By completing these steps, you'll be ready to start integrating and using custom components in your NextJS 14 project. Happy coding!

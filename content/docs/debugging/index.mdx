@@ -1,0 +1,92 @@
+---
+title: Debugging Guide
+description: Troubleshoot common issues in your Electroplix project with this guide.
+---
+
+## Directory Structure Errors
+
+Issues related to directory structure can lead to unexpected behavior in your project. Ensure that your project's directory structure aligns with best practices and expected configurations.
+
+### Common Errors
+
+- **Incorrect Directory for Components**: Components not placed in the expected directory may not be imported correctly.
+
+  **Resolution:**
+  - Verify that your components are located in the correct directory, typically `components/`.
+  - Update import statements to reflect the correct path:
+    ```javascript
+    import MyComponent from '../components/MyComponent';
+    ```
+
+- **Misplaced Configuration Files**: Configuration files like `tailwind.config.js` or `.env.local` need to be in the root directory.
+
+  **Resolution:**
+  - Ensure that configuration files are placed in the root directory of your project.
+  - Verify that paths in your import statements are correct and relative to your file locations.
+
+## Config File Errors
+
+Configuration files are crucial for setting up your project environment correctly. Errors in these files can cause various issues in your application.
+
+### Common Errors
+
+- **TailwindCSS Configuration Issues**: Incorrect settings in `tailwind.config.js` can lead to styling problems.
+
+  **Resolution:**
+  - Verify that `tailwind.config.js` is properly set up. A typical configuration might look like this:
+    ```javascript
+    module.exports = {
+      content: [
+        './pages/**/*.{js,ts,jsx,tsx}',
+        './components/**/*.{js,ts,jsx,tsx}',
+      ],
+      theme: {
+        extend: {},
+      },
+      plugins: [],
+    };
+    ```
+  - Ensure that the `content` paths correctly point to your source files.
+
+- **Invalid `.env.local` Variables**: Errors in environment variables can affect application behavior.
+
+  **Resolution:**
+  - Check your `.env.local` file for syntax errors and ensure each variable is correctly defined. Example `.env.local`:
+    ```bash
+    NEXT_PUBLIC_API_URL=https://api.example.com
+    ```
+  - Restart your development server to apply changes:
+    ```bash
+    npm run dev
+    ```
+
+## Environment Errors
+
+Environment-related issues often arise from misconfiguration or incorrect setup of the development or production environment.
+
+### Common Errors
+
+- **Incorrect Node.js Version**: Using an incompatible Node.js version can cause compatibility issues.
+
+  **Resolution:**
+  - Check your Node.js version with:
+    ```bash
+    node -v
+    ```
+  - Ensure you are using a supported version as specified in the project’s documentation or `.nvmrc` file.
+  - Update or switch Node.js versions if necessary using a version manager like `nvm`:
+    ```bash
+    nvm install <version>
+    nvm use <version>
+    ```
+
+- **Missing Dependencies**: Dependencies required by your project might not be installed or correctly listed.
+
+  **Resolution:**
+  - Install missing dependencies with:
+    ```bash
+    npm install
+    ```
+  - Ensure that your `package.json` file lists all required dependencies and their versions. If dependencies are missing, add them manually and run `npm install` again.
+
+By following these guidelines, you can effectively troubleshoot and resolve common issues related to directory structure, configuration files, and environment setups in your Electroplix project. For additional support, refer to specific documentation or community forums related to the technologies you are using.
