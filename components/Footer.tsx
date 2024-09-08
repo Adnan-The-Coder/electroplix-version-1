@@ -44,13 +44,13 @@ const Footer: React.FC = () => {
               <AnimatedText text="Services" />
             </h2>
             <ul className="space-y-2">
-              <li><Link href="/advertising"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Advertising Services</motion.span></Link></li>
-              <li><Link href="/custom-websites"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Websites</motion.span></Link></li>
-              <li><Link href="/templates"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Website Templates</motion.span></Link></li>
+              <li><Link href="/Advertising-Services"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Advertising Services</motion.span></Link></li>
+              <li><Link href="/Custom-Website"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Websites</motion.span></Link></li>
+              <li><Link href="/Templates"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Website Templates</motion.span></Link></li>
               <li><Link href="docs/components" target="_blanck"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Website Components</motion.span></Link></li>
-              <li><Link href="/saas"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">SaaS Service Models</motion.span></Link></li>
-              <li><Link href="/custom-components"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Components</motion.span></Link></li>
-              <li><Link href="/premium-plans"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Premium Plans</motion.span></Link></li>
+              {/* <li><Link href="/saas"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">SaaS Service Models</motion.span></Link></li> */}
+              <li><Link href="/Custom-Website"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Components</motion.span></Link></li>
+              <li><Link href="/Custom-Plan"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Custom Premium Plans</motion.span></Link></li>
             </ul>
           </div>
 
@@ -60,9 +60,9 @@ const Footer: React.FC = () => {
               <AnimatedText text="Company" />
             </h2>
             <ul className="space-y-2">
-              <li><Link href="/about"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">About</motion.span></Link></li>
-              <li><Link href="/terms"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Terms and Conditions</motion.span></Link></li>
-              <li><Link href="/privacy"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Privacy Policy</motion.span></Link></li>
+              <li><Link href="/About"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">About</motion.span></Link></li>
+              <li><Link href="/Terms-And-Conditions"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Terms and Conditions</motion.span></Link></li>
+              <li><Link href="/Privacy-Policy"><motion.span whileHover="hover" variants={letterVariants} className="inline-block hover:text-yellow-400 transition-all">Privacy Policy</motion.span></Link></li>
             </ul>
           </div>
 
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
 
       {/* Footer Bottom Section */}
       <div className="bg-gray-800 py-4 text-center text-sm text-gray-400">
-        <p>Brought to you by <span className="font-semibold">Adnan</span></p>
+        <p>Brought to you by <span className="font-semibold"><a href="https://www.linkedin.com/in/syedadnanali99/" target='_blanck'>Adnan</a></span></p>
         <p>&copy; {new Date().getFullYear()} Electroplix. All rights reserved.</p>
       </div>
     </footer>

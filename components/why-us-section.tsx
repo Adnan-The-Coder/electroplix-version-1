@@ -14,20 +14,27 @@ function WhyUsSection() {
         {[
           {
             title: "Increased Productivity",
+            description: "Boost your business efficiency with our advanced solutions. Streamline workflows and enhance productivity to stay competitive.",
             icon: FaChartBar,
             color: "bg-blue-500",
           },
           {
             title: "Cost-Effective",
+            description: "Achieve outstanding results without breaking the bank. Our solutions provide exceptional value.",
             icon: FaDollarSign,
             color: "bg-green-500",
           },
           {
             title: "Scalable Solution",
+            description: "Grow your business effortlessly with our scalable solutions. Adapt and expand seamlessly as your needs evolve.",
             icon: FaUsers,
             color: "bg-purple-500",
           },
-          { title: "24/7 Support", icon: FaClock, color: "bg-pink-500" },
+          { title: "24/7 Support",
+            description: "Receive round-the-clock support to keep your operations running smoothly. We’re here to assist you anytime, day or night.", 
+            icon: FaClock, 
+            color: "bg-pink-500" 
+          },
         ].map((reason) => (
           <div key={reason.title} className="flex items-start space-x-6">
             <div
@@ -38,8 +45,7 @@ function WhyUsSection() {
             <div>
               <h3 className="text-2xl font-bold mb-3">{reason.title}</h3>
               <p className="text-gray-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              {reason.description}
               </p>
             </div>
           </div>
