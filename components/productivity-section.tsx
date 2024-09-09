@@ -7,6 +7,12 @@ import SimpleCatchyButton from "./ui/button";
 import { Card } from "./ui/card";
 
 export function ProductivitySection() {
+  const handleTryFree = () =>{
+    window.open('/docs/components');
+  }
+  const handleLearnMore = () =>{
+    window.open('/Scale-Up-Your-Business');
+  }
   return (
     <motion.div
       className="bg-gradient-to-br rounded-3xl from-gray-800 to-gray-900 p-6 sm:p-10 mb-12 sm:mb-20 shadow-2xl relative overflow-hidden mx-auto max-w-7xl"
@@ -44,8 +50,8 @@ export function ProductivitySection() {
               </Card>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <SimpleCatchyButton text="Learn More"/>
-              <SimpleCatchyButton text="Try Free"/>
+              <SimpleCatchyButton text="Learn More" action={handleLearnMore}/>
+              <SimpleCatchyButton text="Try Free" action={handleTryFree}/>
             </div>
           </div>
           <div>
@@ -57,7 +63,7 @@ export function ProductivitySection() {
 Empower your business with our flexible components, templates, and services to seamlessly plan tasks and track progress. Designed for innovation and efficiency, our solutions drive scalable growth, keeping you ahead of the competition.
             </p>
             <div className="flex items-center space-x-2 text-lime-400 hover:text-green-500 transition-colors duration-200 cursor-pointer group">
-              <span className="font-semibold">EXPLORE DETAILS</span>
+              <span className="font-semibold" onClick={handleLearnMore}>EXPLORE DETAILS</span>
               <FaChevronRight
                 size={20}
                 className="group-hover:translate-x-1 transition-transform duration-200"

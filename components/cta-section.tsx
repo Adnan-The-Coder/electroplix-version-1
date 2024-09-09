@@ -21,9 +21,6 @@ function CTASection() {
         <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
           Create a custom plan tailored to your business needs.
           <br />
-          Start your 7-day free trial today.
-          <br />
-          No credit card required.
         </p>
         <div className="max-w-xs mx-auto">
           <SimpleCatchyButton text="Get Started Now" variant="neon" action={handleCustomPlanClick}/>
