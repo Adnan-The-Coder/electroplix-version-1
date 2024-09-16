@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    userName: {
+    username: {
         type: String,
         required: [true,"Please Provide a UserName"],
         unique:true,
@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
         default:false,
     },
     isAdmin:{
+        type: Boolean,
         default:false,
     },
     forgotPasswordToken:String,
