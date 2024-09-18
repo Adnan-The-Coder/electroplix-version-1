@@ -1,4 +1,5 @@
-import { Check, X } from "lucide-react";
+import { AiFillCheckCircle as Check, AiFillCloseCircle as X } from 'react-icons/ai';
+
 
 const PasswordCriteria = ({ password }) => {
 	const criteria = [
