@@ -20,8 +20,8 @@ export const sendEmail  = async ({email, emailType, userId}:any) => {
         }
 
         var transport = nodemailer.createTransport({
-            host: "sandbox.smtp.mailtrap.io",
-            port: 2525,
+            host: "live.smtp.mailtrap.io",
+            port: 587,
             auth: {
               user: process.env.MAILTRAP_USER,
               pass: process.env.MAILTRAP_PASS
@@ -29,7 +29,7 @@ export const sendEmail  = async ({email, emailType, userId}:any) => {
           });
 
           const mailtOptions = {
-            from: 'Official.Electroplix@gmail.com',
+            from: '"Electroplix" <mailtrap@hobbymaster.xyz>',
             to:email,
             subject: emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password",
             html:VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}",`${process.env.DOMAIN}/verifyemail?token=${hashedToken}`),
