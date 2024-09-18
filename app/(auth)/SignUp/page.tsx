@@ -4,79 +4,127 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { motion } from "framer-motion";
+import { FaUser, FaEnvelope, FaLock, FaSpinner } from "react-icons/fa"; // Importing react-icons
+import PasswordStrengthMeter from "@/components/PasswordStrengthMeter"; // Make sure the path is correct
+import { Navbar } from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   const router = useRouter();
-  const [user,setUser] = React.useState({
-    email:"",
-    password:"",
-    username:"",
+  const [user, setUser] = React.useState({
+    email: "",
+    password: "",
+    username: "",
+  });
 
-  })
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
-  const [buttonDisabled,setButtonDisabled] = React.useState(false);
-  const [loading,setLoading] = React.useState(false);
-
-  const onSignup = async ()=>{
+  const onSignup = async () => {
     try {
-        setLoading(true);
-        const response = axios.post("/api/users/signup",user);
-        console.log("Sign Up success");
-        router.push('/login')
-    } catch (error:any) {
-      console.log("Sign Up failed ",error.message);
+      setLoading(true);
+      await axios.post("/api/users/signup", user);
+      console.log("Sign Up success");
+      router.push("/login");
+    } catch (error: any) {
+      console.log("Sign Up failed ", error.message);
       toast.error(error.message);
-    }finally{
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
-  useEffect(()=>{
-
-    if (user.email.length > 0 && user.password.length > 0 && user.username.length > 0){
-      setButtonDisabled(false);
-    } else{
-      setButtonDisabled(true);
-    }
-
-  },[user])
-
-
-
+  useEffect(() => {
+    setButtonDisabled(!(user.email && user.password && user.username));
+  }, [user]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>{loading ? "Processing":"Sign Up"}</h1>
-      <hr />
-      <label htmlFor="username">username</label>
-      <input
-            id="username"
-            type="text"
-            value={user.username}
-            onChange={(e)=>setUser({...user,username:e.target.value})}
-            placeholder="username"
-      />
-      <label htmlFor="email">email</label>
-      <input
-            id="email"
-            type="email"
-            value={user.email}
-            onChange={(e)=>setUser({...user,email:e.target.value})}
-            placeholder="email"
-      />
-      <label htmlFor="password">password</label>
-      <input
-            id="password"
-            type="password"
-            value={user.password}
-            onChange={(e)=>setUser({...user,password:e.target.value})}
-            placeholder="password"
-      />
-      <button className="p-2 border border-gray-300 rounded-lg  mb-4 focus:outline-none focus:border-gray-600" onClick={onSignup}>Sign Up</button>
-      <Link href={'/login'}>Visit Login</Link>
+    <>
+		<div className="min-h-screen bg-gradient-to-br from-emerald-900 via-gray-900 to-emerald-900 flex items-center justify-center relative overflow-hidden">
+    <Navbar/>
+
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden flex flex-col items-center justify-center min-h-screen py-2"
+    >
+      <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
+        Create Account
+      </h2>
+      <div className="p-8 w-full">
+        <form onSubmit={(e) => { e.preventDefault(); onSignup(); }}>
+          <div className="mb-4">
+            <label htmlFor="username" className="flex items-center">
+              <FaUser className="mr-2" />
+              Username
+            </label>
+            <input
+              id="username"
+              type="text"
+              value={user.username}
+              onChange={(e) => setUser({ ...user, username: e.target.value })}
+              placeholder="username"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="flex items-center">
+              <FaEnvelope className="mr-2" />
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+              placeholder="email"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="flex items-center">
+              <FaLock className="mr-2" />
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+              placeholder="password"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+            />
+            <PasswordStrengthMeter password={user.password} /> {/* Added Password Strength Meter */}
+          </div>
+          <motion.button
+            className={`w-full py-3 mt-5 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg 
+              hover:from-green-600 hover:to-emerald-700 focus:outline-none 
+              focus:ring-2 focus:ring-green-500 focus:ring-offset-2 
+              focus:ring-offset-gray-900 transition duration-200 ${buttonDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+            onClick={onSignup}
+            disabled={buttonDisabled || loading}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            {loading ? <FaSpinner className="animate-spin mx-auto" size={24} /> : "Sign Up"}
+          </motion.button>
+        </form>
+      </div>
+      <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
+        <p className="text-sm text-gray-400">
+          Already have an account?{" "}
+          <Link href={'/login'} className='text-green-400 hover:underline'>
+            Login
+          </Link>
+        </p>
+      </div>
+    </motion.div>
     </div>
-  )
-}
+    <Footer/>
+    </>
+  );
+};
 
 export default Page;

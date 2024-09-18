@@ -2,6 +2,8 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa"; // Importing React Icons
 
 export default function VerifyEmailPage() {
     const [token, setToken] = useState<string>("");
@@ -32,20 +34,31 @@ export default function VerifyEmailPage() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-4xl">Verify Email</h1>
-            <h2 className="p-2 bg-orange-500 text-black">{token ? `${token}` : "No Token"}</h2>
+            <motion.div
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className='max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl p-8'
+            >
+                <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
+                    Verify Email
+                </h1>
 
-            {verified && (
-                <div>
-                    <h2 className="text-2xl">Email verified</h2>
-                    <Link className="text-blue-500" href="/login">Login</Link>
-                </div>
-            )}
-            {error && (
-                <div>
-                    <h2 className="text-2xl text-red-500">Error occurred</h2>
-                </div>
-            )}
+                {verified && (
+                    <div className="flex flex-col items-center mt-6">
+                        <FaCheckCircle className="text-green-500 text-5xl mb-2" />
+                        <h2 className="text-2xl">Email Verified</h2>
+                        <Link href="/login" className="text-blue-500 hover:underline mt-2">Login to continue</Link>
+                    </div>
+                )}
+                
+                {error && (
+                    <div className="flex flex-col items-center mt-6">
+                        <FaExclamationCircle className="text-red-500 text-5xl mb-2" />
+                        <h2 className="text-2xl text-red-500">Error occurred</h2>
+                    </div>
+                )}
+            </motion.div>
         </div>
     );
 }
