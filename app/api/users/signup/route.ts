@@ -11,7 +11,6 @@ connect();
 
 export async function POST(request:NextRequest) {
     try {
-        console.log(`Request Method: ${request.method}`);
         const reqBody = await request.json();
         const {username,email,password} = reqBody;
 
