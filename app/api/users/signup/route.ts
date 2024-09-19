@@ -15,8 +15,6 @@ export async function POST(request:NextRequest) {
         const reqBody = await request.json();
         const {username,email,password} = reqBody;
 
-        console.log(reqBody); // Remove this while deploying
-
         const user = await User.findOne({email});
 
         if (user){
@@ -34,7 +32,6 @@ export async function POST(request:NextRequest) {
         })
 
         const savedUser = await newUser.save();
-        console.log(savedUser);
 
         await sendEmail({email,emailType:"VERIFY",userId:savedUser._id})
 
