@@ -14,14 +14,14 @@ export const metadata = {
     description: "Join Electroplix to empower your business with cutting-edge web solutions and services tailored for growth.",
     url: "https://www.electroplix.com",
     type: "website",
-    image: "https://www.electroplix.com/Electroplix_logo.jpeg", // Replace with your logo or relevant image URL
+    image: "https://www.electroplix.com/Electroplix_logo.jpeg",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@Electroplix_", // Replace with your Twitter handle
+    site: "@Electroplix_", 
     title: "Electroplix - Scale Your Business",
     description: "Empower your business with Electroplix's innovative web solutions.",
-    image: "https://www.electroplix.com/Electroplix_Cover_Photo.png", // Replace with your logo or relevant image URL
+    image: "https://www.electroplix.com/Electroplix_Cover_Photo.png", 
   },
 };
 
