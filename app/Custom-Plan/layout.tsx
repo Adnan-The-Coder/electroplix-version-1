@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import './custom-plan.css';
 
 export const metadata = {
   title: "Electroplix Custom Plans - Affordable Pricing for Your Business Needs",
