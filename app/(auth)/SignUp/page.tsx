@@ -75,7 +75,7 @@ const Page: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-gray-900 to-emerald-900 flex items-center justify-center relative overflow-hidden">
+      <div className="py-8 min-h-screen bg-gradient-to-br from-emerald-900 via-gray-900 to-emerald-900 flex items-center justify-center relative overflow-hidden">
         <Navbar />
         <motion.div
           initial={{ opacity: 0, y: 20 }}

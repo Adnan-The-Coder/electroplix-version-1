@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useAnimation } from "framer-motion";
+import { FaPaintBrush, FaCode, FaFileCode, FaRocket, FaCogs } from 'react-icons/fa';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const controls = useAnimation();
 
   // Toggle menu for mobile
@@ -16,7 +18,11 @@ export function Navbar() {
   // Handle scroll event
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50); // Adjust this value as needed
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
+      if (isScrolled) {
+        setIsServicesOpen(false); // Close services menu on scroll
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -25,19 +31,11 @@ export function Navbar() {
 
   // Apply animation when scrolled
   useEffect(() => {
-    if (scrolled) {
-      controls.start({
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.5 },
-      });
-    } else {
-      controls.start({
-        opacity: 0.9,
-        scale: 0.95,
-        transition: { duration: 0.5 },
-      });
-    }
+    controls.start({
+      opacity: scrolled ? 1 : 0.9,
+      scale: scrolled ? 1 : 0.95,
+      transition: { duration: 0.5 },
+    });
   }, [scrolled, controls]);
 
   return (
@@ -53,8 +51,8 @@ export function Navbar() {
           borderColor: scrolled ? '#0ff' : 'transparent',
           color: scrolled ? '#0ff' : 'white',
           boxShadow: scrolled ? '0 0 10px #0ff' : 'none',
-          borderRadius: '12px', // Adjust this value for the desired border radius
-          padding: '0.5rem', // Adjust padding to match the border radius
+          borderRadius: '12px',
+          padding: '0.5rem',
         }}
       >
         {/* Header Section */}
@@ -71,6 +69,31 @@ export function Navbar() {
             </span>
           </div>
 
+          {/* Right side menu */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={() => setIsServicesOpen(!isServicesOpen)}
+              className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl"
+            >
+              Services
+            </button>
+            <Link href="/docs/components" target="_blanck">
+              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+                Components
+              </span>
+            </Link>
+            <Link href="/About">
+              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+                About
+              </span>
+            </Link>
+            <Link href="/SignUp">
+              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+                Sign Up
+              </span>
+            </Link>
+          </div>
+
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
@@ -80,45 +103,94 @@ export function Navbar() {
               {isMenuOpen ? '✕' : '☰'}
             </button>
           </div>
+        </div>
 
-          {/* Right side menu on desktop */}
-          <div className="hidden md:flex flex-grow justify-end space-x-8 pr-8">
-            <Link href="/docs" target="_blanck">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
-                Components
-              </span>
+        {/* Dropdown menu for desktop */}
+        {isServicesOpen && (
+          <div className="hidden md:block absolute top-16 right-0 mt-2 w-64 bg-gray-800 bg-opacity-90 p-4 rounded-lg shadow-lg grid grid-cols-2 gap-2">
+            {/* Close button */}
+            <button
+              onClick={() => setIsServicesOpen(false)}
+              className="absolute top-2 right-2 text-white text-2xl focus:outline-none"
+            >
+              ✕
+            </button>
+
+            <Link href="/Advertising-Services" className="flex items-center text-white hover:text-purple-500 py-2">
+              <FaPaintBrush className="text-2xl mr-2" />
+              <span>Advertising Services</span>
             </Link>
-            <Link href="/Templates">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
-                Templates
-              </span>
+            <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
+              <FaCode className="text-2xl mr-2" />
+              <span>Custom Websites</span>
             </Link>
-            <Link href="/Custom-Website">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
-                Custom Website
-              </span>
+            <Link href="/Templates" className="flex items-center text-white hover:text-purple-500 py-2">
+              <FaFileCode className="text-2xl mr-2" />
+              <span>Website Templates</span>
+            </Link>
+            <Link href="/docs/components" target="_blanck" className="flex items-center text-white hover:text-purple-500 py-2">
+              <FaRocket className="text-2xl mr-2" />
+              <span>Website Components</span>
+            </Link>
+            <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
+              <FaCogs className="text-2xl mr-2" />
+              <span>Custom Components</span>
+            </Link>
+            <Link href="/Custom-Plan" className="flex items-center text-white hover:text-purple-500 py-2">
+              <FaRocket className="text-2xl mr-2" />
+              <span>Custom Premium Plans</span>
             </Link>
           </div>
-        </div>
+        )}
 
         {/* Mobile menu items */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-black bg-opacity-70 p-4 flex flex-col items-center rounded-lg">
-            <Link href="/docs" target="_blanck">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl py-2">
-                Components
-              </span>
-            </Link>
-            <Link href="/Templates">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl py-2">
-                Templates
-              </span>
-            </Link>
-            <Link href="/Custom-Website">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl py-2">
-                Custom Website
-              </span>
-            </Link>
+          <div className="md:hidden absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-gray-800 bg-opacity-90 p-4 flex flex-col items-center rounded-lg">
+            <div className="flex flex-col w-full items-start">
+              <button
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className="text-white w-full text-left py-2"
+              >
+                Services
+              </button>
+              {isServicesOpen && (
+                <div className="w-full bg-gray-700 rounded-lg p-2">
+                  <Link href="/Advertising-Services" className="flex items-center text-white hover:text-purple-500 py-2">
+                    Advertising Services
+                  </Link>
+                  <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
+                    Custom Websites
+                  </Link>
+                  <Link href="/Templates" className="flex items-center text-white hover:text-purple-500 py-2">
+                    Website Templates
+                  </Link>
+                  <Link href="/docs/components" target="_blanck" className="flex items-center text-white hover:text-purple-500 py-2">
+                    Website Components
+                  </Link>
+                  <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
+                    Custom Components
+                  </Link>
+                  <Link href="/Custom-Plan" className="flex items-center text-white hover:text-purple-500 py-2">
+                    Custom Premium Plans
+                  </Link>
+                </div>
+              )}
+              <Link href="/docs/components" target="_blanck">
+                <span className="font-orbitron text-white hover:text-purple-500 text-lg py-2">
+                  Components
+                </span>
+              </Link>
+              <Link href="/About">
+                <span className="font-orbitron text-white hover:text-purple-500 text-lg py-2">
+                  About
+                </span>
+              </Link>
+              <Link href="/SignUp">
+                <span className="font-orbitron text-white hover:text-purple-500 text-lg py-2">
+                  Sign Up
+                </span>
+              </Link>
+            </div>
           </div>
         )}
       </motion.div>
