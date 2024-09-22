@@ -1,25 +1,25 @@
 import type { ReactNode } from 'react';
 
 export const metadata = {
-  title: "About Electroplix - Your Partner in Innovative Web Solutions",
-  description: "Learn about Electroplix, your go-to partner for custom web development, SEO, and digital marketing solutions designed to empower your business growth.",
-  keywords: "about Electroplix, web development, SEO, digital marketing, innovative solutions, business growth, custom web solutions, team Electroplix",
+  title: "Electroplix Advertising Services - Elevate Your Brand",
+  description: "Discover comprehensive advertising solutions at Electroplix. Maximize your reach with our email marketing, social media ads, SEO, and more.",
+  keywords: "advertising services, email marketing, social media ads, SEO, SMO, automated posting, lead follow-up,Chat bots, AI , AI Chatbots, reputation management, Electroplix",
   author: {
     name: "Syed Adnan Ali",
     url: "https://www.linkedin.com/in/syedadnanali99"
   },
   og: {
-    title: "About Electroplix - Innovating for Your Success",
-    description: "Discover how Electroplix can help your business thrive with our expert web development and digital marketing services.",
-    url: "https://www.electroplix.com/about",
+    title: "Electroplix Advertising Services - Maximize Your Digital Impact",
+    description: "Elevate your brand with Electroplix's innovative advertising solutions tailored to your needs.",
+    url: "https://www.electroplix.com/advertising-services",
     type: "website",
     image: "https://www.electroplix.com/Electroplix_logo.jpeg",
   },
   twitter: {
     card: "summary_large_image",
     site: "@Electroplix_", 
-    title: "About Electroplix - Your Web Solutions Partner",
-    description: "Explore Electroplix's mission to empower businesses through innovative web solutions.",
+    title: "Electroplix Advertising Services",
+    description: "Explore how Electroplix can elevate your brand through effective advertising solutions.",
     image: "https://www.electroplix.com/Electroplix_Cover_Photo.png", 
   },
   structuredData: {
@@ -43,7 +43,7 @@ export const metadata = {
   }
 };
 
-export default function AboutLayout({ children }: { children: ReactNode }) {
+export default function AdvertisingServicesLayout({ children }: { children: ReactNode }) {
   return (
     <>
       {children}
