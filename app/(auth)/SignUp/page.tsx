@@ -60,7 +60,7 @@ const Page: React.FC = () => {
           addToast(error.message, 'error');
         }
       };
-      setTimeout(login_user, 6000); // Delay login after signup success
+      setTimeout(login_user, 5000); // Delay login after signup success
     } catch (error: any) {
       console.log("Sign Up failed ", error.message);
       addToast(error.message, 'error');
