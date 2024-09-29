@@ -29,7 +29,7 @@ export const sendEmail  = async ({email, emailType, userId}:any) => {
           });
 
           const mailtOptions = {
-            from: '"Electroplix" <mailtrap@hobbymaster.xyz>',
+            from: '"Electroplix" <hello@electroplix.com>',
             to:email,
             subject: emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password",
             html:VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}",`${process.env.DOMAIN}/verifyemail?token=${hashedToken}`),
