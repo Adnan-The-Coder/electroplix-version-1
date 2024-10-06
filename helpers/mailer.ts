@@ -2,16 +2,18 @@ import nodemailer from "nodemailer";
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
 import {VERIFICATION_EMAIL_TEMPLATE} from "./emailTemplates.js"
+import { NextResponse } from "next/server.js";
 
 export const sendEmail  = async ({email, emailType, userId}:any) => {
     try {
         const hashedToken = await bcryptjs.hash(userId.toString(),10);
-
+        console.log("Hashed Token Generated")
         if (emailType === 'VERIFY'){
             await User.findByIdAndUpdate(userId,{
                 verifyToken:hashedToken,
                 verifyTokenExpiry: Date.now() + 3600000
             })
+            console.log("User Found in DB with veify Token")
         }else if(emailType === 'RESET'){
             await User.findByIdAndUpdate(userId,{
                 forgotPasswordToken:hashedToken,
@@ -27,6 +29,7 @@ export const sendEmail  = async ({email, emailType, userId}:any) => {
               pass: process.env.MAILTRAP_PASS
             }
           });
+          console.log("Email Transporter is now Ready !")
 
           const mailtOptions = {
             from: '"Electroplix" <hello@electroplix.com>',
@@ -35,12 +38,15 @@ export const sendEmail  = async ({email, emailType, userId}:any) => {
             html:VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}",`${process.env.DOMAIN}/verifyemail?token=${hashedToken}`),
           }
 
+          console.log("Mail Options Are now Set !")
+          console.log("Sending Email...")
           const mailResponse = await transport.sendMail(mailtOptions);
           return mailResponse;
 
 
     } catch (error:any) {
-        throw new Error(error.message);
+        // throw new Error(error.message);
+        return NextResponse.json({error:error.message},{status:500})
         
     }
 

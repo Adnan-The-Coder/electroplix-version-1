@@ -31,8 +31,11 @@ export async function POST(request:NextRequest) {
         })
 
         const savedUser = await newUser.save();
+        console.log("User is in DB")
+        console.log("Sending Verify Mail")
 
         await sendEmail({email,emailType:"VERIFY",userId:savedUser._id})
+        console.log("Verify Mail Sent!")
 
         return NextResponse.json({
             message:"User Created Successfully",
