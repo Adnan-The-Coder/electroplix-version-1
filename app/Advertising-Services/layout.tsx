@@ -43,41 +43,6 @@ export const metadata = {
   }
 };
 
-export function generateMetadataForService(serviceName: string, serviceDescription: string) {
-  const serviceStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: serviceName,
-    description: serviceDescription,
-    provider: {
-      "@type": "Organization",
-      name: "Electroplix",
-      url: "https://www.electroplix.com",
-      logo: "https://www.electroplix.com/Electroplix_logo.jpeg",
-    },
-  };
-
-  return {
-    title: `${serviceName} - Electroplix Advertising Services`,
-    description: serviceDescription,
-    keywords: `${serviceName}, advertising, Electroplix, digital marketing, online advertising`,
-    og: {
-      title: `${serviceName} | Electroplix`,
-      description: serviceDescription,
-      url: `https://www.electroplix.com/advertising-services/${serviceName.replace(/\s+/g, '-').toLowerCase()}`,
-      image: "https://www.electroplix.com/Electroplix_logo.jpeg",
-    },
-    twitter: {
-      card: "summary_large_image",
-      site: "@Electroplix_",
-      title: `${serviceName} - Electroplix`,
-      description: serviceDescription,
-      image: "https://www.electroplix.com/Electroplix_Cover_Photo.png",
-    },
-    structuredData: serviceStructuredData,
-  };
-}
-
 export default function AdvertisingServicesLayout({ children }: { children: ReactNode }) {
   return (
     <>
