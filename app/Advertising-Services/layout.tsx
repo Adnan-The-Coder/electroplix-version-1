@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 export const metadata = {
   title: "Electroplix Advertising Services - Elevate Your Brand",
   description: "Discover comprehensive advertising solutions at Electroplix. Maximize your reach with our email marketing, social media ads, SEO, and more.",
-  keywords: "advertising services, email marketing, social media ads, SEO, SMO, automated posting, lead follow-up,Chat bots, AI , AI Chatbots, reputation management, Electroplix",
+  keywords: "advertising services, email marketing, social media ads, SEO, SMO, automated posting, lead follow-up, chatbots, AI, reputation management, Electroplix",
   author: {
     name: "Syed Adnan Ali",
     url: "https://www.linkedin.com/in/syedadnanali99"
@@ -42,6 +42,41 @@ export const metadata = {
     ],
   }
 };
+
+export function generateMetadataForService(serviceName: string, serviceDescription: string) {
+  const serviceStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: serviceName,
+    description: serviceDescription,
+    provider: {
+      "@type": "Organization",
+      name: "Electroplix",
+      url: "https://www.electroplix.com",
+      logo: "https://www.electroplix.com/Electroplix_logo.jpeg",
+    },
+  };
+
+  return {
+    title: `${serviceName} - Electroplix Advertising Services`,
+    description: serviceDescription,
+    keywords: `${serviceName}, advertising, Electroplix, digital marketing, online advertising`,
+    og: {
+      title: `${serviceName} | Electroplix`,
+      description: serviceDescription,
+      url: `https://www.electroplix.com/advertising-services/${serviceName.replace(/\s+/g, '-').toLowerCase()}`,
+      image: "https://www.electroplix.com/Electroplix_logo.jpeg",
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@Electroplix_",
+      title: `${serviceName} - Electroplix`,
+      description: serviceDescription,
+      image: "https://www.electroplix.com/Electroplix_Cover_Photo.png",
+    },
+    structuredData: serviceStructuredData,
+  };
+}
 
 export default function AdvertisingServicesLayout({ children }: { children: ReactNode }) {
   return (
