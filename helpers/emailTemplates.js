@@ -48,7 +48,7 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
         ✓
       </div>
     </div>
-    <p>If you did not initiate this password reset, please contact our support team immediately.</p>
+    <p>If you did not initiate this password reset, please contact our support team immediately at Official.Electroplix@gmail.com</p>
     <p>For security reasons, we recommend that you:</p>
     <ul>
       <li>Use a strong, unique password</li>
@@ -56,7 +56,7 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
       <li>Avoid using the same password across multiple sites</li>
     </ul>
     <p>Thank you for helping us keep your account secure.</p>
-    <p>Best regards,<br>Hobby Master</p>
+    <p>Best regards,<br>Electroplix</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
