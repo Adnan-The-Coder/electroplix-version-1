@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
-import {VERIFICATION_EMAIL_TEMPLATE} from "./emailTemplates.js"
+import {VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE} from "./emailTemplates.js"
 import { NextResponse } from "next/server.js";
 
 export const sendEmail  = async ({email, emailType, userId}:any) => {
@@ -35,7 +35,7 @@ export const sendEmail  = async ({email, emailType, userId}:any) => {
             from: '"Electroplix" <hello@electroplix.com>',
             to:email,
             subject: emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password",
-            html:VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}",`${process.env.DOMAIN}/verifyemail?token=${hashedToken}`),
+            html: emailType === "VERIFY" ? VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}",`${process.env.DOMAIN}/verifyemail?token=${hashedToken}`) : PASSWORD_RESET_REQUEST_TEMPLATE,
           }
 
           console.log("Mail Options Are now Set !")
