@@ -35,7 +35,7 @@ export const sendEmail  = async ({email, emailType, userId}:any) => {
             from: '"Electroplix" <hello@electroplix.com>',
             to:email,
             subject: emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password",
-            html: emailType === "VERIFY" ? VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}",`${process.env.DOMAIN}/verifyemail?token=${hashedToken}`) : PASSWORD_RESET_REQUEST_TEMPLATE,
+            html: emailType === "VERIFY" ? VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}",`${process.env.DOMAIN}/verifyemail?token=${hashedToken}`) : PASSWORD_RESET_REQUEST_TEMPLATE.replace("{resetURL}",`${process.env.DOMAIN}/reset-password?token=${hashedToken}`),
           }
 
           console.log("Mail Options Are now Set !")

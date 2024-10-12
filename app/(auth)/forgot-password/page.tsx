@@ -34,6 +34,10 @@ const ForgotPasswordPage = () => {
             console.log(response);
 
             addToast("Password Reset Link sent successfullly! Redirecting...", 'success');
+            setTimeout(() => {
+                setLoading(false); // Ensure loading state is set before redirect
+                router.push('/Reset-password');
+              }, 1000);
 
 
         } catch (error:any) {
