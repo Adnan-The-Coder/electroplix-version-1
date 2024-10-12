@@ -1,21 +1,29 @@
 "use client";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaUserCircle, FaSignOutAlt } from "react-icons/fa"; // Importing icons
+import { FaUserCircle, FaHome, FaServicestack, FaBell, FaClipboardList } from "react-icons/fa";
+import Footer from "@/components/Footer";
 
-export default function ProfilePage() {
+interface UserData {
+    _id: string;
+    // Add other properties as needed
+}
+
+export default function Dashboard() {
     const router = useRouter();
-    const [data, setData] = useState("nothing");
+    const [data, setData] = useState<UserData | null>(null);
+    const [activeTab, setActiveTab] = useState("overview");
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const getUserDetails = async () => {
         try {
-            const res = await axios.get('/api/users/me');
-            console.log(res.data);
-            setData(res.data.data._id);
+            const res = await axios.get<{ data: UserData }>('/api/users/me');
+            setData(res.data.data);
         } catch (error) {
             console.error(error);
             toast.error("Failed to fetch user details");
@@ -27,50 +35,122 @@ export default function ProfilePage() {
             await axios.get('/api/users/logout');
             toast.success("Logout Successful");
             router.push('/login');
-        } catch (error:any) {
-            console.log(error.message);
-            toast.error(error.message);
+        } catch (error: unknown) {
+            console.error(error);
+            toast.error("Logout failed");
         }
     };
 
+    useEffect(() => {
+        getUserDetails();
+
+        // Check if the window width is mobile size
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768); // Change 768 to your breakpoint for mobile
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Set initial value
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-800">
-            <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-md w-full bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl p-8"
-            >
-                <h1 className="text-3xl font-bold text-center text-gradient bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
-                    Profile
-                </h1>
-                <hr className="my-4 border-gray-600" />
-                
-                <div className="flex flex-col items-center mb-6">
-                    <FaUserCircle className="text-green-500 text-6xl mb-2" />
-                    <p className="text-lg">Profile Page</p>
-                    <h2 className="mt-4 text-xl">
-                        {data === 'nothing' ? "Nothing" : <Link href={`/profile/${data}`} className="text-blue-500 hover:underline">{data}</Link>}
-                    </h2>
+        <>
+        <div className="flex flex-col h-screen bg-gray-900 overflow-hidden">
+            {/* Top Navbar */}
+            <header className="flex justify-between items-center p-4 bg-gray-800 shadow-md">
+                <h1 className="text-xl text-white md:hidden">Dashboard</h1>
+                <h1 className="text-xl text-white hidden md:block">Dashboard</h1>
+                <div className="hidden md:flex md:ml-4 space-x-4">
+                    {["overview", "services", "notifications", "custom-plans"].map((tab) => (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`text-white ${activeTab === tab ? 'font-bold' : 'hover:underline'}`}
+                        >
+                            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                        </button>
+                    ))}
                 </div>
 
-                <hr className="my-4 border-gray-600" />
-                
-                <div className="flex flex-col space-y-4">
-                    <button
-                        onClick={logout}
-                        className="flex items-center justify-center w-full py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-lg shadow-lg hover:from-red-600 hover:to-red-700 focus:outline-none"
-                    >
-                        <FaSignOutAlt className="mr-2" /> Logout
+                <div className="relative">
+                    <button onClick={() => setDropdownOpen(!dropdownOpen)}>
+                        <FaUserCircle className="text-green-500 text-2xl cursor-pointer" />
                     </button>
-                    <button
-                        onClick={getUserDetails}
-                        className="flex items-center justify-center w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none"
-                    >
-                        Get User Details
-                    </button>
+                    {dropdownOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                            <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
+                            <button onClick={logout} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</button>
+                        </div>
+                    )}
                 </div>
-            </motion.div>
+            </header>
+
+            <div className="flex flex-1 overflow-hidden">
+                {/* Main Content */}
+                <main className="flex-1 p-4 md:p-8 bg-gray-900 overflow-auto flex items-start justify-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-3xl"
+                    >
+                        <h1 className="text-3xl font-bold text-center text-gradient bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text mb-6">
+                            {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
+                        </h1>
+
+                        {activeTab === "overview" && (
+                            <div>
+                                <p className="text-lg text-white">Welcome to your profile overview!</p>
+                                <h2 className="mt-4 text-xl text-green-400 break-words">
+                                    {data ? `User ID: ${data._id}` : "Loading..."}
+                                </h2>
+                            </div>
+                        )}
+
+                        {activeTab === "services" && (
+                            <div>
+                                <p className="text-lg text-white">Here are your services.</p>
+                                {/* Add service details here */}
+                            </div>
+                        )}
+
+                        {activeTab === "notifications" && (
+                            <div>
+                                <p className="text-lg text-white">You have no new notifications.</p>
+                                {/* Add notification details here */}
+                            </div>
+                        )}
+
+                        {activeTab === "custom-plans" && (
+                            <div>
+                                <p className="text-lg text-white">Create or manage your custom plans here.</p>
+                                {/* Add custom plan details here */}
+                            </div>
+                        )}
+                    </motion.div>
+                </main>
+            </div>
+
+            {/* Bottom Menu for Mobile */}
+            <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 md:hidden flex justify-around shadow-lg">
+                {["overview", "services", "notifications", "custom-plans"].map((tab, index) => {
+                    const icons = [<FaHome />, <FaServicestack />, <FaBell />, <FaClipboardList />];
+                    return (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`text-white ${activeTab === tab ? 'font-bold' : ''}`}
+                        >
+                            {icons[index]}
+                        </button>
+                    );
+                })}
+            </nav>
         </div>
+        {!isMobile && <Footer />} {/* Conditionally render Footer based on screen size */}
+        </>
     );
 }
