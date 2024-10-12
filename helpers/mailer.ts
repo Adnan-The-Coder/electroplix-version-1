@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
-import { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE as OTHER_EMAIL_TEMPLATE } from "./emailTemplates.js";
+import { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE } from "./emailTemplates.js";
 import { NextResponse } from "next/server.js";
 
 export const sendEmail = async ({ email, emailType, userId }:any) => {
@@ -32,10 +32,9 @@ export const sendEmail = async ({ email, emailType, userId }:any) => {
                 emailHtml = PASSWORD_RESET_REQUEST_TEMPLATE.replace("{resetURL}", `${process.env.DOMAIN}/reset-password?token=${hashedToken}`);
                 break;
 
-            case 'OTHER':
-                // Add logic for other email types here
-                emailSubject = "Other Email Subject";
-                emailHtml = OTHER_EMAIL_TEMPLATE.replace("{somePlaceholder}", "Some Value");
+            case 'RESET_SUCCESS':
+                emailSubject = "Your Password Reset Was Successful";
+                emailHtml = PASSWORD_RESET_SUCCESS_TEMPLATE;
                 break;
 
             // Add more cases as needed

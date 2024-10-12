@@ -33,11 +33,11 @@ const ForgotPasswordPage = () => {
             const response = await axios.post('/api/users/forgot-password',{ email: user.email })
             console.log(response);
 
-            addToast("Password Reset Link sent successfullly! Redirecting...", 'success');
+            addToast("If the email is associated with an account, a reset link has been sent.", 'success');
             setTimeout(() => {
-                setLoading(false); // Ensure loading state is set before redirect
-                router.push('/Reset-password');
-              }, 1000);
+              setLoading(false);
+              addToast("Reset Your Password with the link sent to you email", 'success');
+              }, 4000);
 
 
         } catch (error:any) {
