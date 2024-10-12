@@ -144,6 +144,13 @@ const Page: React.FC = () => {
                 {loading ? <FaSpinner className="animate-spin mx-auto" size={24} /> : "Sign Up"}
               </motion.button>
             </form>
+            {/* Add terms and conditions text */}
+            <div className="mt-4 text-sm text-gray-400 text-center">
+              By signing up, you agree with our{" "}
+              <Link href="/Terms-And-Conditions" target="_blanck" className="text-green-400 hover:underline">
+                terms and conditions
+              </Link>.
+            </div>
           </div>
           <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
             <p className="text-sm text-gray-400">
