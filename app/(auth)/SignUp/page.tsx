@@ -54,13 +54,13 @@ const Page: React.FC = () => {
         try {
           const response = await axios.post("/api/users/login", user);
           console.log(response);
-          router.push('/profile');
+          router.push('/verifyemail');
         } catch (error: any) {
           console.log("Login Failed ", error.message);
           addToast(error.message, 'error');
         }
       };
-      setTimeout(login_user, 5000); // Delay login after signup success
+      setTimeout(login_user, 3000); // Delay login after signup success
     } catch (error: any) {
       console.log("Sign Up failed ", error.message);
       addToast(error.message, 'error');

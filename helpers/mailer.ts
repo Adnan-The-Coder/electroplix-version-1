@@ -9,6 +9,8 @@ export const sendEmail = async ({ email, emailType, userId }:any) => {
         const hashedToken = await bcryptjs.hash(userId.toString(), 10);
         console.log("Hashed Token Generated");
 
+        const verifyCode = Math.floor(100000 + Math.random()*900000).toString();
+
         let updateData = {};
         let emailSubject = '';
         let emailHtml = '';
@@ -16,11 +18,11 @@ export const sendEmail = async ({ email, emailType, userId }:any) => {
         switch (emailType) {
             case 'VERIFY':
                 updateData = {
-                    verifyToken: hashedToken,
-                    verifyTokenExpiry: Date.now() + 3600000
+                    verifyToken: verifyCode,
+                    verifyTokenExpiry: Date.now() + 3600000 // Expires in 1 hour
                 };
                 emailSubject = "Verify Your Email";
-                emailHtml = VERIFICATION_EMAIL_TEMPLATE.replace("{LINK_HREF}", `${process.env.DOMAIN}/verifyemail?token=${hashedToken}`);
+                emailHtml = VERIFICATION_EMAIL_TEMPLATE.replace("{VERIFY_CODE}", `${verifyCode}`);
                 break;
 
             case 'RESET':
@@ -69,5 +71,53 @@ export const sendEmail = async ({ email, emailType, userId }:any) => {
 
     } catch (error:any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}
+
+
+
+export const WelcomeEmail = async ({email,userId}:any) => {
+
+    try {
+        const user = await User.findOne({userId});
+
+        if (!user){
+            return NextResponse.json({sucess:false,message:"user not found in DB"})
+        }
+
+        const username = user.username;
+        const Nodemailer = require("nodemailer");
+        const { MailtrapTransport } = require("mailtrap");
+
+        const TOKEN = process.env.MAILTRAP_PASS;
+
+        const transport = Nodemailer.createTransport(
+        MailtrapTransport({
+            token: TOKEN,
+        })
+        );
+
+        const sender = {
+        address: "hello@electroplix.com",
+        name: "Electroplix",
+        };
+        const recipients = [
+        "official.electroplix@gmail.com",
+        ];
+
+        transport
+        .sendMail({
+            from: sender,
+            to: recipients,
+            template_uuid: process.env.WELCOME_EMAIL_UUID,
+            template_variables: {
+            "company_info_name": "Electroplix",
+            "name": username
+            }
+        })
+        .then(console.log, console.error);
+        
+    } catch (error:any) {
+        return NextResponse.json({success:false,status:500,message:error.message})
     }
 }
