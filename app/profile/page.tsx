@@ -10,7 +10,10 @@ import Footer from "@/components/Footer";
 
 interface UserData {
     _id: string;
-    // Add other properties as needed
+    username: string;
+    email: string;
+    isVerified: boolean; // Updated to use isVerified
+    isAdmin: boolean;    // You can use this if needed
 }
 
 export default function Dashboard() {
@@ -44,9 +47,8 @@ export default function Dashboard() {
     useEffect(() => {
         getUserDetails();
 
-        // Check if the window width is mobile size
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768); // Change 768 to your breakpoint for mobile
+            setIsMobile(window.innerWidth < 768);
         };
 
         window.addEventListener('resize', handleResize);
@@ -59,7 +61,6 @@ export default function Dashboard() {
     return (
         <>
         <div className="flex flex-col h-screen bg-gray-900 overflow-hidden">
-            {/* Top Navbar */}
             <header className="flex justify-between items-center p-4 bg-gray-800 shadow-md">
                 <h1 className="text-xl text-white md:hidden">Dashboard</h1>
                 <h1 className="text-xl text-white hidden md:block">Dashboard</h1>
@@ -89,7 +90,6 @@ export default function Dashboard() {
             </header>
 
             <div className="flex flex-1 overflow-hidden">
-                {/* Main Content */}
                 <main className="flex-1 p-4 md:p-8 bg-gray-900 overflow-auto flex items-start justify-center">
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
@@ -101,12 +101,16 @@ export default function Dashboard() {
                             {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
                         </h1>
 
-                        {activeTab === "overview" && (
+                        {activeTab === "overview" && data && (
                             <div>
-                                <p className="text-lg text-white">Welcome to your profile overview!</p>
+                                <p className="text-lg text-white">
+                                    Welcome {data.username}! Here's your Profile Overview.
+                                </p>
                                 <h2 className="mt-4 text-xl text-green-400 break-words">
-                                    {data ? `User ID: ${data._id}` : "Loading..."}
+                                    User ID: {data._id}
                                 </h2>
+                                <p className="text-lg text-white">Email: {data.email}</p>
+                                <p className="text-lg text-white">Verified: {data.isVerified ? 'Yes' : 'No'}</p>
                             </div>
                         )}
 
@@ -134,7 +138,6 @@ export default function Dashboard() {
                 </main>
             </div>
 
-            {/* Bottom Menu for Mobile */}
             <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 md:hidden flex justify-around shadow-lg">
                 {["overview", "services", "notifications", "custom-plans"].map((tab, index) => {
                     const icons = [<FaHome />, <FaServicestack />, <FaBell />, <FaClipboardList />];
@@ -150,7 +153,7 @@ export default function Dashboard() {
                 })}
             </nav>
         </div>
-        {!isMobile && <Footer />} {/* Conditionally render Footer based on screen size */}
+        {!isMobile && <Footer />}
         </>
     );
 }
