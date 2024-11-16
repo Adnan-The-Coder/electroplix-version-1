@@ -31,7 +31,8 @@ export async function POST(request: NextRequest) {
 
         // send Welcome Email
         console.log("sending Welcome Email")
-        await sendEmail({email:user.email,emailType:"WELCOME",userId:user._id})
+        // await sendEmail(user,"WELCOME");
+        await sendEmail({email:user.email,emailType:"WELCOME",userId:user._id,username:user.username})
         console.log("Welcome Email Sent")
 
         return NextResponse.json({ message: "Email Verified successfully", success: true });

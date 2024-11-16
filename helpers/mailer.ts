@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 import { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from "./emailTemplates.js";
 import { NextResponse } from "next/server.js";
 
-export const sendEmail = async ({ email, emailType, userId }:any) => {
+export const sendEmail = async ({ email, emailType, userId,username="user" }:any) => {
     try {
         const hashedToken = await bcryptjs.hash(userId.toString(), 10);
         console.log("Hashed Token Generated");
@@ -41,7 +41,7 @@ export const sendEmail = async ({ email, emailType, userId }:any) => {
 
             case 'WELCOME':
                 emailSubject = "😄 You’re In! Get Ready for Creative Sparks (and Smiles)!";
-                emailHtml = WELCOME_EMAIL_TEMPLATE;
+                emailHtml = WELCOME_EMAIL_TEMPLATE.replace("{user}",username);
                 break;
 
             // Add more cases as needed
@@ -81,48 +81,48 @@ export const sendEmail = async ({ email, emailType, userId }:any) => {
 
 
 
-export const WelcomeEmail = async ({email,userId}:any) => {
+// export const WelcomeEmail = async ({email,userId}:any) => {
 
-    try {
-        const user = await User.findOne({userId});
+//     try {
+//         const user = await User.findOne({userId});
 
-        if (!user){
-            return NextResponse.json({sucess:false,message:"user not found in DB"})
-        }
+//         if (!user){
+//             return NextResponse.json({sucess:false,message:"user not found in DB"})
+//         }
 
-        const username = user.username;
-        const Nodemailer = require("nodemailer");
-        const { MailtrapTransport } = require("mailtrap");
+//         const username = user.username;
+//         const Nodemailer = require("nodemailer");
+//         const { MailtrapTransport } = require("mailtrap");
 
-        const TOKEN = process.env.MAILTRAP_PASS;
+//         const TOKEN = process.env.MAILTRAP_PASS;
 
-        const transport = Nodemailer.createTransport(
-        MailtrapTransport({
-            token: TOKEN,
-        })
-        );
+//         const transport = Nodemailer.createTransport(
+//         MailtrapTransport({
+//             token: TOKEN,
+//         })
+//         );
 
-        const sender = {
-        address: "hello@electroplix.com",
-        name: "Electroplix",
-        };
-        const recipients = [
-        "official.electroplix@gmail.com",
-        ];
+//         const sender = {
+//         address: "hello@electroplix.com",
+//         name: "Electroplix",
+//         };
+//         const recipients = [
+//         "official.electroplix@gmail.com",
+//         ];
 
-        transport
-        .sendMail({
-            from: sender,
-            to: recipients,
-            template_uuid: process.env.WELCOME_EMAIL_UUID,
-            template_variables: {
-            "company_info_name": "Electroplix",
-            "name": username
-            }
-        })
-        .then(console.log, console.error);
+//         transport
+//         .sendMail({
+//             from: sender,
+//             to: recipients,
+//             template_uuid: process.env.WELCOME_EMAIL_UUID,
+//             template_variables: {
+//             "company_info_name": "Electroplix",
+//             "name": username
+//             }
+//         })
+//         .then(console.log, console.error);
         
-    } catch (error:any) {
-        return NextResponse.json({success:false,status:500,message:error.message})
-    }
-}
+//     } catch (error:any) {
+//         return NextResponse.json({success:false,status:500,message:error.message})
+//     }
+// }
