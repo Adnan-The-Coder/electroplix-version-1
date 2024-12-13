@@ -76,6 +76,7 @@ const Footer: React.FC = () => {
               <li><a href="https://x.com/Electroplix_" className="hover:text-yellow-400 transition-all">Twitter</a></li>
               <li><a href="https://www.facebook.com/people/Electroplix/61565564645521/" className="hover:text-yellow-400 transition-all">Facebook</a></li>
               <li><a href="https://instagram.com/electroplixofficial" className="hover:text-yellow-400 transition-all">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/electroplix/" className="hover:text-yellow-400 transition-all">LinkedIn</a></li>
             </ul>
           </div>
         </div>
