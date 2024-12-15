@@ -12,12 +12,14 @@ import CustomFormPopover from '@/components/ui/CustomFormPopover';
 // Define the available services and their prices, grouped by category
 const serviceCategories = {
   hostingAndDomains: {
-    webHosting: { price: 10, details: ['✔ Basic web hosting plan with ~100,000 visits monthly.', '✔ Free CDN'] },
-    hosting: { price: 15, details: ['Advanced hosting with 5GB storage and SSL.'] },
+    BasicHosting: { price: 8, details: ['✔ Basic web hosting plan with ~25,000 visits monthly.','✔ Standard DDoS protection','✔ Cloudflare protected nameservers','✔ Malware Scanner','✔ Web application firewall'] },
+    AdvanceHosting: { price: 15, details: ['✔ Web hosting plan with ~100,000 visits monthly.', '✔ Free CDN','✔ Enhanced DDoS protection','✔ Cloudflare protected nameservers','✔ Malware Scanner','✔ Web application firewall'] },
   },
   marketing: {
-    emailMarketing: { price: 25, details: ['Email campaigns with up to 10,000 emails.'] },
-    socialMediaAds: { price: 100, details: ['Social media advertising campaigns management.'] },
+    BasicEmailMarketing: { price: 25, details: ['✔ Email campaigns with up to 10,000 emails.', '✔ 2500 contacts','✔ Email Templates','✔ Bounce Categorization'] },
+    AdvanceEmailMarketing: { price: 100, details: ['✔ Email campaigns with up to 100,000 emails.', '✔ 25,000 contacts','✔ Email Templates','✔ Bounce Categorization','✔ Dedicated Rate Tracking','✔ SaaS Safeguard'] },
+    socialMediaAds: { price: 100, details: ['✔ Facebook Paid Ads', '✔ Instagram Paid Ads','✔ Google Ads','✔ Bounce Categorization','✔ Dedicated Rate Tracking','✔ SaaS Safeguard'] },
+    // socialMediaAds: { price: 100, details: ['Social media advertising campaigns management.'] },
     seo: { price: 90, details: ['Search Engine Optimization for better ranking.'] },
     smo: { price: 50, details: ['Social Media Optimization for increased engagement.'] },
   },
