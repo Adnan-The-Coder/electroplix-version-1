@@ -12,29 +12,29 @@ import CustomFormPopover from '@/components/ui/CustomFormPopover';
 // Define the available services and their prices, grouped by category
 const serviceCategories = {
   hostingAndDomains: {
-    webHosting: { price: 10, details: 'Basic web hosting plan with 1GB storage.' },
-    hosting: { price: 15, details: 'Advanced hosting with 5GB storage and SSL.' },
+    webHosting: { price: 10, details: ['✔ Basic web hosting plan with ~100,000 visits monthly.', '✔ Free CDN'] },
+    hosting: { price: 15, details: ['Advanced hosting with 5GB storage and SSL.'] },
   },
   marketing: {
-    emailMarketing: { price: 25, details: 'Email campaigns with up to 10,000 emails.' },
-    socialMediaAds: { price: 100, details: 'Social media advertising campaigns management.' },
-    seo: { price: 90, details: 'Search Engine Optimization for better ranking.' },
-    smo: { price: 50, details: 'Social Media Optimization for increased engagement.' },
+    emailMarketing: { price: 25, details: ['Email campaigns with up to 10,000 emails.'] },
+    socialMediaAds: { price: 100, details: ['Social media advertising campaigns management.'] },
+    seo: { price: 90, details: ['Search Engine Optimization for better ranking.'] },
+    smo: { price: 50, details: ['Social Media Optimization for increased engagement.'] },
   },
   management: {
-    reputationManagement: { price: 15, details: 'Manage and improve online reputation.' },
-    databaseReactivation: { price: 30, details: 'Reactivate and maintain your database.' },
-    leadFollowup: { price: 30, details: 'Follow-up with potential leads.' },
-    socialMediaPosting: { price: 100, details: 'Regular posting on social media platforms.' },
+    reputationManagement: { price: 15, details: ['Manage and improve online reputation.'] },
+    databaseReactivation: { price: 30, details: ['Reactivate and maintain your database.'] },
+    leadFollowup: { price: 30, details: ['Follow-up with potential leads.'] },
+    socialMediaPosting: { price: 100, details: ['Regular posting on social media platforms.'] },
   },
   chatbots: {
-    chatbotsBasic: { price: 40, details: 'Basic chatbot with predefined responses.' },
-    chatbotsAdvanced: { price: 150, details: 'Advanced chatbot with AI and machine learning.' },
+    chatbotsBasic: { price: 40, details: ['Basic chatbot with predefined responses.'] },
+    chatbotsAdvanced: { price: 150, details: ['Advanced chatbot with AI and machine learning.'] },
   },
   customServices: {
-    customWebsite: { price: 500, details: 'Fully customized website design and development.' },
-    starterPlan: { price: 250, details: 'Basic plan with essential features.' },
-    customWebsiteComponent: { price: 50, details: 'Custom components for your website.' },
+    customWebsite: { price: 500, details: ['Fully customized website design and development.'] },
+    starterPlan: { price: 250, details: ['Basic plan with essential features.'] },
+    customWebsiteComponent: { price: 50, details: ['Custom components for your website.'] },
   },
 };
 
@@ -43,14 +43,14 @@ const Page: React.FC = () => {
   const [discount, setDiscount] = useState<number>(0);
   const [discountApplied, setDiscountApplied] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
-  const [popoverContent, setPopoverContent] = useState<{ title: string; content: string } | null>(null);
+  const [popoverContent, setPopoverContent] = useState<{ title: string; details: string[] } | null>(null);
   const [popoverOpen, setPopoverOpen] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<{ title: string; content: string } | null>(null);
   const [successMessageOpen, setSuccessMessageOpen] = useState<boolean>(false);
   const [formPopoverOpen, setFormPopoverOpen] = useState<boolean>(false);
   const controls = useAnimation();
 
-  const handleServiceToggle = (service: string, price: number, details: string) => {
+  const handleServiceToggle = (service: string, price: number, details: string[]) => {
     setSelectedServices((prev) => {
       const newSelection = { ...prev };
       if (newSelection[service]) {
@@ -102,12 +102,12 @@ const Page: React.FC = () => {
     }
   };
 
-  const handlePopoverOpen = (title: string, content: string) => {
-    setPopoverContent({ title, content });
+  const handlePopoverOpen = (title: string, details: string[]) => {
+    setPopoverContent({ title, details });
     setPopoverOpen(true);
   };
 
-  const renderServiceCategory = (categoryName: string, services: { [key: string]: { price: number; details: string } }) => (
+  const renderServiceCategory = (categoryName: string, services: { [key: string]: { price: number; details: string[] } }) => (
     <div className="mb-6 p-4 bg-gray-800 rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold mb-4">{categoryName}</h2>
       {Object.entries(services).map(([key, { price, details }]) => (
@@ -196,17 +196,18 @@ const Page: React.FC = () => {
           </div>
 
           {showConfetti && <Confetti />} {/* Display Confetti on discount application */}
-
         </div>
       </div>
+
       {popoverContent && (
         <CustomPopover
           title={popoverContent.title}
-          content={popoverContent.content}
+          points={popoverContent.details}
           isOpen={popoverOpen}
           onClose={() => setPopoverOpen(false)}
         />
       )}
+
       {successMessage && (
         <SuccessMessagePopover
           title={successMessage.title}
@@ -215,12 +216,14 @@ const Page: React.FC = () => {
           onClose={() => setSuccessMessageOpen(false)}
         />
       )}
+
       {formPopoverOpen && (
         <CustomFormPopover
           isOpen={formPopoverOpen}
           onClose={() => setFormPopoverOpen(false)}
         />
       )}
+
       <Footer />
     </>
   );
