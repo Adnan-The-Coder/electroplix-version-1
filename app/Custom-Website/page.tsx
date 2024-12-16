@@ -14,7 +14,7 @@ const Page = () => {
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-orbitron font-bold bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20 text-center mb-8">
             Coming Soon...
           </h1>
-          <div className="w-full max-w-xl flex flex-col items-center gap-4 opacity-10 bg-white/10 backdrop-blur-md rounded-lg p-6 md:p-8">
+          <div className="w-full max-w-xl flex flex-col items-center gap-4 opacity-5 bg-white/10 backdrop-blur-md rounded-lg p-6 md:p-8">
             <p className="text-center text-sm md:text-base lg:text-lg text-white/80">
               Sign Up Now to get a custom Website
             </p>
