@@ -10,18 +10,24 @@ export function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const controls = useAnimation();
 
-  // Toggle menu for mobile
+  // Toggle main mobile menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setIsServicesOpen(false); // Close Services dropdown when main menu toggles
   };
 
-  // Handle scroll event
+  // Toggle Services dropdown menu
+  const toggleServices = () => {
+    setIsServicesOpen(!isServicesOpen);
+  };
+
+  // Close Services dropdown on scroll
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50;
       setScrolled(isScrolled);
       if (isScrolled) {
-        setIsServicesOpen(false); // Close services menu on scroll
+        setIsServicesOpen(false); // Auto close dropdown on scroll
       }
     };
 
@@ -29,7 +35,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Apply animation when scrolled
+  // Add animation when scrolled
   useEffect(() => {
     controls.start({
       opacity: scrolled ? 1 : 0.9,
@@ -57,7 +63,7 @@ export function Navbar() {
       >
         {/* Header Section */}
         <div className="flex w-full items-center justify-between">
-          {/* Left side menu */}
+          {/* Logo */}
           <div className="flex items-center space-x-2">
             <Link href="/">
               <span className="font-orbitron text-2xl md:text-3xl">
@@ -69,14 +75,33 @@ export function Navbar() {
             </span>
           </div>
 
-          {/* Right side menu */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-4 relative">
             <button
-              onClick={() => setIsServicesOpen(!isServicesOpen)}
+              onClick={toggleServices}
               className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl"
             >
               Services
             </button>
+
+            {/* Services Dropdown */}
+            {isServicesOpen && (
+              <div className="absolute top-12 left-0 w-64 bg-gray-700 rounded-lg p-2 shadow-lg">
+                <Link href="/Advertising-Services" className="flex items-center text-white hover:text-purple-500 py-2">
+                  <FaPaintBrush className="text-xl mr-2" /> Advertising Services
+                </Link>
+                <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
+                  <FaCode className="text-xl mr-2" /> Custom Websites
+                </Link>
+                <Link href="/Templates" className="flex items-center text-white hover:text-purple-500 py-2">
+                  <FaFileCode className="text-xl mr-2" /> Templates
+                </Link>
+                <Link href="/Custom-Plan" className="flex items-center text-white hover:text-purple-500 py-2">
+                  <FaRocket className="text-xl mr-2" /> Premium Plans
+                </Link>
+              </div>
+            )}
+
             <Link href="/docs/components" target="_blanck">
               <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
                 Components
@@ -94,7 +119,7 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMenu}
@@ -105,92 +130,40 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Dropdown menu for desktop */}
-        {isServicesOpen && (
-          <div className="hidden md:block absolute top-16 right-0 mt-2 w-64 bg-gray-800 bg-opacity-90 p-4 rounded-lg shadow-lg grid grid-cols-2 gap-2">
-            {/* Close button */}
-            <button
-              onClick={() => setIsServicesOpen(false)}
-              className="absolute top-2 right-2 text-white text-2xl focus:outline-none"
-            >
-              ✕
-            </button>
-
-            <Link href="/Advertising-Services" className="flex items-center text-white hover:text-purple-500 py-2">
-              <FaPaintBrush className="text-2xl mr-2" />
-              <span>Advertising Services</span>
-            </Link>
-            <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
-              <FaCode className="text-2xl mr-2" />
-              <span>Custom Websites</span>
-            </Link>
-            <Link href="/Templates" className="flex items-center text-white hover:text-purple-500 py-2">
-              <FaFileCode className="text-2xl mr-2" />
-              <span>Website Templates</span>
-            </Link>
-            <Link href="/docs/components" target="_blanck" className="flex items-center text-white hover:text-purple-500 py-2">
-              <FaRocket className="text-2xl mr-2" />
-              <span>Website Components</span>
-            </Link>
-            <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
-              <FaCogs className="text-2xl mr-2" />
-              <span>Custom Components</span>
-            </Link>
-            <Link href="/Custom-Plan" className="flex items-center text-white hover:text-purple-500 py-2">
-              <FaRocket className="text-2xl mr-2" />
-              <span>Custom Premium Plans</span>
-            </Link>
-          </div>
-        )}
-
-        {/* Mobile menu items */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-gray-800 bg-opacity-90 p-4 flex flex-col items-center rounded-lg">
-            <div className="flex flex-col w-full items-start">
-              <button
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="text-white w-full text-left py-2"
-              >
-                Services
-              </button>
-              {isServicesOpen && (
-                <div className="w-full bg-gray-700 rounded-lg p-2">
-                  <Link href="/Advertising-Services" className="flex items-center text-white hover:text-purple-500 py-2">
-                    Advertising Services
-                  </Link>
-                  <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
-                    Custom Websites
-                  </Link>
-                  <Link href="/Templates" className="flex items-center text-white hover:text-purple-500 py-2">
-                    Website Templates
-                  </Link>
-                  <Link href="/docs/components" target="_blanck" className="flex items-center text-white hover:text-purple-500 py-2">
-                    Website Components
-                  </Link>
-                  <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
-                    Custom Components
-                  </Link>
-                  <Link href="/Custom-Plan" className="flex items-center text-white hover:text-purple-500 py-2">
-                    Custom Premium Plans
-                  </Link>
-                </div>
-              )}
-              <Link href="/docs/components" target="_blanck">
-                <span className="font-orbitron text-white hover:text-purple-500 text-lg py-2">
-                  Components
-                </span>
-              </Link>
-              <Link href="/About">
-                <span className="font-orbitron text-white hover:text-purple-500 text-lg py-2">
-                  About
-                </span>
-              </Link>
-              <Link href="/SignUp">
-                <span className="font-orbitron text-white hover:text-purple-500 text-lg py-2">
-                  Sign Up
-                </span>
-              </Link>
-            </div>
+          <div className="md:hidden absolute top-16 left-0 w-full bg-gray-800 bg-opacity-90 p-4 rounded-lg">
+            <button
+              onClick={toggleServices}
+              className="text-white w-full text-left py-2"
+            >
+              Services
+            </button>
+            {isServicesOpen && (
+              <div className="bg-gray-700 rounded-lg p-2">
+                <Link href="/Advertising-Services" className="block text-white py-1">
+                  Advertising Services
+                </Link>
+                <Link href="/Custom-Website" className="block text-white py-1">
+                  Custom Websites
+                </Link>
+                <Link href="/Templates" className="block text-white py-1">
+                  Templates
+                </Link>
+                <Link href="/Custom-Plan" className="block text-white py-1">
+                  Premium Plans
+                </Link>
+              </div>
+            )}
+            <Link href="/docs/components" className="block text-white py-2">
+              Components
+            </Link>
+            <Link href="/About" className="block text-white py-2">
+              About
+            </Link>
+            <Link href="/SignUp" className="block text-white py-2">
+              Sign Up
+            </Link>
           </div>
         )}
       </motion.div>
