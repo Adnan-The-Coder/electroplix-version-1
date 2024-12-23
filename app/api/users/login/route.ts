@@ -51,6 +51,8 @@ export async function POST(request: NextRequest) {
             maxAge: 24 * 60 * 60, // Cookie expiry in seconds (1 day)
         });
 
+        response.cookies.set("auth","true");
+
         return response;
 
     } catch (error: any) {
