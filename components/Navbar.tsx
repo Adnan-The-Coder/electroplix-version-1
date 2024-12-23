@@ -191,7 +191,15 @@ export function Navbar() {
               About
             </Link>
             <Link href="/SignUp" className="block text-white py-2">
-              Sign Up
+            {isAuthenticated ? (
+              <Link href="/profile">
+                  Profile
+              </Link>
+            ) : (
+              <Link href="/SignUp">
+                  Sign Up
+              </Link>
+            )}
             </Link>
           </div>
         )}
