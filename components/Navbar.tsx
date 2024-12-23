@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useAnimation } from "framer-motion";
 import { FaPaintBrush, FaCode, FaFileCode, FaRocket, FaCogs } from 'react-icons/fa';
+import Cookies from "js-cookie";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const controls = useAnimation();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Toggle main mobile menu
   const toggleMenu = () => {
@@ -20,6 +22,17 @@ export function Navbar() {
   const toggleServices = () => {
     setIsServicesOpen(!isServicesOpen);
   };
+
+
+   // Check if the user is authenticated on component mount
+   useEffect(() => {
+    const authCookie = Cookies.get("auth");  // Get the 'auth' cookie
+    if (authCookie === "true") {
+      setIsAuthenticated(true);  // Set the authentication state
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
 
   // Close Services dropdown on scroll
   useEffect(() => {
@@ -43,6 +56,8 @@ export function Navbar() {
       transition: { duration: 0.5 },
     });
   }, [scrolled, controls]);
+
+
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 p-4">
@@ -113,9 +128,23 @@ export function Navbar() {
               </span>
             </Link>
             <Link href="/SignUp">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+              {/* <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
                 Sign Up
-              </span>
+              </span> */}
+              {/* Conditionally render based on auth state */}
+            {isAuthenticated ? (
+              <Link href="/profile">
+                <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+                  Profile
+                </span>
+              </Link>
+            ) : (
+              <Link href="/SignUp">
+                <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+                  Sign Up
+                </span>
+              </Link>
+            )}
             </Link>
           </div>
 
