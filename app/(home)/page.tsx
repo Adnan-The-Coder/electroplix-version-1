@@ -6,6 +6,7 @@ import { ProductivitySection } from "@/components/productivity-section";
 import PricingSection from "@/components/pricing-section";
 import CTASection from "@/components/cta-section";
 import Footer from "@/components/Footer";
+import WebPackages from "@/components/Website-packages";
 
 
 
@@ -19,6 +20,7 @@ export default function Home() {
       <Service/>
       <br />
       <WhyUsSection/>
+      <WebPackages/>
       <PricingSection/>
       <CTASection/>
       <Footer/>
