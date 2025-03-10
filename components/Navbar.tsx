@@ -1,16 +1,21 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // Import `useRouter` for programmatic navigation
 import { motion, useAnimation } from "framer-motion";
-import { FaPaintBrush, FaCode, FaFileCode, FaRocket, FaCogs } from 'react-icons/fa';
-import Cookies from "js-cookie";
+import { FaPaintBrush, FaCode, FaFileCode, FaRocket } from 'react-icons/fa';
+import { useUser, SignInButton, UserButton } from '@clerk/nextjs';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const controls = useAnimation();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter(); // Initialize the useRouter hook for navigation
+
+  // eslint-disable-next-line no-unused-vars
+  const { user, isSignedIn } = useUser(); // Use Clerk's `useUser` hook
 
   // Toggle main mobile menu
   const toggleMenu = () => {
@@ -23,17 +28,6 @@ export function Navbar() {
     setIsServicesOpen(!isServicesOpen);
   };
 
-
-   // Check if the user is authenticated on component mount
-   useEffect(() => {
-    const authCookie = Cookies.get("auth");  // Get the 'auth' cookie
-    if (authCookie === "true") {
-      setIsAuthenticated(true);  // Set the authentication state
-    } else {
-      setIsAuthenticated(false);
-    }
-  }, []);
-
   // Close Services dropdown on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +39,7 @@ export function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -57,16 +52,19 @@ export function Navbar() {
     });
   }, [scrolled, controls]);
 
-
+  // Handle sign-in button click (redirect to sign-in page)
+  const handleSignInClick = () => {
+    router.push("/sign-in"); // Redirect to sign-in page
+  };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 p-4">
+    <nav className="fixed inset-x-0 top-0 z-50 p-4">
       <motion.div
         animate={controls}
         className={`flex items-center justify-between ${
           scrolled ? 'max-w-4xl' : 'w-full'
         } ${
-          scrolled ? 'bg-black bg-opacity-70 border-2 border-neon text-neon' : 'bg-transparent'
+          scrolled ? 'border-neon text-neon border-2 bg-black bg-opacity-70' : 'bg-transparent'
         } mx-auto transition-all duration-500 ease-in-out`}
         style={{
           borderColor: scrolled ? '#0ff' : 'transparent',
@@ -85,121 +83,109 @@ export function Navbar() {
                 Electroplix
               </span>
             </Link>
-            <span className="bg-gray-700 text-white text-xs font-semibold py-1 px-2 rounded-full">
-              Beta
+            <span className="rounded-full bg-gray-700 px-2 py-1 text-xs font-semibold text-white">
+              Beta Version-2
             </span>
           </div>
-
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4 relative">
+          <div className="relative hidden items-center space-x-4 md:flex">
             <button
               onClick={toggleServices}
-              className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl"
+              className="font-orbitron text-lg text-white hover:text-purple-500 md:text-2xl"
             >
               Services
             </button>
-
             {/* Services Dropdown */}
             {isServicesOpen && (
-              <div className="absolute top-12 left-0 w-64 bg-gray-700 rounded-lg p-2 shadow-lg">
-                <Link href="/Advertising-Services" className="flex items-center text-white hover:text-purple-500 py-2">
-                  <FaPaintBrush className="text-xl mr-2" /> Advertising Services
+              <div className="absolute left-0 top-12 w-64 rounded-lg bg-gray-700 p-2 shadow-lg">
+                <Link href="/Advertising-Services" className="flex items-center py-2 text-white hover:text-purple-500">
+                  <FaPaintBrush className="mr-2 text-xl" /> Advertising Services
                 </Link>
-                <Link href="/Custom-Website" className="flex items-center text-white hover:text-purple-500 py-2">
-                  <FaCode className="text-xl mr-2" /> Custom Websites
+                <Link href="/Custom-Website" className="flex items-center py-2 text-white hover:text-purple-500">
+                  <FaCode className="mr-2 text-xl" /> Custom Websites
                 </Link>
-                <Link href="/Templates" className="flex items-center text-white hover:text-purple-500 py-2">
-                  <FaFileCode className="text-xl mr-2" /> Templates
+                <Link href="/Templates" className="flex items-center py-2 text-white hover:text-purple-500">
+                  <FaFileCode className="mr-2 text-xl" /> Templates
                 </Link>
-                <Link href="/Custom-Plan" className="flex items-center text-white hover:text-purple-500 py-2">
-                  <FaRocket className="text-xl mr-2" /> Premium Plans
+                <Link href="/Custom-Plan" className="flex items-center py-2 text-white hover:text-purple-500">
+                  <FaRocket className="mr-2 text-xl" /> Premium Plans
                 </Link>
               </div>
             )}
-
-            <Link href="/docs/components" target="_blanck">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+            <Link href="/docs/components" target="_blank">
+              <span className="font-orbitron text-lg text-white hover:text-purple-500 md:text-2xl">
                 Components
               </span>
             </Link>
             <Link href="/About">
-              <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
+              <span className="font-orbitron text-lg text-white hover:text-purple-500 md:text-2xl">
                 About
               </span>
             </Link>
-            <Link href="/SignUp">
-              {/* <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
-                Sign Up
-              </span> */}
-              {/* Conditionally render based on auth state */}
-            {isAuthenticated ? (
-              <Link href="/profile">
-                <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
-                  Profile
-                </span>
-              </Link>
-            ) : (
-              <Link href="/SignUp">
-                <span className="font-orbitron text-white hover:text-purple-500 text-lg md:text-2xl">
-                  Sign Up
-                </span>
-              </Link>
-            )}
+            {/* SignIn or User Button */}
+            <Link href={isSignedIn ? '#' : "/sign-in"} onClick={isSignedIn ? undefined : handleSignInClick}>
+              <span className="font-orbitron pt-4 text-lg text-white hover:text-purple-500 md:text-3xl">
+                {isSignedIn ? (
+                  <UserButton />
+                ) : (
+                  <SignInButton />
+                )}
+              </span> 
             </Link>
           </div>
-
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="flex items-center md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-2xl md:text-3xl text-white focus:outline-none"
+              className="text-2xl text-white focus:outline-none md:text-3xl"
             >
-              {isMenuOpen ? '✕' : '☰'}
+              <div className=" flex gap-4 pt-2">
+                {isMenuOpen ? '✕' : '☰'}
+                {isSignedIn ? <UserButton/>: null}
+              </div>
             </button>
           </div>
         </div>
-
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-gray-800 bg-opacity-90 p-4 rounded-lg">
+          <div className="absolute left-0 top-16 w-full rounded-lg bg-gray-800 bg-opacity-90 p-4 md:hidden">
             <button
               onClick={toggleServices}
-              className="text-white w-full text-left py-2"
+              className="w-full py-2 text-left text-white"
             >
               Services
             </button>
             {isServicesOpen && (
-              <div className="bg-gray-700 rounded-lg p-2">
-                <Link href="/Advertising-Services" className="block text-white py-1">
+              <div className="rounded-lg bg-gray-700 p-2">
+                <Link href="/Advertising-Services" className="block py-1 text-white">
                   Advertising Services
                 </Link>
-                <Link href="/Custom-Website" className="block text-white py-1">
+                <Link href="/Custom-Website" className="block py-1 text-white">
                   Custom Websites
                 </Link>
-                <Link href="/Templates" className="block text-white py-1">
+                <Link href="/Templates" className="block py-1 text-white">
                   Templates
                 </Link>
-                <Link href="/Custom-Plan" className="block text-white py-1">
+                <Link href="/Custom-Plan" className="block py-1 text-white">
                   Premium Plans
                 </Link>
               </div>
             )}
-            <Link href="/docs/components" className="block text-white py-2">
+            <Link href="/docs/components" className="block py-2 text-white">
               Components
             </Link>
-            <Link href="/About" className="block text-white py-2">
+            <Link href="/About" className="block py-2 text-white">
               About
             </Link>
-            <Link href="/SignUp" className="block text-white py-2">
-            {isAuthenticated ? (
-              <Link href="/profile">
-                  Profile
-              </Link>
-            ) : (
-              <Link href="/SignUp">
-                  Sign Up
-              </Link>
-            )}
+            {/* SignIn or User Button */}
+            <Link href={isSignedIn ? '#' : "/sign-in"} onClick={isSignedIn ? undefined : handleSignInClick}>
+              <span className="font-orbitron pt-4 text-lg text-white hover:text-purple-500 md:text-3xl">
+                {isSignedIn ? (
+                  null
+                ) : (
+                  <SignInButton />
+                )}
+              </span> 
             </Link>
           </div>
         )}
