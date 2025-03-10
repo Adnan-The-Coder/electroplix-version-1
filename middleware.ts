@@ -1,30 +1,43 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-export function middleware(request:NextRequest){
-    const path = request.nextUrl.pathname;
+const isPublicRoute = createRouteMatcher(['/','/sign-in(.*)'])
 
-    const isPublicPath = path === '/login' || path === '/SignUp' || path === '/verifyemail'
-
-    const token = request.cookies.get('token')?.value || '';
-
-    if (!token){
-        request.cookies.set("auth","false");
+export default clerkMiddleware(async (auth, request) => {
+    if (!isPublicRoute(request)) {
+      await auth.protect()
     }
+  })
 
-    if (isPublicPath && token){
-        return NextResponse.redirect(new URL('/profile',request.nextUrl))
-    }
-    if (!isPublicPath && !token){
-        return NextResponse.redirect(new URL('/login',request.nextUrl))
-    }
-}
+// export function middleware(request:NextRequest){
+//     const path = request.nextUrl.pathname;
+
+//     const isPublicPath = path === '/login' || path === '/SignUp' || path === '/verifyemail'
+
+//     const token = request.cookies.get('token')?.value || '';
+
+//     if (!token){
+//         request.cookies.set("auth","false");
+//     }
+
+//     if (isPublicPath && token){
+//         return NextResponse.redirect(new URL('/profile',request.nextUrl))
+//     }
+//     if (!isPublicPath && !token){
+//         return NextResponse.redirect(new URL('/login',request.nextUrl))
+//     }
+// }
 
 export const config={
     matcher: [
-        '/profile',
-        '/login',
-        '/SignUp',
+        // '/profile',
+        // '/login',
+        // '/SignUp',
         // '/verifyemail',
+        // Skip Next.js internals and all static files, unless found in search params
+        '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+        // Always run for API routes
+        '/(api|trpc)(.*)',
     ],
 }
