@@ -4,6 +4,9 @@ import { useState, FormEvent } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import Footer from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
+import BuildTogetherQuatation from '@/components/BuildTogetherQuatation';
+import MeetingBook from '@/components/MeetingBook';
+import Link from 'next/link';
 
 // Initialize Supabase client - replace with your actual keys in environment variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -11,6 +14,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function ContactPage() {
+    const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -320,6 +324,9 @@ export default function ContactPage() {
             </div>
           </div>
           
+          {/* NEW SECTION: Let's Build Together */}
+          <BuildTogetherQuatation/>
+          
           {/* Bottom Section - Virtual Connect */}
           <div className="mt-16 relative rounded-2xl overflow-hidden h-64 border border-gray-800 shadow-lg shadow-emerald-500/5">
             <div className="absolute inset-0 bg-gray-900 bg-opacity-90"></div>
@@ -334,12 +341,22 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-lg font-medium text-white mb-1">Connect Virtually</h3>
                 <p className="text-gray-400 mb-4">Schedule a video consultation with our team</p>
-                <a href="#" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-black bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors">
-                  Book a Meeting
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <Link
+                    href="/book-meeting" 
+                    onClick={(e) => {
+                    e.preventDefault();
+                    setIsMeetingModalOpen(true);
+                    }}
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-black bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors"
+                >
+                    Book a Meeting
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-                  </svg>
-                </a>
+                    </svg>
+                </Link>
+
+                {/* Add this at the bottom of your component return, before the closing tags */}
+                {/* <MeetingBook/> */}
               </div>
             </div>
             
