@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -452,8 +453,8 @@ const Page = () => {
                   </h3>
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      "React", "Next.js", "Vue", "Angular", "Node.js", "PHP",
-                      "WordPress", "Shopify", "Laravel", "MongoDB", "MySQL", "AWS"
+                      "React", "Next.js", "JAVA", "Node.js", "Maven",
+                      "Cloudflare", "GCP", "AWS", "MongoDB", "MySQL", "PostreSQL","Supabase","NeonDB","Tailwind"
                     ].map((tech, index) => (
                       <div key={index} className="bg-gray-800 bg-opacity-50 rounded-lg p-2 text-center text-sm text-cyan-300 border border-gray-700 hover:border-cyan-500 transition-colors">
                         {tech}
@@ -488,7 +489,7 @@ const Page = () => {
           </div>
           
           {/* Portfolio Showcase */}
-          <div className="mt-16 relative rounded-2xl overflow-hidden border border-gray-800 shadow-lg shadow-purple-500/5">
+          {/* <div className="mt-16 relative rounded-2xl overflow-hidden border border-gray-800 shadow-lg shadow-purple-500/5">
             <div className="absolute inset-0 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-sm"></div>
             <div className="relative z-10 p-8 md:p-12">
               <div className="text-center mb-10">
@@ -535,7 +536,7 @@ const Page = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
           
           {/* FAQ Section */}
           <div className="mt-16 relative">
@@ -604,15 +605,15 @@ const Page = () => {
                 Fill out the form above to get started on your custom website journey. Our team is excited to bring your vision to life!
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a href="#" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-black bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-300">
+                <Link href="/book-meeting" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-black bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-300">
                   Schedule a Consultation
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                   </svg>
-                </a>
-                <a href="#" className="inline-flex items-center px-6 py-3 border border-cyan-500 text-base font-medium rounded-lg text-cyan-400 bg-transparent hover:bg-cyan-900 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-300">
+                </Link>
+                {/* <a href="#" className="inline-flex items-center px-6 py-3 border border-cyan-500 text-base font-medium rounded-lg text-cyan-400 bg-transparent hover:bg-cyan-900 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-300">
                   View Pricing
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
