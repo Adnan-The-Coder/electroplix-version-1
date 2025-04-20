@@ -14,6 +14,9 @@ export function HeroSection() {
   const handleCustomWebsiteClick = () =>{
     window.open('Custom-Website');
   };
+  const handleBookMeetingClick = () =>{
+    window.open('book-meeting');
+  };
 
   return (
     <BackgroundGradientAnimation size="100%">
@@ -46,14 +49,16 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1, ease: "easeOut" }}
           >
-            Build Websites 10x Faster and Efficient
+            {/* Build Websites 10x Faster and Efficient */}
+            Your vision, expertly crafted
           </motion.p>
 
           {/* Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <div className="flex flex-col sm:flex-row gap-4 max-w-full w-full items-center justify-center">
-              <ModernFuturisticButton text="Browse Components" action={handleComponentClick} />
-              <ModernFuturisticButton text="Custom Website" action={handleCustomWebsiteClick}/>
+              {/* <ModernFuturisticButton text="Browse Components" action={handleComponentClick} /> */}
+              <ModernFuturisticButton text="Book a Meet" action={handleBookMeetingClick}/>
+              <ModernFuturisticButton text="Custom Website request" action={handleCustomWebsiteClick}/>
             </div>
           </div>
         </div>

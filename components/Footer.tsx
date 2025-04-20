@@ -72,6 +72,7 @@ const Footer: React.FC = () => {
               <AnimatedText text="Contact" />
             </h2>
             <ul className="space-y-2">
+              <li><a href="/contact-us" className="hover:text-yellow-400 transition-all">Contact Us</a></li>
               <li><a href="mailto:official.electroplix@gmail.com" className="hover:text-yellow-400 transition-all">Mail</a></li>
               <li><a href="https://x.com/Electroplix_" className="hover:text-yellow-400 transition-all">Twitter</a></li>
               <li><a href="https://www.facebook.com/people/Electroplix/61565564645521/" className="hover:text-yellow-400 transition-all">Facebook</a></li>
