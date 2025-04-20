@@ -28,3 +28,5 @@ yarn-error.log*
 .vercel
 next-env.d.ts
 .vscode
+# clerk configuration (can include secrets)
+/.clerk/
