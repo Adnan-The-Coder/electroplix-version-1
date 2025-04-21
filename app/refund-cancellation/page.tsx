@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const RefundCancellation = () => {
@@ -40,7 +41,7 @@ const RefundCancellation = () => {
           <div className="bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
             <h2 className="text-2xl font-semibold text-purple-400 mb-4">How to Request a Refund or Cancellation</h2>
             <p className="text-gray-300">
-              - Simply reach out to our support team via <span className="text-pink-500">support@electroplix.com</span>.
+              - Simply reach out to our support team via <span className="text-pink-500"><Link href={"mailto:help.electroplix@gmail.com"}>help.electroplix@gmail.com</Link></span>
               <br />
               - Include your order number and reason for the refund/cancellation request.
               <br />
