@@ -15,6 +15,21 @@ export const metadata = {
     type: "website",
     image: "https://www.electroplix.com/Electroplix_logo.jpeg",
   },
+  openGraph: {
+    title: "About Electroplix - Innovating for Your Success",
+    description: "Learn about Electroplix, your go-to partner for custom web development, SEO, and digital marketing solutions designed to empower your business growth.",
+    url: "https://www.electroplix.com/Custom-Website", 
+    type: "website",
+    siteName: "Electroplix",
+    images: [
+      {
+        url: "https://www.electroplix.com/assets/about-website-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Electroplix About Website Development",
+      }
+    ]
+  },
   twitter: {
     card: "summary_large_image",
     site: "@Electroplix_", 
@@ -26,6 +41,12 @@ export const metadata = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Electroplix",
+    provider: {
+      "@type": "Organization",
+      name: "Electroplix",
+      url: "https://www.electroplix.com"
+    },
+    description: "Learn about Electroplix, your go-to partner for custom web development, SEO, and digital marketing solutions designed to empower your business growth.",
     url: "https://www.electroplix.com",
     logo: "https://www.electroplix.com/Electroplix_logo.jpeg",
     contactPoint: {
@@ -35,11 +56,17 @@ export const metadata = {
       areaServed: "Global",
       availableLanguage: "English"
     },
+    serviceType: "Web Development",
+    areaServed: {
+      "@type": "Country",
+      name: "United States"
+    },
     sameAs: [
       "https://www.facebook.com/profile.php?id=61565564645521",
       "https://twitter.com/Electroplix_",
       "https://www.instagram.com/electroplixofficial",
     ],
+    image: "https://www.electroplix.com/assets/about-website-service.jpg"
   }
 };
 
