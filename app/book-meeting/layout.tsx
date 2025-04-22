@@ -1,74 +1,73 @@
 import Head from "next/head";
 
 export const metadata = {
-    title: "Book Meeting for Website Development | Electroplix | Modern Web Solutions",
+  title: "Book Meeting with Electroplix | Custom Software & Website Development",
+  description:
+    "Schedule a meeting with Electroplix experts to discuss your custom website needs. Get professional web solutions with advanced features, AI integration, and SHADCN components at competitive prices.",
+  keywords:
+    "book meeting, website consultation, custom software development, affordable website, business website, AI integration, SHADCN components, web templates, responsive design, competitive pricing, advanced web solutions, Electroplix",
+  og: {
+    title: "Book a Meeting | Electroplix IT Solutions",
     description:
-    "Transform your online presence with Electroplix's website development services. We create stunning, responsive websites tailored to your business needs with cutting-edge technology.",
-    keywords:
-    "custom website,personalised needs, meetings to scale up business, ,  web development, responsive design, business website, e-commerce, portfolio website, Electroplix, web design, UI/UX, React, Next.js, Tailwind CSS, modern websites",
-    og: {
-        title: "Book a Meeting | Electroplix",
-        description:
-        "Get a professionally designed custom website that perfectly represents your brand. Our expert team creates responsive, high-performance websites tailored to your specific business needs.",
-        url: "https://www.electroplix.com/Custom-Website", 
-        type: "website",
-        image:
-        "https://www.electroplix.com/assets/book-meeting-website-banner.png", 
-    },
-    openGraph: {
-    title: "Book Meeting for Website Development | Electroplix | Modern Web Solutions",
+      "Schedule a consultation with our experts to get a custom-built website or software solution that perfectly meets your business requirements at an affordable price.",
+    url: "https://www.electroplix.com/book-meeting", 
+    type: "website",
+    image:
+      "https://www.electroplix.com/assets/book-meeting-website-banner.png", 
+  },
+  openGraph: {
+    title: "Book a Meeting with Electroplix | Premium Web Solutions at Competitive Prices",
     description:
-    "Transform your online presence with Electroplix's website development services. We create stunning, responsive websites tailored to your business needs with cutting-edge technology.",
-    url: "https://www.electroplix.com/Custom-Website", 
+      "Schedule a consultation to discuss your website needs with Electroplix experts. We offer visually stunning websites with advanced animations and SHADCN components at prices competing with WordPress.",
+    url: "https://www.electroplix.com/book-meeting", 
     type: "website",
     siteName: "Electroplix",
     areaServed: "Global",
     images: [
-        {
-            url: "https://www.electroplix.com/assets/About-website-banner.png",
-            width: 1200,
-            height: 630,
-            alt: "Electroplix About Website Development",
-        }
+      {
+        url: "https://www.electroplix.com/assets/book-meeting-website-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Book a Meeting with Electroplix for Custom Website Development",
+      }
     ]
-},
-twitter: {
+  },
+  twitter: {
     card: "summary_large_image",
-    site: "@Electroplix",
-    title: "Book Meeting for Website Development | Electroplix | Modern Web Solutions",
+    site: "@Electroplix_",
+    title: "Book a Meeting with Electroplix | Custom Web Development",
     description:
-      "Transform your online presence with our custom website development services. From business websites to e-commerce platforms, we build solutions that drive results.",
+      "Schedule a free consultation to discuss your website needs. Get premium custom websites with advanced features at affordable prices from Electroplix.",
     image:
-      "https://www.electroplix.com/assets/About-website-banner.png", 
+      "https://www.electroplix.com/assets/book-meeting-banner.png", 
   },
   structuredData: {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Custom Website Development",
+    name: "Custom Website & Software Development Consultation",
     provider: {
       "@type": "Organization",
       name: "Electroplix",
-      url: "https://www.electroplix.com/About"
+      url: "https://www.electroplix.com"
     },
     description:
-      "Transform your online presence with our custom website development services. From business websites to e-commerce platforms, we build solutions that drive results.",
-    meetings: {
-      "@type": "meeting",
+      "Schedule a meeting with Electroplix experts to discuss your website and software development needs. We offer custom solutions with advanced features at competitive prices.",
+    offers: {
+      "@type": "Offer",
       price: "Free",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock"
     },
-    serviceType: "Web Development",
+    serviceType: "Web Development Consultation",
     areaServed: {
-      "@type": "Country",
-      name: "United States"
+      "@type": "Global"
     },
-    serviceOutput: "Custom designed and developed website",
-    image: "https://www.electroplix.com/assets/custom-website-service.jpg"
+    serviceOutput: "Custom designed website with components and advanced features",
+    image: "https://www.electroplix.com/assets/book-meeting-service.jpg"
   },
 };
 
-export default function CustomWebsiteLayout({
+export default function BookMeetingLayout({
   children,
 }: {
   children: React.ReactNode;
