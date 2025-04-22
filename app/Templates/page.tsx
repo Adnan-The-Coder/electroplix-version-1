@@ -78,16 +78,17 @@ function Page() {
           throw new Error(error.message);
         }
         
-        // Add isFree property to all templates (default to true as requested)
-        // Ensure like_count exists with a default of 0 if not present
-        const templatesWithFreeStatus = data?.map(template => ({
+        // Properly map each template and ensure default values are set
+        const processedTemplates = data?.map(template => ({
           ...template,
-          isFree: true,
+          // Use the template's isFree property if it exists, otherwise default to true
+          isFree: template.isFree !== undefined ? template.isFree : true,
+          // Ensure like_count exists with a default of 0 if not present
           like_count: template.like_count || 0
         })) || [];
         
-        setTemplates(templatesWithFreeStatus);
-        setFilteredTemplates(templatesWithFreeStatus);
+        setTemplates(processedTemplates);
+        setFilteredTemplates(processedTemplates);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred while fetching templates');
         console.error(err);
@@ -280,7 +281,7 @@ function Page() {
           <div className="bg-black/50 py-20 px-4 sm:px-6 lg:px-8 relative z-10 border-b border-purple-800/50">
             <div className="max-w-7xl mx-auto">
               <h1 className="text-4xl md:text-6xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 drop-shadow-[0_0_25px_rgba(147,51,234,0.5)]">
-                <span>Electroplix</span>
+                <span>Web Templates</span>
               </h1>
               <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto">
                 Cutting-edge web designs with neon aesthetics and flawless functionality
