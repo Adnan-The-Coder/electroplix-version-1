@@ -84,7 +84,7 @@ export function Navbar() {
               </span>
             </Link>
             <span className="rounded-full bg-gray-700 px-2 py-1 text-xs font-semibold text-white">
-              Beta Version-2
+              Version-1
             </span>
           </div>
           {/* Desktop Menu */}
