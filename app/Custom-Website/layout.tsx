@@ -59,8 +59,7 @@ export const metadata = {
     },
     serviceType: "Web Development",
     areaServed: {
-      "@type": "Country",
-      name: "United States"
+      "@type": "global",
     },
     serviceOutput: "Custom designed and developed website",
     image: "https://www.electroplix.com/assets/custom-website-service.jpg"

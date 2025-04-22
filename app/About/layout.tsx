@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import type { ReactNode } from 'react';
 
 export const metadata = {
@@ -11,14 +13,14 @@ export const metadata = {
   og: {
     title: "About Electroplix - Innovating for Your Success",
     description: "Discover how Electroplix can help your business thrive with our expert web development and digital marketing services.",
-    url: "https://www.electroplix.com/about",
+    url: "https://www.electroplix.com/About",
     type: "website",
     image: "https://www.electroplix.com/Electroplix_logo.jpeg",
   },
   openGraph: {
     title: "About Electroplix - Innovating for Your Success",
     description: "Learn about Electroplix, your go-to partner for custom web development, SEO, and digital marketing solutions designed to empower your business growth.",
-    url: "https://www.electroplix.com/Custom-Website", 
+    url: "https://www.electroplix.com/About", 
     type: "website",
     siteName: "Electroplix",
     images: [
@@ -44,7 +46,7 @@ export const metadata = {
     provider: {
       "@type": "Organization",
       name: "Electroplix",
-      url: "https://www.electroplix.com"
+      url: "https://www.electroplix.com/About"
     },
     description: "Learn about Electroplix, your go-to partner for custom web development, SEO, and digital marketing solutions designed to empower your business growth.",
     url: "https://www.electroplix.com",
@@ -58,9 +60,9 @@ export const metadata = {
     },
     serviceType: "Web Development",
     areaServed: {
-      "@type": "Country",
-      name: "United States"
+      "@type": "Global",
     },
+    availableLanguage: "English",
     sameAs: [
       "https://www.facebook.com/profile.php?id=61565564645521",
       "https://twitter.com/Electroplix_",
@@ -73,7 +75,22 @@ export const metadata = {
 export default function AboutLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      {children}
+      <Head>
+        <meta property="og:title" content={metadata.og.title} />
+        <meta property="og:description" content={metadata.og.description} />
+        <meta property="og:url" content={metadata.og.url} />
+        <meta property="og:type" content={metadata.og.type} />
+        <meta property="og:image" content={metadata.og.image} />
+        <meta name="twitter:card" content={metadata.twitter.card} />
+        <meta name="twitter:site" content={metadata.twitter.site} />
+        <meta name="twitter:title" content={metadata.twitter.title} />
+        <meta
+          name="twitter:description"
+          content={metadata.twitter.description}
+        />
+        <meta name="twitter:image" content={metadata.twitter.image} />
+      </Head>
+      <div>{children}</div>
     </>
   );
 }
