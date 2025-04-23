@@ -9,13 +9,7 @@ import {
 import { notFound } from 'next/navigation';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 
-type PageProps = {
-  params: {
-    slug?: string[];
-  };
-};
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: { slug?: string[] } }) {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
@@ -36,7 +30,7 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
+export function generateMetadata({ params }: { params: { slug?: string[] } }): Metadata {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
