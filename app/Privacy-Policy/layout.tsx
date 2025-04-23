@@ -15,6 +15,13 @@ export const metadata = {
     type: "website",
     image: "https://www.electroplix.com/Electroplix_logo.jpeg",
   },
+  openGraph: {
+    title: "Electroplix Privacy Policy - Protecting Your Information",
+    description: "Discover how Electroplix safeguards your personal data and what measures we take to ensure your privacy.",
+    url: "https://www.electroplix.com/privacy-policy",
+    type: "website",
+    image: "https://www.electroplix.com/Electroplix_logo.jpeg",
+  },
   twitter: {
     card: "summary_large_image",
     site: "@Electroplix_", 
