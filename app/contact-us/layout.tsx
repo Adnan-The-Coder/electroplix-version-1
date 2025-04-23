@@ -1,6 +1,5 @@
 import Head from "next/head";
 import type { ReactNode } from 'react';
-import './contact-us.css';
 
 export const metadata = {
   title: "Contact Electroplix - Support, Partnerships & Scheduling Meetings",
