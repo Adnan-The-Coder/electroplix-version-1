@@ -120,16 +120,13 @@ export default function ScaleUpYourBusinessLayout({ children }: { children: Reac
         <meta property="og:image:width" content={metadata.openGraph.images[0].width.toString()} />
         <meta property="og:image:height" content={metadata.openGraph.images[0].height.toString()} />
         <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
-        
         {/* Twitter */}
         <meta name="twitter:card" content={metadata.twitter.card} />
         <meta name="twitter:site" content={metadata.twitter.site} />
         <meta name="twitter:title" content={metadata.twitter.title} />
         <meta name="twitter:description" content={metadata.twitter.description} />
         <meta name="twitter:image" content={metadata.twitter.image} />
-        
       </Head>
-      
       {children}
     </>
   );
