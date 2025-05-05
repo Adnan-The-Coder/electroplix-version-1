@@ -35,6 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
     <img alt="Mailtrap" src="https://img.shields.io/badge/Mailtrap-FF6A00?style=flat&logo=Mailtrap&logoColor=white" />
     <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=MongoDB&logoColor=white" />
     <img alt="FumaDocs" src="https://img.shields.io/badge/FumaDocs-4A90E2?style=flat&logo=docs&logoColor=white" />
+    <img alt="Supabase" src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=Supabase&logoColor=white" />
   </p>
 </div>
 
