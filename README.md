@@ -29,8 +29,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
     <img alt="NextJS" src="https://img.shields.io/badge/-NextJS-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
     <img alt="Bun" src="https://img.shields.io/badge/-Bun.js-000000?style=flat-square&logo=bun&logoColor=white" />
     <img alt="TailwindCSS" src="https://img.shields.io/badge/-Tailwind CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
-    <img alt="Cloudflare" src="https://img.shields.io/badge/Cloudflare-F38020?style=flat&logo=Cloudflare&logoColor=white" />
+    <img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000?style=flat&logo=Vercel&logoColor=white" />
     <img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
+    <img alt="Clerk" src="https://img.shields.io/badge/Clerk-000000?style=flat&logo=Clerk&logoColor=white" />
+    <img alt="Mailtrap" src="https://img.shields.io/badge/Mailtrap-FF6A00?style=flat&logo=Mailtrap&logoColor=white" />
+    <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=MongoDB&logoColor=white" />
+    <img alt="FumaDocs" src="https://img.shields.io/badge/FumaDocs-4A90E2?style=flat&logo=docs&logoColor=white" />
   </p>
 </div>
 
@@ -103,4 +107,4 @@ If any merge conflicts arise, contributors should immediately contact the CTO fo
 ## 6. PR Review Time
 All PRs should be reviewed and resolved within 5 days of submission.
 
-## Deployed on CloudFlare
+## Deployed on Vercel
