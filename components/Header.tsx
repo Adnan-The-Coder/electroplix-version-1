@@ -39,7 +39,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
           >
-            Crafting Outstanding Digital Experiences
+            Crafting Outstanding Digital Experiences.
           </motion.h2>
           {/* Short Description */}
           <motion.p
