@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -6,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FaUserCircle, FaHome, FaServicestack, FaBell, FaClipboardList } from "react-icons/fa";
+
 import Footer from "@/components/Footer";
 
 interface UserData {
@@ -53,107 +55,102 @@ export default function Dashboard() {
 
         window.addEventListener('resize', handleResize);
         handleResize(); // Set initial value
-        return () => {
+        
+return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
 
     return (
-        <>
-        <div className="flex flex-col h-screen bg-gray-900 overflow-hidden">
-            <header className="flex justify-between items-center p-4 bg-gray-800 shadow-md">
-                <h1 className="text-xl text-white md:hidden">Dashboard</h1>
-                <h1 className="text-xl text-white hidden md:block">Dashboard</h1>
-                <div className="hidden md:flex md:ml-4 space-x-4">
-                    {["overview", "services", "notifications", "custom-plans"].map((tab) => (
-                        <button
+      <>
+        <div className="flex h-screen flex-col overflow-hidden bg-gray-900">
+          <header className="flex items-center justify-between bg-gray-800 p-4 shadow-md">
+            <h1 className="text-xl text-white md:hidden">Dashboard</h1>
+            <h1 className="hidden text-xl text-white md:block">Dashboard</h1>
+            <div className="hidden space-x-4 md:ml-4 md:flex">
+              {["overview", "services", "notifications", "custom-plans"].map((tab) => (
+                <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`text-white ${activeTab === tab ? 'font-bold' : 'hover:underline'}`}
                         >
-                            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                        </button>
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
                     ))}
-                </div>
-
-                <div className="relative">
-                    <button onClick={() => setDropdownOpen(!dropdownOpen)}>
-                        <FaUserCircle className="text-green-500 text-2xl cursor-pointer" />
-                    </button>
-                    {dropdownOpen && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
-                            <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
-                            <button onClick={logout} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</button>
-                        </div>
+            </div>
+            <div className="relative">
+              <button onClick={() => setDropdownOpen(!dropdownOpen)}>
+                <FaUserCircle className="cursor-pointer text-2xl text-green-500" />
+              </button>
+              {dropdownOpen && (
+              <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg">
+                <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
+                <button onClick={logout} className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200">Logout</button>
+              </div>
                     )}
-                </div>
-            </header>
-
-            <div className="flex flex-1 overflow-hidden">
-                <main className="flex-1 p-4 md:p-8 bg-gray-900 overflow-auto flex items-start justify-center">
-                    <motion.div
+            </div>
+          </header>
+          <div className="flex flex-1 overflow-hidden">
+            <main className="flex flex-1 items-start justify-center overflow-auto bg-gray-900 p-4 md:p-8">
+              <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-3xl"
+                        className="w-full max-w-3xl rounded-2xl bg-gray-900 bg-opacity-80 p-6 shadow-xl backdrop-blur-xl md:p-8"
                     >
-                        <h1 className="text-3xl font-bold text-center text-gradient bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text mb-6">
-                            {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
-                        </h1>
-
-                        {activeTab === "overview" && data && (
-                            <div>
-                                <p className="text-lg text-white">
-                                    Welcome {data.username}! Here's your Profile Overview.
-                                </p>
-                                <h2 className="mt-4 text-xl text-green-400 break-words">
-                                    User ID: {data._id}
-                                </h2>
-                                <p className="text-lg text-white">Email: {data.email}</p>
-                                <p className="text-lg text-white">Verified: {data.isVerified ? 'Yes' : 'No'}</p>
-                            </div>
+                <h1 className="text-gradient mb-6 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-center text-3xl font-bold text-transparent">
+                  {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
+                </h1>
+                {activeTab === "overview" && data && (
+                  <div>
+                    <p className="text-lg text-white">
+                      Welcome {data.username}! Here`s your Profile Overview.
+                    </p>
+                    <h2 className="mt-4 break-words text-xl text-green-400">
+                      User ID: {data._id}
+                    </h2>
+                    <p className="text-lg text-white">Email: {data.email}</p>
+                    <p className="text-lg text-white">Verified: {data.isVerified ? 'Yes' : 'No'}</p>
+                  </div>
                         )}
-
-                        {activeTab === "services" && (
-                            <div>
-                                <p className="text-lg text-white">Here are your services.</p>
-                                {/* Add service details here */}
-                            </div>
+                {activeTab === "services" && (
+                  <div>
+                    <p className="text-lg text-white">Here are your services.</p>
+                    {/* Add service details here */}
+                  </div>
                         )}
-
-                        {activeTab === "notifications" && (
-                            <div>
-                                <p className="text-lg text-white">You have no new notifications.</p>
-                                {/* Add notification details here */}
-                            </div>
+                {activeTab === "notifications" && (
+                  <div>
+                    <p className="text-lg text-white">You have no new notifications.</p>
+                    {/* Add notification details here */}
+                  </div>
                         )}
-
-                        {activeTab === "custom-plans" && (
-                            <div>
-                                <p className="text-lg text-white">Create or manage your custom plans here.</p>
-                                {/* Add custom plan details here */}
-                            </div>
+                {activeTab === "custom-plans" && (
+                  <div>
+                    <p className="text-lg text-white">Create or manage your custom plans here.</p>
+                    {/* Add custom plan details here */}
+                  </div>
                         )}
-                    </motion.div>
-                </main>
-            </div>
-
-            <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 p-4 md:hidden flex justify-around shadow-lg">
-                {["overview", "services", "notifications", "custom-plans"].map((tab, index) => {
+              </motion.div>
+            </main>
+          </div>
+          <nav className="fixed inset-x-0 bottom-0 flex justify-around bg-gray-800 p-4 shadow-lg md:hidden">
+            {["overview", "services", "notifications", "custom-plans"].map((tab, index) => {
                     const icons = [<FaHome />, <FaServicestack />, <FaBell />, <FaClipboardList />];
-                    return (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`text-white ${activeTab === tab ? 'font-bold' : ''}`}
-                        >
-                            {icons[index]}
-                        </button>
-                    );
+                    
+return (
+  <button
+    key={tab}
+    onClick={() => setActiveTab(tab)}
+    className={`text-white ${activeTab === tab ? 'font-bold' : ''}`}
+>
+    {icons[index]}
+  </button>
+);
                 })}
-            </nav>
+          </nav>
         </div>
         {!isMobile && <Footer />}
-        </>
+      </>
     );
 }

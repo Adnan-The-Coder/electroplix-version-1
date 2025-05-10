@@ -140,24 +140,20 @@ export default function ContactUsLayout({ children }: { children: ReactNode }) {
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
         <meta name="author" content={metadata.author.name} />
-        
         <meta property="og:title" content={metadata.og.title} />
         <meta property="og:description" content={metadata.og.description} />
         <meta property="og:url" content={metadata.og.url} />
         <meta property="og:type" content={metadata.og.type} />
         <meta property="og:image" content={metadata.og.image} />
-        
         <meta property="og:site_name" content={metadata.openGraph.siteName} />
         <meta property="og:image:width" content={metadata.openGraph.images[0].width.toString()} />
         <meta property="og:image:height" content={metadata.openGraph.images[0].height.toString()} />
         <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
-        
         <meta name="twitter:card" content={metadata.twitter.card} />
         <meta name="twitter:site" content={metadata.twitter.site} />
         <meta name="twitter:title" content={metadata.twitter.title} />
         <meta name="twitter:description" content={metadata.twitter.description} />
         <meta name="twitter:image" content={metadata.twitter.image} />
-        
         <link rel="canonical" href={metadata.og.url} />
       </Head>
       <div>{children}</div>

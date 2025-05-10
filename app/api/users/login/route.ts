@@ -1,8 +1,9 @@
-import { connect } from "@/dbConfig/dbConfig";
-import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs"; // Using 'bcrypt' instead of 'bcryptjs' for clarity
 import jwt from "jsonwebtoken";
+
+import User from "@/models/userModel";
+import { connect } from "@/dbConfig/dbConfig";
 
 connect();
 
@@ -54,9 +55,9 @@ export async function POST(request: NextRequest) {
         response.cookies.set("auth","true");
 
         return response;
-
     } catch (error: any) {
         console.error(error); // Log the error for server-side debugging
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+        
+return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }

@@ -25,7 +25,7 @@ const SuccessMessagePopover: React.FC<SuccessMessagePopoverProps> = ({ title, co
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <motion.div
-        className="relative p-6 rounded-lg border-2 border-[#00d2ff] text-white"
+        className="relative rounded-lg border-2 border-[#00d2ff] p-6 text-white"
         style={{
           background: 'linear-gradient(145deg, #00d2ff, #3a47d5)',
           boxShadow: '0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5)',
@@ -34,10 +34,10 @@ const SuccessMessagePopover: React.FC<SuccessMessagePopoverProps> = ({ title, co
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+        <h2 className="mb-4 text-2xl font-semibold">{title}</h2>
         <p>{content}</p>
         <button
-          className="absolute top-2 right-2 text-2xl font-bold hover:text-[#00d2ff] bg-transparent border-none"
+          className="absolute right-2 top-2 border-none bg-transparent text-2xl font-bold hover:text-[#00d2ff]"
           onClick={onClose}
         >
           ×

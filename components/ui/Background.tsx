@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 "use client";
-import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+
+import { cn } from "@/lib/utils";
 
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(0, 0, 0)", // Dark background
@@ -155,7 +157,6 @@ export const BackgroundGradientAnimation = ({
             `opacity-100`
           )}
         ></div>
-
         {interactive && (
           <div
             className={cn(

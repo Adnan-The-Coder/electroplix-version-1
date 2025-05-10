@@ -1,8 +1,7 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 "use client";
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { Navbar } from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import { 
   FiSearch, 
   FiX, 
@@ -16,6 +15,10 @@ import {
 } from 'react-icons/fi';
 import { RiHeartFill } from 'react-icons/ri';
 import { BiLoaderAlt } from 'react-icons/bi';
+import Image from 'next/image';
+
+import Footer from '@/components/Footer';
+import { Navbar } from '@/components/Navbar';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -130,7 +133,8 @@ function Page() {
     };
     
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Open preview modal
@@ -180,7 +184,8 @@ function Page() {
             : template.like_count + 1
         };
       }
-      return template;
+      
+return template;
     });
     
     setTemplates(updatedTemplates);
@@ -194,7 +199,8 @@ function Page() {
               : template.like_count + 1
           };
         }
-        return template;
+        
+return template;
       })
     );
     
@@ -236,7 +242,6 @@ function Page() {
       if (updateError) throw updateError;
       
       console.log(`Successfully updated like count for template ${id} to ${newLikeCount}`);
-      
     } catch (error) {
       console.error('Error updating like count:', error);
       
@@ -255,7 +260,8 @@ function Page() {
           if (template.id === id) {
             return templateToUpdate;
           }
-          return template;
+          
+return template;
         })
       );
       
@@ -278,20 +284,20 @@ function Page() {
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
         {/* Hero Section */}
         <div className="relative overflow-hidden">
-          <div className="bg-black/50 py-20 px-4 sm:px-6 lg:px-8 relative z-10 border-b border-purple-800/50">
-            <div className="max-w-7xl mx-auto">
-              <h1 className="text-4xl md:text-6xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 drop-shadow-[0_0_25px_rgba(147,51,234,0.5)]">
+          <div className="relative z-10 border-b border-purple-800/50 bg-black/50 px-4 py-20 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl">
+              <h1 className="mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-center text-4xl font-bold text-transparent drop-shadow-[0_0_25px_rgba(147,51,234,0.5)] md:text-6xl">
                 <span>Web Templates</span>
               </h1>
-              <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-center text-xl text-gray-300">
                 Cutting-edge web designs with neon aesthetics and flawless functionality
               </p>
-              <div className="flex justify-center mt-8">
+              <div className="mt-8 flex justify-center">
                 <button 
                   onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-3 bg-purple-600 hover:bg-purple-500 rounded-lg transition-all border border-purple-500 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 group"
+                  className="group rounded-lg border border-purple-500 bg-purple-600 px-8 py-3 shadow-lg shadow-purple-500/30 transition-all hover:bg-purple-500 hover:shadow-purple-500/50"
                 >
-                  <span className="group-hover:tracking-wider transition-all">
+                  <span className="transition-all group-hover:tracking-wider">
                     Explore Templates
                   </span>
                 </button>
@@ -299,55 +305,52 @@ function Page() {
             </div>
           </div>
           {/* Neon glow effects */}
-          <div className="absolute top-20 left-1/4 w-96 h-96 rounded-full bg-purple-500/20 filter blur-3xl"></div>
-          <div className="absolute -bottom-20 right-1/4 w-96 h-96 rounded-full bg-blue-500/20 filter blur-3xl"></div>
+          <div className="absolute left-1/4 top-20 size-96 rounded-full bg-purple-500/20 blur-3xl"></div>
+          <div className="absolute -bottom-20 right-1/4 size-96 rounded-full bg-blue-500/20 blur-3xl"></div>
         </div>
-
         {/* Search and Filter */}
-        <div id="showcase" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
+        <div id="showcase" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="relative w-full md:w-1/2">
-              <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input 
                 type="text" 
                 placeholder="Search templates..." 
-                className="w-full bg-gray-800/70 backdrop-blur-sm border border-gray-700 rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                className="w-full rounded-lg border border-gray-700 bg-gray-800/70 py-3 pl-12 pr-4 text-white backdrop-blur-sm transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               {searchTerm && (
                 <button 
                   onClick={() => setSearchTerm('')}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
                 >
                   <FiX size={18} />
                 </button>
               )}
             </div>
-            
-            <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
+            <div className="flex w-full flex-wrap items-center gap-4 md:w-auto">
               <div className="relative">
                 <button 
                   onClick={() => setShowFilters(!showFilters)}
-                  className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all ${
+                  className={`flex items-center gap-2 rounded-lg px-4 py-3 transition-all ${
                     showFilters 
-                      ? 'bg-purple-600 text-white border border-purple-500 shadow-lg shadow-purple-500/30' 
-                      : 'bg-gray-800/70 backdrop-blur-sm border border-gray-700 hover:border-purple-400'
+                      ? 'border border-purple-500 bg-purple-600 text-white shadow-lg shadow-purple-500/30' 
+                      : 'border border-gray-700 bg-gray-800/70 backdrop-blur-sm hover:border-purple-400'
                   }`}
                 >
                   <FiFilter size={18} />
                   <span>Filter</span>
                 </button>
-                
                 {showFilters && (
-                  <div className="absolute top-full left-0 mt-2 p-4 bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-lg shadow-xl z-20 w-64">
-                    <h3 className="text-sm font-medium text-gray-300 mb-3">Categories</h3>
-                    <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
+                  <div className="absolute left-0 top-full z-20 mt-2 w-64 rounded-lg border border-gray-700 bg-gray-800/90 p-4 shadow-xl backdrop-blur-md">
+                    <h3 className="mb-3 text-sm font-medium text-gray-300">Categories</h3>
+                    <div className="flex max-h-48 flex-wrap gap-2 overflow-y-auto">
                       {categories.map(category => (
                         <button
                           key={category}
                           onClick={() => setSelectedCategory(category)}
-                          className={`px-3 py-1 rounded-full text-sm transition-all ${
+                          className={`rounded-full px-3 py-1 text-sm transition-all ${
                             selectedCategory === category
                               ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30'
                               : 'bg-gray-700/70 text-gray-300 hover:bg-gray-600'
@@ -357,7 +360,7 @@ function Page() {
                         </button>
                       ))}
                     </div>
-                    <div className="border-t border-gray-700 my-3"></div>
+                    <div className="my-3 border-t border-gray-700"></div>
                     <div className="flex justify-end">
                       <button 
                         onClick={() => {
@@ -373,18 +376,17 @@ function Page() {
                   </div>
                 )}
               </div>
-              
-              <div className="flex gap-2 bg-gray-800/70 backdrop-blur-sm border border-gray-700 rounded-lg p-1">
+              <div className="flex gap-2 rounded-lg border border-gray-700 bg-gray-800/70 p-1 backdrop-blur-sm">
                 <button 
                   onClick={() => setView('grid')}
-                  className={`p-2 rounded ${view === 'grid' ? 'bg-gray-700' : 'hover:bg-gray-700/50'}`}
+                  className={`rounded p-2 ${view === 'grid' ? 'bg-gray-700' : 'hover:bg-gray-700/50'}`}
                   title="Grid View"
                 >
                   <FiGrid size={18} />
                 </button>
                 <button 
                   onClick={() => setView('list')}
-                  className={`p-2 rounded ${view === 'list' ? 'bg-gray-700' : 'hover:bg-gray-700/50'}`}
+                  className={`rounded p-2 ${view === 'list' ? 'bg-gray-700' : 'hover:bg-gray-700/50'}`}
                   title="List View"
                 >
                   <FiTag size={18} />
@@ -392,32 +394,29 @@ function Page() {
               </div>
             </div>
           </div>
-          
           {/* Status messages */}
           {isLoading && (
-            <div className="flex justify-center items-center py-20">
-              <BiLoaderAlt size={40} className="text-purple-500 animate-spin" />
+            <div className="flex items-center justify-center py-20">
+              <BiLoaderAlt size={40} className="animate-spin text-purple-500" />
             </div>
           )}
-          
           {error && (
-            <div className="text-center py-12 bg-red-900/20 border border-red-700 rounded-lg">
-              <p className="text-red-400 text-lg">{error}</p>
+            <div className="rounded-lg border border-red-700 bg-red-900/20 py-12 text-center">
+              <p className="text-lg text-red-400">{error}</p>
               <button 
                 onClick={() => window.location.reload()}
-                className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-500 rounded-lg text-white"
+                className="mt-4 rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-500"
               >
                 Try Again
               </button>
             </div>
           )}
-
           {/* Templates Display */}
           {!isLoading && !error && (
             <>
               {filteredTemplates.length > 0 ? (
                 <div className={view === 'grid' 
-                  ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" 
+                  ? "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3" 
                   : "flex flex-col gap-6"
                 }>
                   {filteredTemplates.map((template) => (
@@ -425,38 +424,40 @@ function Page() {
                       key={template.id} 
                       className={`group relative ${
                         view === 'grid'
-                          ? "bg-gray-800/60 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all"
-                          : "bg-gray-800/60 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all flex items-center"
+                          ? "overflow-hidden rounded-xl border border-gray-700 bg-gray-800/60 backdrop-blur-sm transition-all hover:border-purple-500"
+                          : "flex items-center overflow-hidden rounded-xl border border-gray-700 bg-gray-800/60 backdrop-blur-sm transition-all hover:border-purple-500"
                       }`}
                       onMouseEnter={() => setHovered(template.id)}
                       onMouseLeave={() => setHovered(null)}
                     >
                       {/* Preview image container */}
                       <div className={`relative ${view === 'list' ? "w-1/3" : ""}`}>
-                        <img 
+                        <Image
+                          width={500}
+                          height={500} 
                           src={template.image.startsWith('data:') ? template.image : "/api/placeholder/800/450"}
                           alt={template.title} 
                           className={`${
                             view === 'grid' 
-                              ? "w-full h-48 object-cover object-top" 
-                              : "w-full h-36 object-cover object-top"
-                          } transition-transform group-hover:scale-105 duration-700 ease-in-out`}
+                              ? "h-48 w-full object-cover object-top" 
+                              : "h-36 w-full object-cover object-top"
+                          } transition-transform duration-700 ease-in-out group-hover:scale-105`}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
-                          <div className="p-4 w-full">
-                            <div className="flex justify-between items-center">
+                        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 to-transparent">
+                          <div className="w-full p-4">
+                            <div className="flex items-center justify-between">
                               <span className={`${
                                 template.isFree 
                                   ? "bg-green-600/90" 
                                   : "bg-purple-600/90"
-                              } text-xs font-medium px-2 py-1 rounded-full flex items-center gap-1`}>
+                              } flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium`}>
                                 {template.isFree ? <FiGift size={12} /> : <FiStar size={12} />}
                                 {template.isFree ? "Free" : "Premium"}
                               </span>
                               <div className="relative">
                                 <button 
                                   onClick={(e) => toggleFavorite(template.id, e)}
-                                  className={`p-2 rounded-full transition-all ${
+                                  className={`rounded-full p-2 transition-all ${
                                     favorites.includes(template.id) 
                                       ? "bg-red-600 text-white" 
                                       : "bg-gray-800/70 hover:bg-gray-700"
@@ -473,7 +474,7 @@ function Page() {
                                   )}
                                 </button>
                                 {template.like_count > 0 && (
-                                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                  <span className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
                                     {template.like_count > 99 ? "99+" : template.like_count}
                                   </span>
                                 )}
@@ -481,47 +482,43 @@ function Page() {
                             </div>
                           </div>
                         </div>
-                        
                         {/* Category badge */}
-                        <span className="absolute top-3 left-3 bg-blue-600/90 text-xs font-medium px-2 py-1 rounded-full">
+                        <span className="absolute left-3 top-3 rounded-full bg-blue-600/90 px-2 py-1 text-xs font-medium">
                           {template.category}
                         </span>
                       </div>
-                      
                       {/* Template content */}
-                      <div className={view === 'list' ? "p-4 w-2/3" : "p-4"}>
-                        <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-purple-400 transition-all">
+                      <div className={view === 'list' ? "w-2/3 p-4" : "p-4"}>
+                        <h3 className="mb-2 text-xl font-semibold text-white transition-all group-hover:text-purple-400">
                           {template.title}
                         </h3>
-                        <p className="text-gray-400 line-clamp-2">{template.description}</p>
-                        
+                        <p className="line-clamp-2 text-gray-400">{template.description}</p>
                         {/* View button */}
                         <button 
                           onClick={() => openPreview(template)}
                           className={`mt-4 flex items-center gap-2 ${
                             view === 'grid'
-                              ? "w-full justify-center bg-gray-700 hover:bg-purple-600 border border-gray-600 hover:border-purple-500 p-2 rounded-lg transition-all"
-                              : "bg-gray-700 hover:bg-purple-600 border border-gray-600 hover:border-purple-500 px-4 py-2 rounded-lg transition-all"
+                              ? "w-full justify-center rounded-lg border border-gray-600 bg-gray-700 p-2 transition-all hover:border-purple-500 hover:bg-purple-600"
+                              : "rounded-lg border border-gray-600 bg-gray-700 px-4 py-2 transition-all hover:border-purple-500 hover:bg-purple-600"
                           }`}
                         >
                           <FiEye size={16} />
                           <span>Preview</span>
                         </button>
                       </div>
-                      
                       {/* Hover glow effect */}
                       {hovered === template.id && (
-                        <div className="absolute inset-0 rounded-xl border border-purple-500/50 shadow-[0_0_20px_rgba(147,51,234,0.3)] pointer-events-none"></div>
+                        <div className="pointer-events-none absolute inset-0 rounded-xl border border-purple-500/50 shadow-[0_0_20px_rgba(147,51,234,0.3)]"></div>
                       )}
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16 bg-gray-800/40 backdrop-blur-sm rounded-xl border border-gray-700">
-                  <p className="text-gray-300 text-xl mb-4">No templates found matching your search criteria.</p>
+                <div className="rounded-xl border border-gray-700 bg-gray-800/40 py-16 text-center backdrop-blur-sm">
+                  <p className="mb-4 text-xl text-gray-300">No templates found matching your search criteria.</p>
                   <button 
                     onClick={() => {setSearchTerm(''); setSelectedCategory('All')}}
-                    className="px-6 py-2 bg-purple-600 hover:bg-purple-500 rounded-lg text-white transition-all"
+                    className="rounded-lg bg-purple-600 px-6 py-2 text-white transition-all hover:bg-purple-500"
                   >
                     Clear Filters
                   </button>
@@ -530,16 +527,15 @@ function Page() {
             </>
           )}
         </div>
-
         {/* Preview Modal */}
         {previewModal && selectedTemplate && (
-          <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-gray-900 rounded-xl border border-purple-600 w-full max-w-5xl overflow-hidden relative animate-fadeIn">
-              <div className="flex justify-between items-center p-4 border-b border-gray-800">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm">
+            <div className="animate-fadeIn relative w-full max-w-5xl overflow-hidden rounded-xl border border-purple-600 bg-gray-900">
+              <div className="flex items-center justify-between border-b border-gray-800 p-4">
                 <h3 className="text-xl font-semibold">{selectedTemplate.title}</h3>
                 <button 
                   onClick={closePreview}
-                  className="bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition-all"
+                  className="rounded-full bg-gray-800 p-2 transition-all hover:bg-gray-700"
                 >
                   <FiX size={20} />
                 </button>
@@ -548,26 +544,26 @@ function Page() {
                 <iframe 
                   src={selectedTemplate.url} 
                   title={selectedTemplate.title}
-                  className="w-full h-full border-0"
+                  className="size-full border-0"
                 ></iframe>
               </div>
-              <div className="flex justify-between items-center p-4 border-t border-gray-800">
+              <div className="flex items-center justify-between border-t border-gray-800 p-4">
                 <div className="flex gap-3">
-                  <span className="bg-blue-600/90 text-xs font-medium px-2 py-1 rounded-full">
+                  <span className="rounded-full bg-blue-600/90 px-2 py-1 text-xs font-medium">
                     {selectedTemplate.category}
                   </span>
                   <span className={`${
                     selectedTemplate.isFree 
                       ? "bg-green-600/90" 
                       : "bg-purple-600/90"
-                  } text-xs font-medium px-2 py-1 rounded-full flex items-center gap-1`}>
+                  } flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium`}>
                     {selectedTemplate.isFree ? <FiGift size={12} /> : <FiStar size={12} />}
                     {selectedTemplate.isFree ? "Free" : "Premium"}
                   </span>
                 </div>
                 <button
                   onClick={(e) => toggleFavorite(selectedTemplate.id, e)}
-                  className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-all ${
+                  className={`flex items-center gap-2 rounded-lg px-4 py-2 transition-all ${
                     favorites.includes(selectedTemplate.id) 
                       ? "bg-red-600 text-white" 
                       : "bg-gray-700 hover:bg-gray-600"
@@ -583,31 +579,28 @@ function Page() {
                     {favorites.includes(selectedTemplate.id) ? "Added to Favorites" : "Add to Favorites"}
                   </span>
                   {selectedTemplate.like_count > 0 && (
-                    <span className="bg-white/20 rounded-full px-2 py-0.5 text-xs">
+                    <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs">
                       {selectedTemplate.like_count}
                     </span>
                   )}
                 </button>
               </div>
-              
               {/* Neon border effect */}
-              <div className="absolute inset-0 rounded-xl border border-purple-500 shadow-[0_0_15px_rgba(147,51,234,0.5)] pointer-events-none"></div>
+              <div className="pointer-events-none absolute inset-0 rounded-xl border border-purple-500 shadow-[0_0_15px_rgba(147,51,234,0.5)]"></div>
             </div>
           </div>
         )}
-        
         {/* Back to top button */}
         {showScrollTop && (
           <button 
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-500 p-4 rounded-full shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all z-40 animate-fadeIn"
+            className="animate-fadeIn fixed bottom-8 right-8 z-40 rounded-full bg-purple-600 p-4 shadow-lg shadow-purple-500/30 transition-all hover:bg-purple-500 hover:shadow-purple-500/50"
           >
             <FiArrowUp size={20} />
           </button>
         )}
       </div>
       <Footer/>
-      
       {/* Global CSS for animations */}
       <style jsx global>{`
         @keyframes fadeIn {

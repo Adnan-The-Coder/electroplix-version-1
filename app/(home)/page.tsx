@@ -8,11 +8,9 @@ import CTASection from "@/components/cta-section";
 import Footer from "@/components/Footer";
 import WebPackages from "@/components/Website-packages";
 
-
-
 export default function Home() {
   return (
-      <>
+    <>
       <Navbar/>
       <HeroSection/>
       <br />
@@ -24,6 +22,6 @@ export default function Home() {
       <PricingSection/>
       <CTASection/>
       <Footer/>
-      </>
+    </>
   );
 }

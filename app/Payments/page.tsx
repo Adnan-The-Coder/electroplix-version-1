@@ -1,6 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+
 import Footer from '@/components/Footer';
 import { Navbar } from '@/components/Navbar';
 
@@ -14,7 +15,8 @@ const Payments = () => {
     e.preventDefault();
     if (!cardNumber || !expiryDate || !cvv) {
       setError('Please fill in all fields.');
-      return;
+      
+return;
     }
     // Process payment logic here
     console.log('Payment processed:', { cardNumber, expiryDate, cvv });
@@ -28,26 +30,26 @@ const Payments = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-gray-900 text-white">
         <motion.div
-          className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md"
+          className="w-full max-w-md rounded-lg bg-gray-800 p-8 shadow-lg"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-6 text-center neon-text">
+          <h2 className="neon-text mb-6 text-center text-3xl font-bold">
             Checkout
           </h2>
-          {error && <p className="text-red-400 text-center mb-4">{error}</p>}
+          {error && <p className="mb-4 text-center text-red-400">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-sm mb-2" htmlFor="cardNumber">
+              <label className="mb-2 block text-sm" htmlFor="cardNumber">
                 Card Number
               </label>
               <input
                 type="text"
                 id="cardNumber"
-                className="w-full p-3 rounded bg-gray-700 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 neon-input"
+                className="neon-input w-full rounded border border-transparent bg-gray-700 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
                 placeholder="1234 5678 9012 3456"
@@ -55,26 +57,26 @@ const Payments = () => {
             </div>
             <div className="mb-4 flex space-x-4">
               <div className="w-1/2">
-                <label className="block text-sm mb-2" htmlFor="expiryDate">
+                <label className="mb-2 block text-sm" htmlFor="expiryDate">
                   Expiry Date (MM/YY)
                 </label>
                 <input
                   type="text"
                   id="expiryDate"
-                  className="w-full p-3 rounded bg-gray-700 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 neon-input"
+                  className="neon-input w-full rounded border border-transparent bg-gray-700 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={expiryDate}
                   onChange={(e) => setExpiryDate(e.target.value)}
                   placeholder="MM/YY"
                 />
               </div>
               <div className="w-1/2">
-                <label className="block text-sm mb-2" htmlFor="cvv">
+                <label className="mb-2 block text-sm" htmlFor="cvv">
                   CVV
                 </label>
                 <input
                   type="text"
                   id="cvv"
-                  className="w-full p-3 rounded bg-gray-700 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 neon-input"
+                  className="neon-input w-full rounded border border-transparent bg-gray-700 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={cvv}
                   onChange={(e) => setCvv(e.target.value)}
                   placeholder="123"
@@ -83,7 +85,7 @@ const Payments = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 py-3 rounded-lg text-white font-semibold transition duration-300 hover:from-blue-600 hover:to-purple-700 neon-button"
+              className="neon-button w-full rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 py-3 font-semibold text-white transition duration-300 hover:from-blue-600 hover:to-purple-700"
             >
               Pay Now
             </button>

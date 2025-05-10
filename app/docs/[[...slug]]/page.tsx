@@ -1,4 +1,3 @@
-import { source } from '@/app/source';
 import type { Metadata } from 'next';
 import {
   DocsPage,
@@ -8,6 +7,8 @@ import {
 } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
+
+import { source } from '@/app/source';
 
 export default async function Page({
   params,

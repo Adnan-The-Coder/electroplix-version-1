@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 "use client";
 
 import { useState, useEffect, FormEvent } from 'react';
@@ -42,7 +43,8 @@ export default function MeetingBook() {
       if (event.key === 'Escape') handleClose();
     };
     window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
+    
+return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
   // Prevent scrolling when modal is visible
@@ -52,7 +54,8 @@ export default function MeetingBook() {
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
+    
+return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isVisible]);
@@ -61,14 +64,16 @@ export default function MeetingBook() {
   const getMinDate = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toISOString().split('T')[0];
+    
+return tomorrow.toISOString().split('T')[0];
   };
 
   // Check if selected date is a weekend
   const isWeekend = (dateString: string) => {
     const date = new Date(dateString);
     const day = date.getDay();
-    return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
+    
+return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
   };
 
   // Update available times based on selected date
@@ -131,7 +136,6 @@ export default function MeetingBook() {
       setTimeout(() => {
         handleClose();
       }, 3000);
-      
     } catch (error) {
       console.error('Error scheduling meeting:', error);
       setStatus({
@@ -152,11 +156,10 @@ export default function MeetingBook() {
         className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm transition-opacity " 
         onClick={handleClose}
       ></div>
-      
       {/* Modal container */}
       <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div 
-          className="relative transform overflow-hidden rounded-2xl bg-gray-900 border border-gray-800 text-left shadow-xl transition-all sm:my-8 w-full max-w-lg"
+          className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 text-left shadow-xl transition-all sm:my-8"
           onClick={e => e.stopPropagation()}
         >
           {/* Glow border effect */}
@@ -166,38 +169,33 @@ export default function MeetingBook() {
               pointerEvents: 'none'
             }}>
           </div>
-          
           {/* Header stripe */}
           <div className="h-2 w-full bg-gradient-to-r from-emerald-500 to-fuchsia-500"></div>
-          
           {/* Close button */}
           <button
-            className="absolute top-3 right-3 text-gray-400 hover:text-white p-1 rounded-full hover:bg-gray-800 transition-colors"
+            className="absolute right-3 top-3 rounded-full p-1 text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
             onClick={handleClose}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          
           <div className="p-6 sm:p-8">
-            <h3 className="text-2xl font-bold mb-6 text-white flex items-center">
-              <span className="w-8 h-8 mr-3 rounded-full bg-emerald-500 bg-opacity-20 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+            <h3 className="mb-6 flex items-center text-2xl font-bold text-white">
+              <span className="mr-3 flex size-8 items-center justify-center rounded-full bg-emerald-500 bg-opacity-20">
+                <svg xmlns="http://www.w3.org/2000/svg" className="size-4 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                 </svg>
               </span>
               Schedule a Meeting
             </h3>
-            
-            <p className="text-gray-400 mb-6">
+            <p className="mb-6 text-gray-400">
               Book a virtual consultation with our team to discuss your project needs.
             </p>
-            
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-300">
                     Your Name *
                   </label>
                   <input
@@ -207,12 +205,12 @@ export default function MeetingBook() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder-gray-500"
+                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-300">
                     Email Address *
                   </label>
                   <input
@@ -222,14 +220,13 @@ export default function MeetingBook() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder-gray-500"
+                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     placeholder="you@example.com"
                   />
                 </div>
               </div>
-              
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="company" className="mb-1 block text-sm font-medium text-gray-300">
                   Company (Optional)
                 </label>
                 <input
@@ -238,14 +235,13 @@ export default function MeetingBook() {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder-gray-500"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   placeholder="Your Company"
                 />
               </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="date" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="date" className="mb-1 block text-sm font-medium text-gray-300">
                     Preferred Date *
                   </label>
                   <input
@@ -256,14 +252,14 @@ export default function MeetingBook() {
                     onChange={handleChange}
                     required
                     min={getMinDate()}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
                   {formData.date && isWeekend(formData.date) && new Date(formData.date).getDay() === 0 && (
-                    <p className="text-amber-400 text-xs mt-1">We're closed on Sundays. Please select another day.</p>
+                    <p className="mt-1 text-xs text-amber-400">We`re closed on Sundays. Please select another day.</p>
                   )}
                 </div>
                 <div>
-                  <label htmlFor="time" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="time" className="mb-1 block text-sm font-medium text-gray-300">
                     Preferred Time *
                   </label>
                   <select
@@ -273,7 +269,7 @@ export default function MeetingBook() {
                     onChange={handleChange}
                     required
                     disabled={!formData.date || availableTimes.length === 0}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <option value="">Select a time</option>
                     {availableTimes.map(time => (
@@ -282,9 +278,8 @@ export default function MeetingBook() {
                   </select>
                 </div>
               </div>
-              
               <div>
-                <label htmlFor="topic" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="topic" className="mb-1 block text-sm font-medium text-gray-300">
                   Meeting Topic *
                 </label>
                 <input
@@ -294,13 +289,12 @@ export default function MeetingBook() {
                   value={formData.topic}
                   onChange={handleChange}
                   required
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder-gray-500"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   placeholder="Website Development, App Design, etc."
                 />
               </div>
-              
               <div>
-                <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="additionalInfo" className="mb-1 block text-sm font-medium text-gray-300">
                   Additional Information
                 </label>
                 <textarea
@@ -309,27 +303,25 @@ export default function MeetingBook() {
                   value={formData.additionalInfo}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder-gray-500"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   placeholder="Tell us more about what you'd like to discuss..."
                 />
               </div>
-              
               {status && (
-                <div className={`py-3 px-4 rounded-lg ${status.isError ? 'bg-red-900 bg-opacity-30 text-red-200 border border-red-800' : 'bg-emerald-900 bg-opacity-30 text-emerald-200 border border-emerald-800'}`}>
+                <div className={`rounded-lg px-4 py-3 ${status.isError ? 'border border-red-800 bg-red-900 bg-opacity-30 text-red-200' : 'border border-emerald-800 bg-emerald-900 bg-opacity-30 text-emerald-200'}`}>
                   {status.message}
                 </div>
               )}
-              
               <div>
                 <button
                   type="submit"
                   disabled={isSubmitting || (formData.date && new Date(formData.date).getDay() === 0) || undefined}
-                  className="w-full flex justify-center items-center py-3 px-6 rounded-lg text-base font-medium text-black bg-gradient-to-r from-emerald-400 to-emerald-500 hover:from-emerald-500 hover:to-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-emerald-500 transition-all duration-300 relative overflow-hidden shadow-lg shadow-emerald-500/20 disabled:opacity-70"
+                  className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-emerald-400 to-emerald-500 px-6 py-3 text-base font-medium text-black shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:from-emerald-500 hover:to-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-70"
                 >
                   <span className="relative z-10 flex items-center">
                     {isSubmitting ? (
                       <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="-ml-1 mr-3 size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -338,7 +330,7 @@ export default function MeetingBook() {
                     ) : (
                       <>
                         Schedule Meeting
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 size-5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
                         </svg>
                       </>
