@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 // components/ui/ContactModal.tsx
 import { motion } from 'framer-motion';
 import { FC } from 'react';
@@ -13,39 +14,38 @@ const ContactModal: FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
       onClick={onClose}
     >
       <motion.div
-        className="bg-gray-900 p-8 rounded-lg w-full max-w-md mx-4"
+        className="mx-4 w-full max-w-md rounded-lg bg-gray-900 p-8"
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
       >
-        <h2 className="text-2xl font-semibold mb-4 text-center">Contact Us</h2>
+        <h2 className="mb-4 text-center text-2xl font-semibold">Contact Us</h2>
         <div className="flex flex-col items-center space-y-4">
           <a
-            // href="https://www.linkedin.com/company/electroplix"
             href="https://www.linkedin.com/in/syedadnanali99/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-3 bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+            className="flex items-center space-x-3 rounded-lg bg-blue-700 px-4 py-2 text-white transition hover:bg-blue-600"
           >
-            <FaLinkedin className="w-5 h-5" />
+            <FaLinkedin className="size-5" />
             <span>Message Founder,CEO</span>
           </a>
           <a
             href="mailto:syedadnanali0106@gmail.com"
-            className="flex items-center space-x-3 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-400 transition"
+            className="flex items-center space-x-3 rounded-lg bg-green-500 px-4 py-2 text-white transition hover:bg-green-400"
           >
-            <FaEnvelope className="w-5 h-5" />
+            <FaEnvelope className="size-5" />
             <span>Email Founder,CEO</span>
           </a>
         </div>
         <button
           onClick={onClose}
-          className="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-400 transition"
+          className="mt-4 rounded-lg bg-red-500 px-4 py-2 text-white transition hover:bg-red-400"
         >
           Close
         </button>

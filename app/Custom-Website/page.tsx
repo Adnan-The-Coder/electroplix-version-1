@@ -1,10 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 "use client";
 import { useState, FormEvent } from "react";
-import { Navbar } from "@/components/Navbar";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/Footer";
 import Link from "next/link";
+
+import Footer from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -129,7 +132,7 @@ const Page = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-black text-gray-200 py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="relative min-h-screen overflow-hidden bg-black px-4 py-16 text-gray-200 sm:px-6 lg:px-8">
         {/* Grid background */}
         <div className="absolute inset-0 overflow-hidden opacity-20">
           <div className="absolute inset-0" style={{
@@ -138,60 +141,52 @@ const Page = () => {
             backgroundPosition: 'center center'
           }}></div>
         </div>
-        
         {/* Radial gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-black opacity-70"></div>
-        
         {/* Accent glow orbs */}
-        <div className="absolute -top-20 -left-20 w-96 h-96 bg-purple-700 rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
-        <div className="absolute -bottom-40 -right-20 w-96 h-96 bg-cyan-600 rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
-        <div className="absolute top-1/2 -right-20 w-64 h-64 bg-blue-600 rounded-full filter blur-3xl opacity-10 animate-pulse"></div>
-        
+        <div className="absolute -left-20 -top-20 size-96 animate-pulse rounded-full bg-purple-700 opacity-10 blur-3xl"></div>
+        <div className="absolute -bottom-40 -right-20 size-96 animate-pulse rounded-full bg-cyan-600 opacity-10 blur-3xl"></div>
+        <div className="absolute -right-20 top-1/2 size-64 animate-pulse rounded-full bg-blue-600 opacity-10 blur-3xl"></div>
         {/* Main content */}
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-16 relative">
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div className="relative mb-16 text-center">
             {/* Decorative lines */}
-            <div className="absolute top-1/2 left-0 w-1/4 h-px bg-gradient-to-r from-transparent to-cyan-500 opacity-50"></div>
-            <div className="absolute top-1/2 right-0 w-1/4 h-px bg-gradient-to-l from-transparent to-purple-500 opacity-50"></div>
-            
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-4 relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-purple-500">
+            <div className="absolute left-0 top-1/2 h-px w-1/4 bg-gradient-to-r from-transparent to-cyan-500 opacity-50"></div>
+            <div className="absolute right-0 top-1/2 h-px w-1/4 bg-gradient-to-l from-transparent to-purple-500 opacity-50"></div>
+            <h1 className="relative mb-4 text-5xl font-black tracking-tighter md:text-7xl">
+              <span className="bg-gradient-to-r from-cyan-400 via-white to-purple-500 bg-clip-text text-transparent">
                 Custom Website
               </span>
-              <div className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-cyan-500 via-white to-purple-500 shadow-lg shadow-purple-500/50"></div>
+              <div className="absolute inset-x-0 -bottom-1 h-px bg-gradient-to-r from-cyan-500 via-white to-purple-500 shadow-lg shadow-purple-500/50"></div>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto mt-6">
+            <p className="mx-auto mt-6 max-w-2xl text-xl text-gray-400">
               Tell us about your dream website and we'll bring it to life with cutting-edge design and technology.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-3">
             {/* Requirements Form */}
-            <div className="lg:col-span-2 bg-gray-900 bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-800 overflow-hidden relative">
+            <div className="relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 bg-opacity-60 shadow-2xl backdrop-blur-lg lg:col-span-2">
               {/* Glow border effect */}
               <div className="absolute inset-0 rounded-2xl" 
                 style={{
                   boxShadow: '0 0 40px rgba(34, 211, 238, 0.15) inset, 0 0 20px rgba(168, 85, 247, 0.15) inset',
                   pointerEvents: 'none'
                 }}></div>
-              
               {/* Header stripe */}
               <div className="h-2 w-full bg-gradient-to-r from-cyan-500 to-purple-500"></div>
-              
               <div className="p-8 md:p-10">
-                <h2 className="text-2xl font-bold mb-8 text-white flex items-center">
-                  <span className="w-8 h-8 mr-3 rounded-full bg-cyan-500 bg-opacity-20 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
+                <h2 className="mb-8 flex items-center text-2xl font-bold text-white">
+                  <span className="mr-3 flex size-8 items-center justify-center rounded-full bg-cyan-500 bg-opacity-20">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="size-4 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
                     </svg>
                   </span>
                   Website Requirements
                 </h2>
-              
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-300">
                         Your Name
                       </label>
                       <input
@@ -201,12 +196,12 @@ const Page = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all placeholder-gray-500"
+                        className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-300">
                         Email Address
                       </label>
                       <input
@@ -216,15 +211,14 @@ const Page = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all placeholder-gray-500"
+                        className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                         placeholder="you@example.com"
                       />
                     </div>
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="phone" className="mb-1 block text-sm font-medium text-gray-300">
                         Phone Number
                       </label>
                       <input
@@ -233,12 +227,12 @@ const Page = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all placeholder-gray-500"
+                        className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
                     <div>
-                      <label htmlFor="companyName" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="companyName" className="mb-1 block text-sm font-medium text-gray-300">
                         Company/Organization Name
                       </label>
                       <input
@@ -247,14 +241,13 @@ const Page = () => {
                         name="companyName"
                         value={formData.companyName}
                         onChange={handleChange}
-                        className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all placeholder-gray-500"
+                        className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                         placeholder="Your Company"
                       />
                     </div>
                   </div>
-                  
                   <div>
-                    <label htmlFor="industry" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label htmlFor="industry" className="mb-1 block text-sm font-medium text-gray-300">
                       Industry/Sector
                     </label>
                     <input
@@ -263,14 +256,13 @@ const Page = () => {
                       name="industry"
                       value={formData.industry}
                       onChange={handleChange}
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all placeholder-gray-500"
+                      className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                       placeholder="e.g. Healthcare, Technology, Education"
                     />
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
-                      <label htmlFor="websiteType" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="websiteType" className="mb-1 block text-sm font-medium text-gray-300">
                         Website Type
                       </label>
                       <select
@@ -278,7 +270,7 @@ const Page = () => {
                         name="websiteType"
                         value={formData.websiteType}
                         onChange={handleChange}
-                        className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                        className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                       >
                         {websiteTypes.map((type) => (
                           <option key={type.value} value={type.value}>
@@ -288,7 +280,7 @@ const Page = () => {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="budget" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="budget" className="mb-1 block text-sm font-medium text-gray-300">
                         Budget Range
                       </label>
                       <select
@@ -296,7 +288,7 @@ const Page = () => {
                         name="budget"
                         value={formData.budget}
                         onChange={handleChange}
-                        className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                        className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                       >
                         {budgetRanges.map((range) => (
                           <option key={range.value} value={range.value}>
@@ -306,9 +298,8 @@ const Page = () => {
                       </select>
                     </div>
                   </div>
-                  
                   <div>
-                    <label htmlFor="timeline" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label htmlFor="timeline" className="mb-1 block text-sm font-medium text-gray-300">
                       Preferred Timeline
                     </label>
                     <select
@@ -316,7 +307,7 @@ const Page = () => {
                       name="timeline"
                       value={formData.timeline}
                       onChange={handleChange}
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                     >
                       {timelineOptions.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -325,12 +316,11 @@ const Page = () => {
                       ))}
                     </select>
                   </div>
-                  
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                    <label className="mb-3 block text-sm font-medium text-gray-300">
                       Features Required
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       {featureOptions.map((feature) => (
                         <div key={feature.value} className="flex items-center">
                           <input
@@ -340,7 +330,7 @@ const Page = () => {
                             value={feature.value}
                             checked={formData.features.includes(feature.value)}
                             onChange={handleFeatureChange}
-                            className="h-4 w-4 text-cyan-500 focus:ring-cyan-500 border-gray-700 rounded bg-gray-800"
+                            className="size-4 rounded border-gray-700 bg-gray-800 text-cyan-500 focus:ring-cyan-500"
                           />
                           <label htmlFor={`feature-${feature.value}`} className="ml-2 text-sm text-gray-300">
                             {feature.label}
@@ -349,9 +339,8 @@ const Page = () => {
                       ))}
                     </div>
                   </div>
-                  
                   <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label htmlFor="description" className="mb-1 block text-sm font-medium text-gray-300">
                       Project Description
                     </label>
                     <textarea
@@ -360,27 +349,25 @@ const Page = () => {
                       value={formData.description}
                       onChange={handleChange}
                       rows={5}
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all placeholder-gray-500"
+                      className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-200 transition-all placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-500"
                       placeholder="Describe your website project, goals, specific requirements, and any other details that would help us understand your vision..."
                     />
                   </div>
-                  
                   {status && (
-                    <div className={`py-3 px-4 rounded-lg ${status.isError ? 'bg-red-900 bg-opacity-30 text-red-200 border border-red-800' : 'bg-cyan-900 bg-opacity-30 text-cyan-200 border border-cyan-800'}`}>
+                    <div className={`rounded-lg px-4 py-3 ${status.isError ? 'border border-red-800 bg-red-900 bg-opacity-30 text-red-200' : 'border border-cyan-800 bg-cyan-900 bg-opacity-30 text-cyan-200'}`}>
                       {status.message}
                     </div>
                   )}
-                  
                   <div>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full flex justify-center items-center py-4 px-6 rounded-lg text-lg font-medium text-black bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-300 relative overflow-hidden shadow-lg shadow-purple-500/20 disabled:opacity-70"
+                      className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-4 text-lg font-medium text-black shadow-lg shadow-purple-500/20 transition-all duration-300 hover:from-cyan-500 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-70"
                     >
                       <span className="relative z-10 flex items-center">
                         {isSubmitting ? (
                           <>
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg className="-ml-1 mr-3 size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
@@ -389,7 +376,7 @@ const Page = () => {
                         ) : (
                           <>
                             Submit Requirements 
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 size-5" viewBox="0 0 20 20" fill="currentColor">
                               <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                           </>
@@ -400,17 +387,16 @@ const Page = () => {
                 </form>
               </div>
             </div>
-            
             {/* Sidebar Information */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="space-y-6 lg:col-span-1">
               {/* Our Process Card */}
-              <div className="bg-gray-900 bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-2xl border border-gray-800 overflow-hidden hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-500 group relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 bg-opacity-60 backdrop-blur-lg transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="h-1 w-full bg-purple-500"></div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-                    <span className="w-8 h-8 mr-3 rounded-full bg-purple-500 bg-opacity-20 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
+                  <h3 className="mb-4 flex items-center text-lg font-semibold text-white">
+                    <span className="mr-3 flex size-8 items-center justify-center rounded-full bg-purple-500 bg-opacity-20">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="size-4 text-purple-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
                       </svg>
                     </span>
@@ -425,27 +411,26 @@ const Page = () => {
                       { title: "Launch", desc: "Testing, optimization, and deployment of your new website" }
                     ].map((step, index) => (
                       <li key={index} className="flex">
-                        <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-purple-900 bg-opacity-30 text-purple-400 text-sm font-bold mr-3">
+                        <div className="mr-3 flex size-8 shrink-0 items-center justify-center rounded-full bg-purple-900 bg-opacity-30 text-sm font-bold text-purple-400">
                           {index + 1}
                         </div>
                         <div>
-                          <h4 className="text-white font-medium">{step.title}</h4>
-                          <p className="text-gray-400 text-sm">{step.desc}</p>
+                          <h4 className="font-medium text-white">{step.title}</h4>
+                          <p className="text-sm text-gray-400">{step.desc}</p>
                         </div>
                       </li>
                     ))}
                   </ol>
                 </div>
               </div>
-              
               {/* Technologies Card */}
-              <div className="bg-gray-900 bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-2xl border border-gray-800 overflow-hidden hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-500 group relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 bg-opacity-60 backdrop-blur-lg transition-all duration-500 hover:shadow-lg hover:shadow-cyan-500/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="h-1 w-full bg-cyan-500"></div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-                    <span className="w-8 h-8 mr-3 rounded-full bg-cyan-500 bg-opacity-20 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
+                  <h3 className="mb-4 flex items-center text-lg font-semibold text-white">
+                    <span className="mr-3 flex size-8 items-center justify-center rounded-full bg-cyan-500 bg-opacity-20">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="size-4 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
                     </span>
@@ -456,22 +441,21 @@ const Page = () => {
                       "React", "Next.js", "JAVA", "Node.js", "Maven",
                       "Cloudflare", "GCP", "AWS", "MongoDB", "MySQL", "PostreSQL","Supabase","NeonDB","Tailwind"
                     ].map((tech, index) => (
-                      <div key={index} className="bg-gray-800 bg-opacity-50 rounded-lg p-2 text-center text-sm text-cyan-300 border border-gray-700 hover:border-cyan-500 transition-colors">
+                      <div key={index} className="rounded-lg border border-gray-700 bg-gray-800 bg-opacity-50 p-2 text-center text-sm text-cyan-300 transition-colors hover:border-cyan-500">
                         {tech}
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              
               {/* Testimonial Card */}
-              <div className="bg-gray-900 bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-2xl border border-gray-800 overflow-hidden hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-500 group relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 bg-opacity-60 backdrop-blur-lg transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/10">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="h-1 w-full bg-blue-500"></div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-                    <span className="w-8 h-8 mr-3 rounded-full bg-blue-500 bg-opacity-20 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                  <h3 className="mb-4 flex items-center text-lg font-semibold text-white">
+                    <span className="mr-3 flex size-8 items-center justify-center rounded-full bg-blue-500 bg-opacity-20">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="size-4 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                       </svg>
                     </span>
@@ -480,14 +464,13 @@ const Page = () => {
                   <div className="space-y-4">
                     <blockquote className="border-l-2 border-blue-500 pl-4 italic text-gray-300">
                       "Electroplix transformed our outdated website into a modern, user-friendly platform that perfectly represents our brand. The team was professional, responsive, and delivered beyond our expectations."
-                      <footer className="text-sm text-gray-400 mt-2 not-italic">— Sarah Johnson, Marketing Director</footer>
+                      <footer className="mt-2 text-sm not-italic text-gray-400">— Sarah Johnson, Marketing Director</footer>
                     </blockquote>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
           {/* Portfolio Showcase */}
           {/* <div className="mt-16 relative rounded-2xl overflow-hidden border border-gray-800 shadow-lg shadow-purple-500/5">
             <div className="absolute inset-0 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-sm"></div>
@@ -539,19 +522,18 @@ const Page = () => {
           </div> */}
           
           {/* FAQ Section */}
-          <div className="mt-16 relative">
-            <div className="text-center mb-10">
+          <div className="relative mt-16">
+            <div className="mb-10 text-center">
               <h2 className="text-3xl font-bold text-white">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                   Frequently Asked Questions
                 </span>
               </h2>
-              <p className="text-gray-400 mt-2 max-w-2xl mx-auto">
+              <p className="mx-auto mt-2 max-w-2xl text-gray-400">
                 Common questions about our custom website development services
               </p>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {[
                 {
                   q: "How long does it take to build a custom website?",
@@ -578,36 +560,33 @@ const Page = () => {
                   a: "Security is built into our development process. We implement SSL certificates, secure coding practices, regular updates, and other security measures to protect your website and user data."
                 }
               ].map((faq, index) => (
-                <div key={index} className="bg-gray-900 bg-opacity-60 backdrop-filter backdrop-blur-lg rounded-xl border border-gray-800 p-6 hover:border-cyan-500 transition-all duration-300">
-                  <h3 className="text-white font-semibold text-lg mb-2">{faq.q}</h3>
+                <div key={index} className="rounded-xl border border-gray-800 bg-gray-900 bg-opacity-60 p-6 backdrop-blur-lg transition-all duration-300 hover:border-cyan-500">
+                  <h3 className="mb-2 text-lg font-semibold text-white">{faq.q}</h3>
                   <p className="text-gray-400">{faq.a}</p>
                 </div>
               ))}
             </div>
           </div>
-          
           {/* CTA Section */}
-          <div className="mt-16 relative rounded-2xl overflow-hidden border border-gray-800 shadow-lg shadow-purple-500/10">
+          <div className="relative mt-16 overflow-hidden rounded-2xl border border-gray-800 shadow-lg shadow-purple-500/10">
             <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"></div>
-            
             {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-blue-500"></div>
-            <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl opacity-10"></div>
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-cyan-600 rounded-full filter blur-3xl opacity-10"></div>
-            
-            <div className="relative z-10 p-8 md:p-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+            <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-cyan-500 via-purple-500 to-blue-500"></div>
+            <div className="absolute -left-20 -top-20 size-64 rounded-full bg-purple-600 opacity-10 blur-3xl"></div>
+            <div className="absolute -bottom-20 -right-20 size-64 rounded-full bg-cyan-600 opacity-10 blur-3xl"></div>
+            <div className="relative z-10 p-8 text-center md:p-12">
+              <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                   Ready to Transform Your Online Presence?
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-300">
                 Fill out the form above to get started on your custom website journey. Our team is excited to bring your vision to life!
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/book-meeting" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-black bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-300">
+                <Link href="/book-meeting" className="inline-flex items-center rounded-lg border border-transparent bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 text-base font-medium text-black shadow-sm transition-all duration-300 hover:from-cyan-500 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-900">
                   Schedule a Consultation
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 size-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                   </svg>
                 </Link>

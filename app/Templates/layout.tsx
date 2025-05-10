@@ -242,7 +242,6 @@ export default function TemplatesLayout({ children }: { children: ReactNode }) {
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
         <meta name="author" content={metadata.author.name} />
-        
         {/* Open Graph */}
         <meta property="og:title" content={metadata.openGraph.title} />
         <meta property="og:description" content={metadata.openGraph.description} />
@@ -253,7 +252,6 @@ export default function TemplatesLayout({ children }: { children: ReactNode }) {
         <meta property="og:image:width" content={metadata.openGraph.images[0].width.toString()} />
         <meta property="og:image:height" content={metadata.openGraph.images[0].height.toString()} />
         <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
-        
         {/* Twitter */}
         <meta name="twitter:card" content={metadata.twitter.card} />
         <meta name="twitter:site" content={metadata.twitter.site} />
@@ -261,7 +259,6 @@ export default function TemplatesLayout({ children }: { children: ReactNode }) {
         <meta name="twitter:description" content={metadata.twitter.description} />
         <meta name="twitter:image" content={metadata.twitter.image} />
       </Head>
-      
       {children}
     </>
   );

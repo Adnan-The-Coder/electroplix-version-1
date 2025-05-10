@@ -12,6 +12,5 @@ export async function connect() {
     } catch (error) {
         console.log("Something Went Wrong");
         console.log(error)
-        
     }
 }

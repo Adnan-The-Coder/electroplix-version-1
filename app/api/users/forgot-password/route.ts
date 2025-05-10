@@ -1,9 +1,10 @@
+import crypto from "crypto";
+
+import { NextRequest, NextResponse } from 'next/server';
+
 import {connect} from '@/dbConfig/dbConfig'
 import User from '@/models/userModel';
-import crypto from "crypto";
-import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from "@/helpers/mailer";
-
 
 connect();
 
@@ -27,7 +28,6 @@ export async function POST(request:NextRequest) {
         console.log("forgot Password Token Generated")
 		const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // 1 hour
         console.log("Forgot token Expiry Generated")
-
 		
         user.forgotPasswordToken = forgot_passwrd_token;
         user.forgotPasswordTokenExpiry = resetTokenExpiresAt;
@@ -38,19 +38,13 @@ export async function POST(request:NextRequest) {
         await sendEmail({email,emailType:"RESET",userId:user._id})
         console.log("Reset Password Request Email Sent !")
 
-
-
         return NextResponse.json({
             message:"Forgot Password Token",
             success: true
         })
-
-
-
     } catch (error:any) {
         console.log(error.message);
-        return NextResponse.json({message:error.message},{status:500})
         
+return NextResponse.json({message:error.message},{status:500})
     }
-    
 }

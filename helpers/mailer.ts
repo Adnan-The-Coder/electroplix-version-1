@@ -1,8 +1,10 @@
 import nodemailer from "nodemailer";
-import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
-import { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from "./emailTemplates.js";
 import { NextResponse } from "next/server.js";
+
+import User from "@/models/userModel";
+
+import { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from "./emailTemplates.js";
 
 export const sendEmail = async ({ email, emailType, userId,username="user" }:any) => {
     try {
@@ -72,14 +74,12 @@ export const sendEmail = async ({ email, emailType, userId,username="user" }:any
         console.log("Mail Options Are now Set!");
         console.log("Sending Email...");
         const mailResponse = await transport.sendMail(mailOptions);
-        return mailResponse;
 
+        return mailResponse;
     } catch (error:any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
-
-
 
 // export const WelcomeEmail = async ({email,userId}:any) => {
 

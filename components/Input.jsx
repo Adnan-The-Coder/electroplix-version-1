@@ -1,6 +1,5 @@
 /* This Code is for frontend Auth pages Improvement */
 
-
 const Input = ({ icon: Icon, ...props }) => {
 	return (
 		<div className='relative mb-6'>

@@ -8,7 +8,7 @@ interface DashboardCardProps {
   value?: string;
   description: string;
   icon: ReactNode;
-  dummy: Boolean;
+  dummy: boolean;
 }
 
 // Dashboard card component

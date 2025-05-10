@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 "use client"
 
 import * as React from "react"
 import { motion, useAnimation } from "framer-motion"
+
 import { cn } from "@/lib/utils"
 
 interface SwitchProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -51,7 +53,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           )}
         >
           <motion.div
-            className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md"
+            className="absolute left-1 top-1 size-6 rounded-full bg-white shadow-md"
             animate={controls}
             style={{ x: checked ? 'calc(100% - 1.5rem)' : '0' }}
           />

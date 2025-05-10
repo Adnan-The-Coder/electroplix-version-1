@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -5,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FaLock, FaSpinner, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import Link from "next/link";
+
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ToastMessage from "@/components/ui/ToastMessage";
@@ -40,13 +42,16 @@ const ResetPasswordPage = () => {
     const validatePasswords = () => {
         if (!newPassword || !confirmPassword) {
             addToast("Both password fields are required", 'error');
-            return false;
+            
+return false;
         }
         if (newPassword !== confirmPassword) {
             addToast("Passwords must match", 'error');
-            return false;
+            
+return false;
         }
-        return true;
+        
+return true;
     };
 
     const resetPassword = async () => {
@@ -74,86 +79,86 @@ const ResetPasswordPage = () => {
     }, []);
 
     return (
-        <>
-            <div className="py-8 min-h-screen bg-gradient-to-br from-emerald-900 via-gray-900 to-emerald-900 flex items-center justify-center relative overflow-hidden">
-                <Navbar />
-                <motion.div
+      <>
+        <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-gray-900 to-emerald-900 py-8">
+          <Navbar />
+          <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden flex flex-col items-center justify-center py-2"
+                    className="flex w-full max-w-md flex-col items-center justify-center overflow-hidden rounded-2xl bg-gray-800 bg-opacity-50 py-2 shadow-xl backdrop-blur-xl"
                 >
-                    <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
-                        Create New Password
-                    </h2>
-                    <div className="p-8 w-full">
-                        <form onSubmit={(e) => { e.preventDefault(); resetPassword(); }}>
-                            <div className="mb-4">
-                                <label htmlFor="newPassword" className="flex items-center">
-                                    <FaLock className="mr-2" />
-                                    New Password
-                                </label>
-                                <input
+            <h2 className="mb-6 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-center text-3xl font-bold text-transparent">
+              Create New Password
+            </h2>
+            <div className="w-full p-8">
+              <form onSubmit={(e) => { e.preventDefault(); resetPassword(); }}>
+                <div className="mb-4">
+                  <label htmlFor="newPassword" className="flex items-center">
+                    <FaLock className="mr-2" />
+                    New Password
+                  </label>
+                  <input
                                     id="newPassword"
                                     type="password"
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
                                     placeholder="New Password"
-                                    className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+                                    className="w-full rounded-lg border border-gray-300 p-2 focus:border-gray-600 focus:outline-none"
                                     required
                                 />
-                            </div>
-                            <div className="mb-4">
-                                <label htmlFor="confirmPassword" className="flex items-center">
-                                    <FaLock className="mr-2" />
-                                    Confirm Password
-                                </label>
-                                <input
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="confirmPassword" className="flex items-center">
+                    <FaLock className="mr-2" />
+                    Confirm Password
+                  </label>
+                  <input
                                     id="confirmPassword"
                                     type="password"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     placeholder="Confirm Password"
-                                    className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600"
+                                    className="w-full rounded-lg border border-gray-300 p-2 focus:border-gray-600 focus:outline-none"
                                     required
                                 />
-                            </div>
-                            <motion.button
-                                className={`w-full py-3 mt-5 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg 
-                                    hover:from-green-600 hover:to-emerald-700 focus:outline-none 
-                                    focus:ring-2 focus:ring-green-500 focus:ring-offset-2 
-                                    focus:ring-offset-gray-900 transition duration-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                </div>
+                <motion.button
+                                className={`mt-5 w-full rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 py-3 font-bold text-white shadow-lg 
+                                    transition duration-200 hover:from-green-600 
+                                    hover:to-emerald-700 focus:outline-none focus:ring-2 
+                                    focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
                                 onClick={resetPassword}
                                 disabled={loading}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                {loading ? <FaSpinner className="animate-spin mx-auto" size={24} /> : "Set New Password"}
-                            </motion.button>
-                        </form>
-                    </div>
-                    {verified && (
-                        <div className="flex flex-col items-center mt-6">
-                            <FaCheckCircle className="text-green-500 text-5xl mb-2" />
-                            <h2 className="text-2xl">Password Reset Success!</h2>
-                            <Link href="/login" className="text-blue-500 hover:underline mt-2">Login to continue</Link>
-                        </div>
-                    )}
-                    {error && (
-                        <div className="flex flex-col items-center mt-6">
-                            <FaExclamationCircle className="text-red-500 text-5xl mb-2" />
-                            <h2 className="text-2xl text-red-500">Error occurred</h2>
-                        </div>
-                    )}
-                </motion.div>
+                  {loading ? <FaSpinner className="mx-auto animate-spin" size={24} /> : "Set New Password"}
+                </motion.button>
+              </form>
             </div>
-            <Footer />
-            <div className="absolute top-0 right-0 p-4">
-                {toasts.map((toast) => (
-                    <ToastMessage key={toast.id} message={toast.message} type={toast.type} onClose={() => removeToast(toast.id)} />
+            {verified && (
+            <div className="mt-6 flex flex-col items-center">
+              <FaCheckCircle className="mb-2 text-5xl text-green-500" />
+              <h2 className="text-2xl">Password Reset Success!</h2>
+              <Link href="/login" className="mt-2 text-blue-500 hover:underline">Login to continue</Link>
+            </div>
+                    )}
+            {error && (
+            <div className="mt-6 flex flex-col items-center">
+              <FaExclamationCircle className="mb-2 text-5xl text-red-500" />
+              <h2 className="text-2xl text-red-500">Error occurred</h2>
+            </div>
+                    )}
+          </motion.div>
+        </div>
+        <Footer />
+        <div className="absolute right-0 top-0 p-4">
+          {toasts.map((toast) => (
+            <ToastMessage key={toast.id} message={toast.message} type={toast.type} onClose={() => removeToast(toast.id)} />
                 ))}
-            </div>
-        </>
+        </div>
+      </>
     );
 };
 
