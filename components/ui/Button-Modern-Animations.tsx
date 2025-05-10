@@ -23,7 +23,7 @@ const ModernFuturisticButton: React.FC<ModernFuturisticButtonProps> = ({ text, a
 
   return (
     <motion.button
-      className="relative px-8 py-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg overflow-hidden"
+      className="relative overflow-hidden rounded-lg bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 px-8 py-4 font-semibold text-white shadow-lg"
       whileHover={{
         scale: 1.1,
         rotate: 5,
@@ -35,7 +35,7 @@ const ModernFuturisticButton: React.FC<ModernFuturisticButtonProps> = ({ text, a
       onClick={handleClick}
       onAnimationComplete={() => setAnimationComplete(true)} // Set animationComplete to true when animation finishes
     >
-      <span className="absolute inset-0 border-2 border-transparent rounded-lg transition-all duration-200 ease-out"></span>
+      <span className="absolute inset-0 rounded-lg border-2 border-transparent transition-all duration-200 ease-out"></span>
       <span className="relative z-10">{text}</span>
       <motion.span
         className="absolute inset-0 rounded-lg bg-gradient-to-r from-teal-500 to-blue-500 opacity-0"

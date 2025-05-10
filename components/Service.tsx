@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { FaGlobe, FaCog, FaSearch, FaMobileAlt, FaUsers, FaBullhorn, FaServer, FaLaptopCode } from 'react-icons/fa';
 import React from 'react';
+
 import ServiceCard from './ui/Service-Card';
 
 const Service: React.FC = () => {
@@ -17,21 +18,20 @@ const Service: React.FC = () => {
   };
 
   return (
-    <div className="container rounded-3xl mx-auto max-w-7xl px-4 py-12 bg-gray-900 text-white">
+    <div className="container mx-auto max-w-7xl rounded-3xl bg-gray-900 px-4 py-12 text-white">
       {/* Header Section */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={headerVariants}
-        className="text-center mb-10"
+        className="mb-10 text-center"
       >
         <h1 className="text-4xl font-bold">Our Services</h1>
-        <h2 className="text-xl text-gray-300 mt-2">Web Components & Premium Templates</h2>
-        <p className="text-gray-400 mt-4">
+        <h2 className="mt-2 text-xl text-gray-300">Web Components & Premium Templates</h2>
+        <p className="mt-4 text-gray-400">
           At Electroplix, we offer a diverse range of free web components and premium templates that empower businesses to create stunning and functional websites with ease. Our components are designed for seamless integration, ensuring that your website not only looks great but performs optimally across all devices.
         </p>
       </motion.div>
-
       {/* Services Section */}
       <motion.div
         className="flex flex-wrap justify-center gap-8 px-4 md:px-6 lg:px-8"

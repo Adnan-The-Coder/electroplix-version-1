@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -17,7 +18,7 @@ const toastStyles = {
 const ToastMessage: React.FC<ToastMessageProps> = ({ message, type, onClose }) => {
   return (
     <motion.div
-      className={`fixed bottom-5 right-5 p-4 rounded-lg shadow-lg text-white ${toastStyles[type]}`}
+      className={`fixed bottom-5 right-5 rounded-lg p-4 text-white shadow-lg ${toastStyles[type]}`}
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.8, y: 20 }}

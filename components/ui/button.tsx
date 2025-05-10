@@ -68,7 +68,7 @@ const SimpleCatchyButton: React.FC<SimpleCatchyButtonProps> = ({ text, variant =
 
   return (
     <motion.button
-      className={`${variantStyles.button} text-white font-semibold py-3 rounded-lg shadow-md overflow-hidden relative`}
+      className={`${variantStyles.button} relative overflow-hidden rounded-lg py-3 font-semibold text-white shadow-md`}
       whileHover={variantStyles.hover}
       whileTap={variantStyles.tap}
       transition={{ type: "spring", stiffness: 300, damping: 10 }}

@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Search, X, Filter, ExternalLink, Eye } from 'lucide-react';
+import Image from 'next/image';
+
 import { Navbar } from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -110,57 +113,54 @@ function Page() {
 
   return (
     <>
-    <Navbar/>
-    <div className="min-h-screen bg-gray-900 text-white">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="bg-black/80 py-16 px-4 sm:px-6 lg:px-8 relative z-10 border-b border-purple-800">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-center mb-4">
-              <span className="text-purple-400">Electro</span>
-              <span className="text-blue-400">plix</span>
-              {/* <span className="text-green-400"> Studio</span> */}
-            </h1>
-            <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto">
-              Cutting-edge web designs with neon aesthetics and flawless functionality
-            </p>
+      <Navbar/>
+      <div className="min-h-screen bg-gray-900 text-white">
+        {/* Hero Section */}
+        <div className="relative overflow-hidden">
+          <div className="relative z-10 border-b border-purple-800 bg-black/80 px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl">
+              <h1 className="mb-4 text-center text-4xl font-bold md:text-6xl">
+                <span className="text-purple-400">Electro</span>
+                <span className="text-blue-400">plix</span>
+                {/* <span className="text-green-400"> Studio</span> */}
+              </h1>
+              <p className="mx-auto max-w-3xl text-center text-xl text-gray-300">
+                Cutting-edge web designs with neon aesthetics and flawless functionality
+              </p>
+            </div>
           </div>
+          {/* Neon glow effects */}
+          <div className="absolute left-1/4 top-20 size-64 rounded-full bg-purple-500/20 blur-3xl"></div>
+          <div className="absolute bottom-10 right-1/4 size-96 rounded-full bg-blue-500/20 blur-3xl"></div>
         </div>
-        {/* Neon glow effects */}
-        <div className="absolute top-20 left-1/4 w-64 h-64 rounded-full bg-purple-500/20 filter blur-3xl"></div>
-        <div className="absolute bottom-10 right-1/4 w-96 h-96 rounded-full bg-blue-500/20 filter blur-3xl"></div>
-      </div>
-
-      {/* Search and Filter */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-          <div className="relative w-full md:w-1/2">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-            <input 
+        {/* Search and Filter */}
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-col items-center justify-between gap-4 md:flex-row">
+            <div className="relative w-full md:w-1/2">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <input 
               type="text" 
               placeholder="Search websites..." 
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg py-2 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full rounded-lg border border-gray-700 bg-gray-800 py-2 pl-10 pr-4 text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-500"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-          </div>
-          
-          <div className="flex items-center space-x-4 w-full md:w-auto">
-            <button 
+            </div>
+            <div className="flex w-full items-center space-x-4 md:w-auto">
+              <button 
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center space-x-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg border border-gray-700 transition-all"
+              className="flex items-center space-x-2 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 transition-all hover:bg-gray-700"
             >
-              <Filter size={18} />
-              <span>Filter</span>
-            </button>
-            
-            {showFilters && (
+                <Filter size={18} />
+                <span>Filter</span>
+              </button>
+              {showFilters && (
               <div className="flex flex-wrap gap-2">
                 {categories.map(category => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-3 py-1 rounded-full text-sm transition-all ${
+                    className={`rounded-full px-3 py-1 text-sm transition-all ${
                       selectedCategory === category
                         ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30'
                         : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
@@ -171,82 +171,82 @@ function Page() {
                 ))}
               </div>
             )}
+            </div>
           </div>
-        </div>
-
-        {/* Showcase Grid */}
-        {filteredWebsites.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredWebsites.map((website) => (
-              <div 
+          {/* Showcase Grid */}
+          {filteredWebsites.length > 0 ? (
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {filteredWebsites.map((website) => (
+                <div 
                 key={website.id} 
-                className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all group"
+                className="group overflow-hidden rounded-xl border border-gray-700 bg-gray-800 transition-all hover:border-purple-500"
               >
-                <div className="relative">
-                  <img 
+                  <div className="relative">
+                    <Image
+                    width={500}
+                    height={500} 
                     src={website.image} 
                     alt={website.title} 
-                    className="w-full h-48 object-cover"
+                    className="h-48 w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
-                    <div className="p-4 w-full">
-                      <div className="flex justify-between items-center">
-                        <span className="bg-purple-600/90 text-xs font-medium px-2 py-1 rounded-full">
-                          {website.category}
-                        </span>
-                        <div className="flex space-x-2">
-                          <button 
+                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 to-transparent">
+                      <div className="w-full p-4">
+                        <div className="flex items-center justify-between">
+                          <span className="rounded-full bg-purple-600/90 px-2 py-1 text-xs font-medium">
+                            {website.category}
+                          </span>
+                          <div className="flex space-x-2">
+                            <button 
                             onClick={() => openPreview(website)}
-                            className="bg-blue-600 hover:bg-blue-500 p-2 rounded-full transition-all"
+                            className="rounded-full bg-blue-600 p-2 transition-all hover:bg-blue-500"
                             title="Preview Website"
                           >
-                            <Eye size={16} />
-                          </button>
-                          <a 
+                              <Eye size={16} />
+                            </button>
+                            <a 
                             href={website.url} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="bg-green-600 hover:bg-green-500 p-2 rounded-full transition-all"
+                            className="rounded-full bg-green-600 p-2 transition-all hover:bg-green-500"
                             title="Visit Website"
                           >
-                            <ExternalLink size={16} />
-                          </a>
+                              <ExternalLink size={16} />
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <div className="p-4">
+                    <h3 className="mb-2 text-xl font-semibold text-white transition-all group-hover:text-purple-400">
+                      {website.title}
+                    </h3>
+                    <p className="text-gray-400">{website.description}</p>
+                  </div>
                 </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-purple-400 transition-all">
-                    {website.title}
-                  </h3>
-                  <p className="text-gray-400">{website.description}</p>
-                </div>
-              </div>
             ))}
-          </div>
+            </div>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-xl">No websites found matching your search criteria.</p>
+          <div className="py-12 text-center">
+            <p className="text-xl text-gray-400">No websites found matching your search criteria.</p>
             <button 
               onClick={() => {setSearchTerm(''); setSelectedCategory('All')}}
-              className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-500 rounded-lg text-white"
+              className="mt-4 rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-500"
             >
               Clear Filters
             </button>
           </div>
         )}
-      </div>
-
-      {/* Preview Modal */}
-      {previewModal && selectedWebsite && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-xl border border-purple-600 w-full max-w-5xl overflow-hidden relative">
-            <div className="flex justify-between items-center p-4 border-b border-gray-800">
+        </div>
+        {/* Preview Modal */}
+        {previewModal && selectedWebsite && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+          <div className="relative w-full max-w-5xl overflow-hidden rounded-xl border border-purple-600 bg-gray-900">
+            <div className="flex items-center justify-between border-b border-gray-800 p-4">
               <h3 className="text-xl font-semibold">{selectedWebsite.title} Preview</h3>
               <button 
                 onClick={closePreview}
-                className="bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition-all"
+                className="rounded-full bg-gray-800 p-2 transition-all hover:bg-gray-700"
               >
                 <X size={20} />
               </button>
@@ -255,12 +255,12 @@ function Page() {
               <iframe 
                 src={selectedWebsite.url} 
                 title={selectedWebsite.title}
-                className="w-full h-full border-0"
+                className="size-full border-0"
               ></iframe>
             </div>
-            <div className="flex justify-between items-center p-4 border-t border-gray-800">
+            <div className="flex items-center justify-between border-t border-gray-800 p-4">
               <div>
-                <span className="bg-purple-600/90 text-xs font-medium px-2 py-1 rounded-full">
+                <span className="rounded-full bg-purple-600/90 px-2 py-1 text-xs font-medium">
                   {selectedWebsite.category}
                 </span>
               </div>
@@ -268,20 +268,19 @@ function Page() {
                 href={selectedWebsite.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg flex items-center gap-2 transition-all"
+                className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 transition-all hover:bg-green-500"
               >
                 <ExternalLink size={16} />
                 <span>Visit Full Website</span>
               </a>
             </div>
-            
             {/* Neon border effect */}
-            <div className="absolute inset-0 rounded-xl border border-purple-500 shadow-[0_0_15px_rgba(147,51,234,0.5)] pointer-events-none"></div>
+            <div className="pointer-events-none absolute inset-0 rounded-xl border border-purple-500 shadow-[0_0_15px_rgba(147,51,234,0.5)]"></div>
           </div>
         </div>
       )}
-    </div>
-    <Footer/>
+      </div>
+      <Footer/>
     </>
   );
 }

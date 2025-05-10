@@ -12,7 +12,7 @@ const confettiColors = [
 
 const ConfettiPiece = ({ style, initial }: { style: React.CSSProperties, initial: boolean }) => (
   <motion.div
-    className={`w-4 h-4 absolute rounded-full ${confettiColors[Math.floor(Math.random() * confettiColors.length)]}`}
+    className={`absolute size-4 rounded-full ${confettiColors[Math.floor(Math.random() * confettiColors.length)]}`}
     style={style}
     initial={{ opacity: 1, z: 0 }}
     animate={{
@@ -56,7 +56,7 @@ const Confetti = () => {
   });
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none perspective-1000">
+    <div className="perspective-1000 pointer-events-none absolute inset-0 overflow-hidden">
       {confettiPieces.map(({ key, style }) => (
         <ConfettiPiece key={key} style={style} initial={initial} />
       ))}

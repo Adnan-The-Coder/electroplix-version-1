@@ -46,7 +46,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ Icon, title, description }) =
 
   return (
     <motion.div
-      className="text-center p-6 bg-gray-800 shadow-lg rounded-lg border-2 border-transparent relative overflow-hidden"
+      className="relative overflow-hidden rounded-lg border-2 border-transparent bg-gray-800 p-6 text-center shadow-lg"
       initial="initial"
       whileHover="hover"
       variants={cardVariants}
@@ -56,13 +56,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ Icon, title, description }) =
       }}
     >
       <motion.div 
-        className="absolute inset-0 border-4 border-transparent rounded-lg pointer-events-none"
+        className="pointer-events-none absolute inset-0 rounded-lg border-4 border-transparent"
         variants={borderVariants}
         style={{ zIndex: -1 }} // Position the border effect behind the card content
       />
       <div className="relative z-10 text-white"> {/* Ensure content is above the border effect */}
-        <Icon className="mx-auto text-6xl text-gray-300 mb-4" />
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <Icon className="mx-auto mb-4 text-6xl text-gray-300" />
+        <h3 className="mb-2 text-xl font-semibold">{title}</h3>
         <p className="text-gray-400">{description}</p>
       </div>
     </motion.div>

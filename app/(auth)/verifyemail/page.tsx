@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 "use client";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa"; // Importing React Icons
+import { FaCheckCircle } from "react-icons/fa"; // Importing React Icons
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
 
 export default function VerifyEmailPage() {
     const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
@@ -75,23 +76,22 @@ export default function VerifyEmailPage() {
     }, [code]);
 
     return (
-      <div className="py-8 min-h-screen bg-gradient-to-br from-emerald-900 via-gray-900 to-emerald-900 flex items-center justify-center relative overflow-hidden">
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <motion.div
+      <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-gray-900 to-emerald-900 py-8">
+        <div className="flex min-h-screen flex-col items-center justify-center py-2">
+          <motion.div
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className='max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl p-8'
+                className='w-full max-w-md rounded-2xl bg-gray-800 bg-opacity-50 p-8 shadow-xl backdrop-blur-xl'
             >
-                <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
-                    Verify Email
-                </h1>
-                <p className="text-center text-gray-300 mb-6">Enter the 6-digit code sent to your email address.</p>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="flex justify-between">
-                        {code.map((digit, index) => (
-                            <input
+            <h1 className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-center text-4xl font-bold text-transparent">
+              Verify Email
+            </h1>
+            <p className="mb-6 text-center text-gray-300">Enter the 6-digit code sent to your email address.</p>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="flex justify-between">
+                {code.map((digit, index) => (
+                  <input
                                 key={index}
                                 ref={(el) => { inputRefs.current[index] = el; }}
                                 type="text"
@@ -99,31 +99,30 @@ export default function VerifyEmailPage() {
                                 value={digit}
                                 onChange={(e) => handleChange(index, e.target.value)}
                                 onKeyDown={(e) => handleKeyDown(index, e)}
-                                className="w-12 h-12 text-center text-2xl font-bold bg-gray-700 text-white border-2 border-gray-600 rounded-lg focus:border-green-500 focus:outline-none"
+                                className="size-12 rounded-lg border-2 border-gray-600 bg-gray-700 text-center text-2xl font-bold text-white focus:border-green-500 focus:outline-none"
                             />
                         ))}
-                    </div>
-                    {error && <p className="text-red-500 font-semibold mt-2">Verification failed. Please try again.</p>}
-                    <motion.button
+              </div>
+              {error && <p className="mt-2 font-semibold text-red-500">Verification failed. Please try again.</p>}
+              <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         type="submit"
                         disabled={isLoading || code.some((digit) => !digit)}
-                        className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
+                        className="w-full rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 px-4 py-3 font-bold text-white shadow-lg hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
                     >
-                        {isLoading ? "Verifying..." : "Verify Email"}
-                    </motion.button>
-                </form>
-
-                {verified && (
-                    <div className="flex flex-col items-center mt-6">
-                        <FaCheckCircle className="text-green-500 text-5xl mb-2" />
-                        <h2 className="text-2xl">Email Verified</h2>
-                        <Link href="/profile" className="text-blue-500 hover:underline mt-2">Continue to Dashboard</Link>
-                    </div>
+                {isLoading ? "Verifying..." : "Verify Email"}
+              </motion.button>
+            </form>
+            {verified && (
+            <div className="mt-6 flex flex-col items-center">
+              <FaCheckCircle className="mb-2 text-5xl text-green-500" />
+              <h2 className="text-2xl">Email Verified</h2>
+              <Link href="/profile" className="mt-2 text-blue-500 hover:underline">Continue to Dashboard</Link>
+            </div>
                 )}
-            </motion.div>
+          </motion.div>
         </div>
-    </div>
+      </div>
     );
 }

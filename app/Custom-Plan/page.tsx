@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 "use client";
 import React, { useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { FaCheck, FaTrash, FaInfoCircle, FaTimes } from 'react-icons/fa';
+import { useAnimation } from 'framer-motion';
+import { FaCheck, FaTrash, FaInfoCircle } from 'react-icons/fa';
+
 import { Navbar } from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Confetti from '@/components/ui/Confetti';
@@ -60,7 +62,8 @@ const Page: React.FC = () => {
       } else {
         newSelection[service] = price; // Add service if not selected
       }
-      return newSelection;
+      
+return newSelection;
     });
   };
 
@@ -68,6 +71,7 @@ const Page: React.FC = () => {
     setSelectedServices((prev) => {
       const newSelection = { ...prev };
       delete newSelection[service]; // Remove service
+
       return newSelection;
     });
   };
@@ -95,7 +99,8 @@ const Page: React.FC = () => {
         Object.keys(newSelection).forEach((key) => {
           newSelection[key] = parseFloat((newSelection[key] * discountFactor).toFixed(2));
         });
-        return newSelection;
+        
+return newSelection;
       });
 
       // Show success message
@@ -110,21 +115,21 @@ const Page: React.FC = () => {
   };
 
   const renderServiceCategory = (categoryName: string, services: { [key: string]: { price: number; details: string[] } }) => (
-    <div className="mb-6 p-4 bg-gray-800 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold mb-4">{categoryName}</h2>
+    <div className="mb-6 rounded-lg bg-gray-800 p-4 shadow-lg">
+      <h2 className="mb-4 text-2xl font-semibold">{categoryName}</h2>
       {Object.entries(services).map(([key, { price, details }]) => (
         <div
           key={key}
           className={`
-            p-4 mb-2 rounded-lg cursor-pointer hover:bg-gray-700 flex items-center 
+            mb-2 flex cursor-pointer items-center rounded-lg p-4 hover:bg-gray-700 
             ${selectedServices[key] ? 'bg-gray-700' : 'bg-gray-800'}
           `}
           onClick={() => handleServiceToggle(key, price, details)}
         >
           {selectedServices[key] && (
-            <FaCheck className="text-green-400 mr-2" />
+            <FaCheck className="mr-2 text-green-400" />
           )}
-          <div className="flex-grow">
+          <div className="grow">
             <h3 className="text-xl font-semibold">{key.replace(/([A-Z])/g, ' $1').trim()}</h3>
             <p className="text-gray-400">${price.toFixed(2)}/month</p>
           </div>
@@ -148,23 +153,21 @@ const Page: React.FC = () => {
       <br />
       <br />
       <br />
-      <div className="min-h-screen bg-gray-900 text-white flex flex-col lg:flex-row items-start p-6">
-        <div className="w-full lg:w-2/3 max-w-4xl">
-          <h1 className="text-3xl font-bold mb-6">Create Your Custom Pricing Plan</h1>
-
+      <div className="flex min-h-screen flex-col items-start bg-gray-900 p-6 text-white lg:flex-row">
+        <div className="w-full max-w-4xl lg:w-2/3">
+          <h1 className="mb-6 text-3xl font-bold">Create Your Custom Pricing Plan</h1>
           <div>
             {Object.entries(serviceCategories).map(([category, services]) =>
               renderServiceCategory(category.replace(/([A-Z])/g, ' $1').trim(), services))
             }
           </div>
         </div>
-
-        <div className="lg:w-1/3 w-full lg:ml-6">
-          <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold mb-2">Selected Services</h2>
-            <ul className="list-disc ml-6 mb-4">
+        <div className="w-full lg:ml-6 lg:w-1/3">
+          <div className="mt-6 rounded-lg bg-gray-800 p-4 shadow-lg">
+            <h2 className="mb-2 text-2xl font-semibold">Selected Services</h2>
+            <ul className="mb-4 ml-6 list-disc">
               {Object.entries(selectedServices).map(([key, price]) => (
-                <li key={key} className="mb-2 flex justify-between items-center">
+                <li key={key} className="mb-2 flex items-center justify-between">
                   <span>{key.replace(/([A-Z])/g, ' $1').trim()}</span>
                   <span className="flex items-center">
                     <span>${price.toFixed(2)}</span>
@@ -178,29 +181,27 @@ const Page: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <h2 className="text-2xl font-semibold mb-2">Total Price</h2>
+            <h2 className="mb-2 text-2xl font-semibold">Total Price</h2>
             <p className="text-xl">${calculateTotal()}/month</p>
-            <div className="flex items-center mt-4">
+            <div className="mt-4 flex items-center">
               <button
                 onClick={applyDiscount}
                 disabled={Object.keys(selectedServices).length === 0 || discountApplied}
-                className={`mr-2 px-4 py-2 rounded transition ${Object.keys(selectedServices).length === 0 || discountApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500'}`}
+                className={`mr-2 rounded px-4 py-2 transition ${Object.keys(selectedServices).length === 0 || discountApplied ? 'cursor-not-allowed bg-gray-600' : 'bg-blue-600 hover:bg-blue-500'}`}
               >
                 Apply Discount
               </button>
               <button
                 onClick={() => setFormPopoverOpen(true)}
-                className="px-4 py-2 bg-green-600 rounded hover:bg-green-500"
+                className="rounded bg-green-600 px-4 py-2 hover:bg-green-500"
               >
                 Create Custom Plan
               </button>
             </div>
           </div>
-
           {showConfetti && <Confetti />} {/* Display Confetti on discount application */}
         </div>
       </div>
-
       {popoverContent && (
         <CustomPopover
           title={popoverContent.title}
@@ -209,7 +210,6 @@ const Page: React.FC = () => {
           onClose={() => setPopoverOpen(false)}
         />
       )}
-
       {successMessage && (
         <SuccessMessagePopover
           title={successMessage.title}
@@ -218,14 +218,12 @@ const Page: React.FC = () => {
           onClose={() => setSuccessMessageOpen(false)}
         />
       )}
-
       {formPopoverOpen && (
         <CustomFormPopover
           isOpen={formPopoverOpen}
           onClose={() => setFormPopoverOpen(false)}
         />
       )}
-
       <Footer />
     </>
   );

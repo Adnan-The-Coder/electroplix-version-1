@@ -214,14 +214,12 @@ export default function CustomPlanLayout({ children }: { children: ReactNode }) 
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords} />
         <meta name="author" content={metadata.author.name} />
-        
         {/* Open Graph */}
         <meta property="og:title" content={metadata.og.title} />
         <meta property="og:description" content={metadata.og.description} />
         <meta property="og:url" content={metadata.og.url} />
         <meta property="og:type" content={metadata.og.type} />
         <meta property="og:image" content={metadata.og.image} />
-        
         {/* Twitter */}
         <meta name="twitter:card" content={metadata.twitter.card} />
         <meta name="twitter:site" content={metadata.twitter.site} />

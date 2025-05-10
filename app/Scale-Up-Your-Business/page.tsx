@@ -1,11 +1,12 @@
 // scale-up-your-business/page.tsx
 "use client";
-import Footer from '@/components/Footer';
-import { Navbar } from '@/components/Navbar';
 import { motion } from 'framer-motion';
 import { NextPage } from 'next';
 import { FaRocket, FaChartLine, FaCogs, FaUsers } from 'react-icons/fa';
 import { useState } from 'react';
+
+import { Navbar } from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import ContactModal from '@/components/ui/ContactModal';
 
 const ScaleUpYourBusiness: NextPage = () => {
@@ -22,7 +23,7 @@ const ScaleUpYourBusiness: NextPage = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen py-4 bg-gray-900 text-white overflow-x-hidden">
+      <div className="min-h-screen overflow-x-hidden bg-gray-900 py-4 text-white">
         <motion.div
           className="container mx-auto px-4 py-12"
           initial={{ opacity: 0, y: 20 }}
@@ -30,9 +31,9 @@ const ScaleUpYourBusiness: NextPage = () => {
           transition={{ duration: 0.8 }}
         >
           {/* Header Section */}
-          <div className="text-center mb-12">
+          <div className="mb-12 text-center">
             <motion.h1
-              className="text-5xl font-bold mb-6 leading-tight"
+              className="mb-6 text-5xl font-bold leading-tight"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
@@ -40,7 +41,7 @@ const ScaleUpYourBusiness: NextPage = () => {
               Scale Up Your Business with Electroplix
             </motion.h1>
             <motion.p
-              className="text-lg mb-6 max-w-3xl mx-auto"
+              className="mx-auto mb-6 max-w-3xl text-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -48,9 +49,8 @@ const ScaleUpYourBusiness: NextPage = () => {
               Discover how Electroplix can help you scale your business to new heights with innovative strategies and cutting-edge technology.
             </motion.p>
           </div>
-
           {/* Core Benefits Section */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 title: "Accelerate Growth",
@@ -79,73 +79,70 @@ const ScaleUpYourBusiness: NextPage = () => {
             ].map((benefit, index) => (
               <motion.div
                 key={benefit.title}
-                className="flex flex-col items-start p-6 bg-gray-800 rounded-lg shadow-lg space-y-4"
+                className="flex flex-col items-start space-y-4 rounded-lg bg-gray-800 p-6 shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 <div
-                  className={`w-12 h-12 ${benefit.color} rounded-xl flex items-center justify-center shadow-md`}
+                  className={`size-12 ${benefit.color} flex items-center justify-center rounded-xl shadow-md`}
                 >
-                  <benefit.icon className="w-6 h-6 text-white" />
+                  <benefit.icon className="size-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">{benefit.title}</h3>
-                  <p className="text-gray-300 text-base">
+                  <h3 className="mb-2 text-2xl font-bold">{benefit.title}</h3>
+                  <p className="text-base text-gray-300">
                     {benefit.description}
                   </p>
                 </div>
               </motion.div>
             ))}
           </div>
-
           {/* Detailed Information Section */}
-          <div className="bg-gray-800 rounded-lg p-8 mb-12">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold mb-6">How Electroplix Can Help</h2>
-              <p className="text-lg mb-6 max-w-2xl mx-auto">
+          <div className="mb-12 rounded-lg bg-gray-800 p-8">
+            <div className="mb-8 text-center">
+              <h2 className="mb-6 text-4xl font-bold">How Electroplix Can Help</h2>
+              <p className="mx-auto mb-6 max-w-2xl text-lg">
                 At Electroplix, we understand the complexities of scaling a business. Our comprehensive approach combines innovative technology with expert insights to drive sustainable growth. Whether you’re looking to enhance your digital presence, optimize operations, or expand your market reach, we have the solutions you need to achieve your goals.
               </p>
             </div>
-
             <div className="flex flex-col md:flex-row md:space-x-8">
               {/* Left Column */}
-              <div className="md:w-1/2 mb-6 md:mb-0">
-                <ul className="list-disc list-inside text-lg space-y-4">
+              <div className="mb-6 md:mb-0 md:w-1/2">
+                <ul className="list-inside list-disc space-y-4 text-lg">
                   <li className="flex items-center space-x-4">
-                    <FaRocket className="text-blue-500 w-6 h-6" />
+                    <FaRocket className="size-6 text-blue-500" />
                     <span>Advanced analytics and reporting for data-driven decisions.</span>
                   </li>
                   <li className="flex items-center space-x-4">
-                    <FaChartLine className="text-green-500 w-6 h-6" />
+                    <FaChartLine className="size-6 text-green-500" />
                     <span>Customized digital marketing strategies to reach your target audience.</span>
                   </li>
                   <li className="flex items-center space-x-4">
-                    <FaCogs className="text-purple-500 w-6 h-6" />
+                    <FaCogs className="size-6 text-purple-500" />
                     <span>Efficient resource management tools to streamline operations.</span>
                   </li>
                   <li className="flex items-center space-x-4">
-                    <FaUsers className="text-pink-500 w-6 h-6" />
+                    <FaUsers className="size-6 text-pink-500" />
                     <span>Expert guidance and support to navigate growth challenges.</span>
                   </li>
                 </ul>
               </div>
-
               {/* Right Column */}
               <div className="md:w-1/2">
                 <motion.div
-                  className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg p-6 text-center text-white"
+                  className="rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-6 text-center text-white"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <h3 className="text-2xl font-semibold mb-4">Unlock Your Business Potential</h3>
+                  <h3 className="mb-4 text-2xl font-semibold">Unlock Your Business Potential</h3>
                   <p>
                     Partner with Electroplix to leverage cutting-edge solutions that drive growth and efficiency. Contact us today to learn how we can help you achieve your business goals.
                   </p>
                   <button
                     onClick={handleOpenModal}
-                    className="mt-4 inline-block bg-white text-gray-900 py-2 px-4 rounded-lg hover:bg-gray-200 transition"
+                    className="mt-4 inline-block rounded-lg bg-white px-4 py-2 text-gray-900 transition hover:bg-gray-200"
                   >
                     Get Started
                   </button>
@@ -153,16 +150,15 @@ const ScaleUpYourBusiness: NextPage = () => {
               </div>
             </div>
           </div>
-
           {/* Call to Action Section */}
           <div className="text-center">
-            <h2 className="text-3xl font-semibold mb-4">Ready to Scale Up?</h2>
-            <p className="text-lg mb-8">
+            <h2 className="mb-4 text-3xl font-semibold">Ready to Scale Up?</h2>
+            <p className="mb-8 text-lg">
               Contact us today to learn how Electroplix can help you scale your business effectively and sustainably.
             </p>
             <button
               onClick={handleOpenModal}
-              className="bg-blue-500 text-white py-3 px-6 rounded-lg text-lg hover:bg-blue-600 transition"
+              className="rounded-lg bg-blue-500 px-6 py-3 text-lg text-white transition hover:bg-blue-600"
             >
               Get in Touch
             </button>

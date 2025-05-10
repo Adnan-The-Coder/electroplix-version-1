@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use client";
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
@@ -81,14 +82,16 @@ function TemplateUploadForm() {
     if (!file.type.match('image.*')) {
       setStatusMessage('Please select an image file');
       setSubmitStatus('error');
-      return;
+      
+return;
     }
     
     // Check file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       setStatusMessage('Image must be less than 5MB');
       setSubmitStatus('error');
-      return;
+      
+return;
     }
     
     setImageFile(file);
@@ -162,7 +165,6 @@ function TemplateUploadForm() {
         setPreviewImage(null);
         setImageFile(null);
       }, 2000);
-      
     } catch (error) {
       setSubmitStatus('error');
       setStatusMessage(error instanceof Error ? error.message : 'An unknown error occurred');
@@ -184,51 +186,48 @@ function TemplateUploadForm() {
   }, [submitStatus]);
   
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gray-900 px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl">
         {/* Header */}
         <div className="mb-10">
           <a 
             href="/showcase" 
-            className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-6 transition-colors"
+            className="mb-6 inline-flex items-center text-purple-400 transition-colors hover:text-purple-300"
           >
             <ArrowLeft size={18} className="mr-2" />
             Back to Showcase
           </a>
-          
-          <h1 className="text-3xl font-bold mb-2">Upload Website Template</h1>
+          <h1 className="mb-2 text-3xl font-bold">Upload Website Template</h1>
           <p className="text-gray-400">
             Share your web design with our community. Fill out the form below to add your template to our showcase.
           </p>
         </div>
-        
         {/* Status message */}
         {submitStatus !== 'idle' && (
           <div 
-            className={`mb-6 p-4 rounded-lg flex items-start ${
-              submitStatus === 'success' ? 'bg-green-900/50 border border-green-500' : 'bg-red-900/50 border border-red-500'
+            className={`mb-6 flex items-start rounded-lg p-4 ${
+              submitStatus === 'success' ? 'border border-green-500 bg-green-900/50' : 'border border-red-500 bg-red-900/50'
             }`}
           >
             {submitStatus === 'success' ? (
-              <Check className="text-green-400 mr-3 mt-0.5" size={18} />
+              <Check className="mr-3 mt-0.5 text-green-400" size={18} />
             ) : (
-              <AlertCircle className="text-red-400 mr-3 mt-0.5" size={18} />
+              <AlertCircle className="mr-3 mt-0.5 text-red-400" size={18} />
             )}
             <p>{statusMessage}</p>
           </div>
         )}
-        
         {/* Upload Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Upload Image Section */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-300">
               Website Screenshot <span className="text-purple-400">*</span>
             </label>
             <div 
               className={`mt-1 flex justify-center rounded-lg border-2 border-dashed p-6 ${
                 isDragging ? 'border-purple-500 bg-purple-900/20' : 'border-gray-700 hover:border-purple-400'
-              } transition-all cursor-pointer`}
+              } cursor-pointer transition-all`}
               onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
               onDragLeave={() => setIsDragging(false)}
               onDrop={handleDrop}
@@ -246,18 +245,18 @@ function TemplateUploadForm() {
                         setImageFile(null);
                         setFormData(prev => ({ ...prev, image: '' }));
                       }}
-                      className="absolute top-2 right-2 bg-black/70 p-1 rounded-full hover:bg-black"
+                      className="absolute right-2 top-2 rounded-full bg-black/70 p-1 hover:bg-black"
                     >
                       <X size={16} />
                     </button>
                   </div>
                 ) : (
                   <>
-                    <Upload className="mx-auto h-12 w-12 text-gray-400" />
+                    <Upload className="mx-auto size-12 text-gray-400" />
                     <div className="mt-4 flex text-sm text-gray-400">
                       <p className="pl-1">Drag and drop image or click to upload</p>
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">PNG, JPG, WebP up to 5MB</p>
+                    <p className="mt-2 text-xs text-gray-500">PNG, JPG, WebP up to 5MB</p>
                   </>
                 )}
                 <input 
@@ -271,7 +270,6 @@ function TemplateUploadForm() {
               </div>
             </div>
           </div>
-          
           {/* Title */}
           <div>
             <label htmlFor="title" className="block text-sm font-medium text-gray-300">
@@ -284,11 +282,10 @@ function TemplateUploadForm() {
               value={formData.title}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-800 py-2 px-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+              className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 text-white placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
               placeholder="e.g. Fitness Gym Template"
             />
           </div>
-          
           {/* URL */}
           <div>
             <label htmlFor="url" className="block text-sm font-medium text-gray-300">
@@ -301,11 +298,10 @@ function TemplateUploadForm() {
               value={formData.url}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-800 py-2 px-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+              className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 text-white placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
               placeholder="https://your-website-url.com"
             />
           </div>
-          
           {/* Category */}
           <div>
             <label htmlFor="category" className="block text-sm font-medium text-gray-300">
@@ -317,7 +313,7 @@ function TemplateUploadForm() {
                   type="text"
                   value={newCategoryInput}
                   onChange={(e) => setNewCategoryInput(e.target.value)}
-                  className="block w-full rounded-l-md border border-gray-700 bg-gray-800 py-2 px-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                  className="block w-full rounded-l-md border border-gray-700 bg-gray-800 px-3 py-2 text-white placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
                   placeholder="Enter new category..."
                 />
                 <button
@@ -336,7 +332,7 @@ function TemplateUploadForm() {
                   value={formData.category}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-l-md border border-gray-700 bg-gray-800 py-2 px-3 text-white focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                  className="block w-full rounded-l-md border border-gray-700 bg-gray-800 px-3 py-2 text-white focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
                 >
                   <option value="">Select a category</option>
                   {PREDEFINED_CATEGORIES.map((category) => (
@@ -355,7 +351,6 @@ function TemplateUploadForm() {
               </div>
             )}
           </div>
-          
           {/* Description */}
           <div>
             <label htmlFor="description" className="block text-sm font-medium text-gray-300">
@@ -368,19 +363,18 @@ function TemplateUploadForm() {
               value={formData.description}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-800 py-2 px-3 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+              className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 text-white placeholder:text-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
               placeholder="Describe your website template..."
             />
           </div>
-          
           {/* Submit Button */}
           <div className="pt-4">
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full rounded-md px-4 py-3 text-white font-medium ${
+              className={`w-full rounded-md px-4 py-3 font-medium text-white ${
                 isSubmitting 
-                  ? 'bg-purple-800 cursor-not-allowed' 
+                  ? 'cursor-not-allowed bg-purple-800' 
                   : 'bg-purple-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900'
               } transition-all`}
             >
@@ -388,10 +382,9 @@ function TemplateUploadForm() {
             </button>
           </div>
         </form>
-        
         {/* Neon glow effects */}
-        <div className="fixed top-20 right-1/4 w-64 h-64 rounded-full bg-purple-500/10 blur-3xl -z-10"></div>
-        <div className="fixed bottom-40 left-1/4 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl -z-10"></div>
+        <div className="fixed right-1/4 top-20 -z-10 size-64 rounded-full bg-purple-500/10 blur-3xl"></div>
+        <div className="fixed bottom-40 left-1/4 -z-10 size-64 rounded-full bg-blue-500/10 blur-3xl"></div>
       </div>
     </div>
   );
