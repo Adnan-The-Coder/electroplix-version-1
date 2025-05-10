@@ -10,15 +10,20 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 
 import { source } from '@/app/source';
 
+// The PageProps interface to define params as a Promise.
 interface PageProps {
-  params: { slug?: string[] };
+  params: Promise<{ slug?: string[] }>;
 }
 
+// Make the page component async because params is a Promise.
 export default async function Page({
   params,
 }: PageProps) {
-  // Directly access params.slug (no need to await)
-  const page = await source.getPage(params.slug);
+  // Await params to resolve it
+  const { slug } = await params;
+
+  // Fetch the page using the resolved slug
+  const page = await source.getPage(slug);
   if (!page) notFound();
 
   const MDX = page.data.body;
@@ -38,10 +43,16 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-// Mark generateMetadata as async because it uses async operations
-export async function generateMetadata({ params }: { params: { slug?: string[] } }) {
-  // Await the asynchronous operation
-  const page = await source.getPage(params.slug);
+// Make generateMetadata async because it also involves async operations.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  // Await params to resolve it
+  const { slug } = await params;
+
+  const page = await source.getPage(slug);
   if (!page) notFound();
 
   return {
