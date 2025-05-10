@@ -114,7 +114,7 @@ export default function ContactPage() {
                 </h1>
                 <div className="mx-auto mb-8 h-px w-40 bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-indigo-500 md:w-60"></div>
                 <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl">
-                  We're just a message away. Let's start a conversation about your digital needs.
+                  We`re just a message away. Let`s start a conversation about your digital needs.
                 </p>
               </div>
             </div>
@@ -395,7 +395,7 @@ export default function ContactPage() {
                   Ready to Start Your Digital Journey?
                 </h2>
                 <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-300">
-                  Let's create something amazing together. Reach out to us today and take the first step towards transforming your online presence.
+                  Let`s create something amazing together. Reach out to us today and take the first step towards transforming your online presence.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <button

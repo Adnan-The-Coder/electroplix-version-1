@@ -160,7 +160,7 @@ const Page = () => {
               <div className="absolute inset-x-0 -bottom-1 h-px bg-gradient-to-r from-cyan-500 via-white to-purple-500 shadow-lg shadow-purple-500/50"></div>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-xl text-gray-400">
-              Tell us about your dream website and we'll bring it to life with cutting-edge design and technology.
+              Tell us about your dream website and we`ll bring it to life with cutting-edge design and technology.
             </p>
           </div>
           <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-3">
@@ -463,7 +463,7 @@ const Page = () => {
                   </h3>
                   <div className="space-y-4">
                     <blockquote className="border-l-2 border-blue-500 pl-4 italic text-gray-300">
-                      "Electroplix transformed our outdated website into a modern, user-friendly platform that perfectly represents our brand. The team was professional, responsive, and delivered beyond our expectations."
+                      ``Electroplix transformed our outdated website into a modern, user-friendly platform that perfectly represents our brand. The team was professional, responsive, and delivered beyond our expectations.``
                       <footer className="mt-2 text-sm not-italic text-gray-400">— Sarah Johnson, Marketing Director</footer>
                     </blockquote>
                   </div>

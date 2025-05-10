@@ -65,7 +65,7 @@ const AdvertisingServices: NextPage = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Elevate your brand with Electroplix's comprehensive advertising solutions. Our innovative services are designed to maximize your reach and impact in the digital space.
+              Elevate your brand with Electroplix`s comprehensive advertising solutions. Our innovative services are designed to maximize your reach and impact in the digital space.
             </motion.p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
