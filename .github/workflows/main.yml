@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - dev
+      - test
   pull_request:
     branches:
       - dev
       - main
+      - test
 
 env:
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
