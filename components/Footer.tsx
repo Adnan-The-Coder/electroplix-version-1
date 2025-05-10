@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
               <AnimatedText text="Electroplix" />
             </h1>
             <p className="text-lg"> 
-              Innovating the future with cutting-edge digital solutions..
+              Innovating the future with cutting-edge digital solutions.
             </p>
           </div>
           {/* Services Section */}
