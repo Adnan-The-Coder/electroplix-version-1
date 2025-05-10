@@ -15,7 +15,7 @@ export default async function Page({
 }: {
   params: { slug?: string[] };
 }) {
-  const page = source.getPage(params.slug);
+  const page = await source.getPage(params.slug); // Ensure source.getPage is async if it involves I/O
   if (!page) notFound();
 
   const MDX = page.data.body;
@@ -35,8 +35,10 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export function generateMetadata({ params }: { params: { slug?: string[] } }) {
-  const page = source.getPage(params.slug);
+// Mark generateMetadata as async because it uses async operations
+export async function generateMetadata({ params }: { params: { slug?: string[] } }) {
+  // Await the asynchronous operation
+  const page = await source.getPage(params.slug);
   if (!page) notFound();
 
   return {
