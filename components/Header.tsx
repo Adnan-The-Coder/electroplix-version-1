@@ -49,7 +49,7 @@ export function HeroSection() {
             transition={{ duration: 1, delay: 1, ease: "easeOut" }}
           >
             {/* Build Websites 10x Faster and Efficient */}
-            Your vision, expertly crafted.
+            Your vision, expertly crafted
           </motion.p>
           {/* Buttons */}
           <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
