@@ -10,12 +10,15 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 
 import { source } from '@/app/source';
 
+interface PageProps {
+  params: { slug?: string[] };
+}
+
 export default async function Page({
   params,
-}: {
-  params: { slug?: string[] };
-}) {
-  const page = await source.getPage(params.slug); // Ensure source.getPage is async if it involves I/O
+}: PageProps) {
+  // Directly access params.slug (no need to await)
+  const page = await source.getPage(params.slug);
   if (!page) notFound();
 
   const MDX = page.data.body;
