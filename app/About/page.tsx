@@ -44,7 +44,7 @@ const About: NextPage = () => {
           >
             <h2 className="mb-4 text-2xl font-semibold">Our Vision</h2>
             <p className="text-md leading-relaxed">
-              At Electroplix, we envision a world where technology and design intersect seamlessly to create extraordinary experiences. We strive to push the boundaries of what’s possible and deliver solutions that are not only functional but also inspiring.
+              At Electroplix, we envision a world where technology and design intersect seamlessly to create extraordinary experiences. We strive to push the boundaries of what`s possible and deliver solutions that are not only functional but also inspiring.
             </p>
           </motion.div>
           <motion.div
@@ -55,7 +55,7 @@ const About: NextPage = () => {
           >
             <h2 className="mb-4 text-2xl font-semibold">Our Commitment</h2>
             <p className="text-md leading-relaxed">
-              We are committed to delivering high-quality solutions that not only meet but exceed our clients' expectations. Our focus on innovation and user-centric design ensures that we remain at the cutting edge of technology and continue to set new standards in our field.
+              We are committed to delivering high-quality solutions that not only meet but exceed our client`s expectations. Our focus on innovation and user-centric design ensures that we remain at the cutting edge of technology and continue to set new standards in our field.
             </p>
           </motion.div>
         </motion.div>
