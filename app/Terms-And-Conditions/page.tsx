@@ -47,7 +47,7 @@ const TermsAndConditions: NextPage = () => {
             </p>
             <h2 className="mb-4 text-2xl font-semibold">2. Use of the Site</h2>
             <p className="text-md mb-4 leading-relaxed">
-              You may use our website only for lawful purposes and in accordance with these Terms. You agree not to use the site in any way that could damage, disable, overburden, or impair the site or interfere with any other party's use and enjoyment of the site.
+              You may use our website only for lawful purposes and in accordance with these Terms. You agree not to use the site in any way that could damage, disable, overburden, or impair the site or interfere with any other party`s use and enjoyment of the site.
             </p>
             <h2 className="mb-4 text-2xl font-semibold">3. Intellectual Property</h2>
             <p className="text-md mb-4 leading-relaxed">
