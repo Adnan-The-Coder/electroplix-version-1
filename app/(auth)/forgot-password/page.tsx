@@ -116,13 +116,13 @@ return NextResponse.json(error.message);
                     Enter your Email Address
                   </label>
                   <input
-                                    id="email"
-                                    type="email"
-                                    value={user.email}
-                                    onChange={(e) => setUser({ ...user, email: e.target.value })}
-                                    placeholder="Email Address"
-                                    className="w-full rounded-lg border border-gray-300 p-2 focus:border-gray-600 focus:outline-none"
-                                />
+                    id="email"
+                    type="email"
+                    value={user.email}
+                    onChange={(e) => setUser({ ...user, email: e.target.value })}
+                    placeholder="Email Address"
+                    className="w-full rounded-lg border border-gray-300 p-2 focus:border-gray-600 focus:outline-none"
+                />
                 </div>
                 <motion.button
                                 whileHover={{ scale: 1.02 }}
@@ -145,7 +145,7 @@ return NextResponse.json(error.message);
             </div>
             <div className="flex justify-center bg-gray-900 bg-opacity-50 px-8 py-4">
               <p className="text-sm text-gray-400">
-                Don't have an account?{" "}
+                Don`t have an account?{" "}
                 <Link href="/SignUp" className="text-green-400 hover:underline">
                   Sign up
                 </Link>

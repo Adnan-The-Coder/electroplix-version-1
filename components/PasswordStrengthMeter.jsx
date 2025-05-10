@@ -1,6 +1,5 @@
 import { AiFillCheckCircle as Check, AiFillCloseCircle as X } from 'react-icons/ai';
 
-
 const PasswordCriteria = ({ password }) => {
 	const criteria = [
 		{ label: "At least 6 characters", met: password.length >= 6 },
@@ -11,6 +10,7 @@ const PasswordCriteria = ({ password }) => {
 	];
 
 	return (
+		
 		<div className='mt-2 space-y-1'>
 			{criteria.map((item) => (
 				<div key={item.label} className='flex items-center text-xs'>
@@ -52,14 +52,13 @@ const PasswordStrengthMeter = ({ password }) => {
 		if (strength === 3) return "Good";
 		return "Strong";
 	};
-
+	
 	return (
 		<div className='mt-2'>
 			<div className='flex justify-between items-center mb-1'>
 				<span className='text-xs text-gray-400'>Password strength</span>
 				<span className='text-xs text-gray-400'>{getStrengthText(strength)}</span>
 			</div>
-
 			<div className='flex space-x-1'>
 				{[...Array(4)].map((_, index) => (
 					<div

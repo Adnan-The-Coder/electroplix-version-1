@@ -138,7 +138,7 @@ const Page: React.FC = () => {
           </div>
           <div className="flex justify-center bg-gray-900 bg-opacity-50 px-8 py-4">
             <p className="text-sm text-gray-400">
-              Don't have an account?{" "}
+              Don`t have an account?{" "}
               <Link href="/SignUp" className="text-green-400 hover:underline">
                 Sign up
               </Link>
