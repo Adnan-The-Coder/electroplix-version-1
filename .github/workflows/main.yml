@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - dev
@@ -39,7 +40,7 @@ jobs:
 
       - name: Run ES-Lint
         run: bun run lint
-        
+
   build:
     name: Build Next.js Application
     runs-on: ubuntu-latest
