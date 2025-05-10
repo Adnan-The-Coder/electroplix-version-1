@@ -12,7 +12,7 @@ const RefundCancellation = () => {
         {/* Policy Content */}
         <div className="space-y-6 text-lg">
           <p className="text-gray-300">
-            At Electroplix, we value our customers' satisfaction. Please take a moment to review our refund and cancellation policies to ensure you are fully informed about our terms and conditions.
+            At Electroplix, we value our customer`s satisfaction. Please take a moment to review our refund and cancellation policies to ensure you are fully informed about our terms and conditions.
           </p>
           <div className="rounded-lg border border-gray-700 bg-gray-800 p-6 shadow-xl">
             <h2 className="mb-4 text-2xl font-semibold text-cyan-400">Refund Eligibility</h2>

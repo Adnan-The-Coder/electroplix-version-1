@@ -255,7 +255,7 @@ return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
                     className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-2.5 text-gray-200 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
                   {formData.date && isWeekend(formData.date) && new Date(formData.date).getDay() === 0 && (
-                    <p className="mt-1 text-xs text-amber-400">We're closed on Sundays. Please select another day.</p>
+                    <p className="mt-1 text-xs text-amber-400">We`re closed on Sundays. Please select another day.</p>
                   )}
                 </div>
                 <div>

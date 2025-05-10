@@ -21,11 +21,11 @@ function BuildTogetherQuatation() {
             </div>
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
               <span className="bg-gradient-to-r from-indigo-400 to-fuchsia-500 bg-clip-text text-transparent">
-                Let's Build Something Amazing Together
+                Let`s Build Something Amazing Together
               </span>
             </h2>
             <p className="mb-6 text-lg text-gray-300">
-              Have a vision but need help bringing it to life? Share your requirements and let's collaborate to create something extraordinary.
+              Have a vision but need help bringing it to life? Share your requirements and let`s collaborate to create something extraordinary.
             </p>
             <ul className="mb-8 space-y-3">
               {[

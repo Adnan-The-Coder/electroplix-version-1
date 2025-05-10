@@ -241,7 +241,7 @@ return `${value.substring(0, 2)}/${value.substring(2, 4)}`;
                         className="w-full rounded-lg border border-gray-700 bg-gray-800 py-3 pl-10 focus:border-transparent focus:ring-2 focus:ring-cyan-500"
                       />
                     </div>
-                    <p className="text-sm text-gray-400">Enter any amount you'd like to contribute</p>
+                    <p className="text-sm text-gray-400">Enter any amount you`d like to contribute</p>
                   </div>
                   <div className="mb-8 rounded-xl border border-gray-700 bg-gray-900/50 p-4">
                     <div className="mb-2 flex items-center justify-between">
@@ -393,14 +393,14 @@ return `${value.substring(0, 2)}/${value.substring(2, 4)}`;
                   <h2 className="mb-4 text-2xl font-bold">Thank You for Your Support!</h2>
                   <p className="mb-8 text-gray-300">
                     Your ${amount}.00 {selectedPlan} sponsorship for Electroplix has been processed successfully.
-                    We'll send you a confirmation email shortly.
+                    We`ll send you a confirmation email shortly.
                   </p>
                   <div className="mx-auto mb-8 max-w-md rounded-xl border border-gray-700 bg-gray-900/50 p-6">
                     <h3 className="mb-4 text-lg font-semibold text-cyan-400">What happens next?</h3>
                     <ul className="space-y-3 text-left">
                       <li className="flex items-start">
                         <Check className="mr-2 mt-0.5 size-5 shrink-0 text-green-500" />
-                        <span>You'll receive a confirmation email within the next few minutes</span>
+                        <span>You`ll receive a confirmation email within the next few minutes</span>
                       </li>
                       <li className="flex items-start">
                         <Check className="mr-2 mt-0.5 size-5 shrink-0 text-green-500" />
@@ -408,7 +408,7 @@ return `${value.substring(0, 2)}/${value.substring(2, 4)}`;
                       </li>
                       <li className="flex items-start">
                         <Check className="mr-2 mt-0.5 size-5 shrink-0 text-green-500" />
-                        <span>You'll gain access to our sponsor-only repositories and resources</span>
+                        <span>You`ll gain access to our sponsor-only repositories and resources</span>
                       </li>
                     </ul>
                   </div>
