@@ -235,4 +235,4 @@ const Dashboard = ({ activeView }: { activeView: string }) => {
   );
 };
 
-export default SidebarDemo;
+export default Dashboard;
