@@ -203,13 +203,13 @@ const StrategicPlanning = () => {
             placeholder="Plan title..."
             value={newPlan.title}
             onChange={(e) => setNewPlan({...newPlan, title: e.target.value})}
-            className="w-full rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder-white/50 focus:border-white/30 focus:outline-none"
+            className="w-full rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder:text-white/50 focus:border-white/30 focus:outline-none"
           />
           <textarea
             placeholder="Plan details..."
             value={newPlan.content}
             onChange={(e) => setNewPlan({...newPlan, content: e.target.value})}
-            className="h-32 w-full resize-none rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder-white/50 focus:border-white/30 focus:outline-none"
+            className="h-32 w-full resize-none rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder:text-white/50 focus:border-white/30 focus:outline-none"
           />
           <div className="flex flex-col gap-4 sm:flex-row">
             <select
@@ -430,13 +430,13 @@ const BulkEmailManagement = ({ emails, setEmails }: any) => {
               placeholder="Email subject..."
               value={currentEmail.subject}
               onChange={(e) => setCurrentEmail({...currentEmail, subject: e.target.value})}
-              className="w-full rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder-white/50 focus:border-white/30 focus:outline-none"
+              className="w-full rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder:text-white/50 focus:border-white/30 focus:outline-none"
             />
             <textarea
               placeholder="Email content..."
               value={currentEmail.content}
               onChange={(e) => setCurrentEmail({...currentEmail, content: e.target.value})}
-              className="h-48 w-full resize-none rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder-white/50 focus:border-white/30 focus:outline-none"
+              className="h-48 w-full resize-none rounded-lg border border-white/10 bg-black/80 p-3 text-white placeholder:text-white/50 focus:border-white/30 focus:outline-none"
             />
             <div className="flex gap-2">
               <button
@@ -641,7 +641,7 @@ const AdminDashboard = () => {
     <div className="flex min-h-screen bg-black">
       {/* Sidebar */}
       <div 
-        className={`fixed inset-y-0 left-0 z-30 w-64 transform bg-black/80 backdrop-blur-lg transition-transform duration-300 ease-in-out md:relative md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-30 w-64 bg-black/80 backdrop-blur-lg transition-transform duration-300 ease-in-out md:relative md:translate-x-0${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

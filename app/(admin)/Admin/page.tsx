@@ -12,7 +12,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/Sidebar";
 
-export function SidebarDemo() {
+function SidebarDemo() {
   const links = [
     {
       label: "Dashboard",
