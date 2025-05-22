@@ -85,7 +85,7 @@ function SidebarDemo() {
   );
 }
 
-export const Logo = () => {
+const Logo = () => {
   return (
     <a
       href="#"
@@ -103,7 +103,7 @@ export const Logo = () => {
   );
 };
 
-export const LogoIcon = () => {
+const LogoIcon = () => {
   return (
     <a
       href="#"
